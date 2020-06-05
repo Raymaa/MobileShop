@@ -1,0 +1,311 @@
+body,div,input,a,button,table,td,tr,img,h1,h2,h3,h4,h4,h5,p,ol,ul,li,dl,dt,dd{ margin:0; padding:0; list-style:none; border:none;}
+
+body{ font-size:12px; font-family:"宋体"; color:#616161; }
+
+a{ color:#999; text-decoration:none;}
+a:hover{ text-decoration:underline;}
+
+article, aside, dialog, footer, header, section, footer, nav, figure, menu { display:block; }
+
+
+.red{color:red;}
+
+#siteNav{ height:35px; background:#f5f5f5;border-bottom:1px solid #eee;}
+#siteNavCon{width:1190px;margin:0 auto; height:35px;line-height: 35px;
+}
+#siteNavCon .left{ float:left;}
+#siteNavCon .left li{float:left;margin-right:15px;}
+
+#siteNavCon .right{float:right; position:relative;}
+#siteNavCon .right li{ float:left; margin-right:15px;}
+#siteNavCon .right li.navTitle{ width:106px;   }
+#siteNavCon .right li .siteNavPanel{ width:105px;background-color: #fff; border:1px solid #f0f0f0;border-top: 1px solid #fff;
+    position:absolute;
+    z-index: 999;
+    display:none;
+}
+#siteNavCon .right li .siteNavPanel li a{height:30px;line-height: 30px;padding:2px 0 2px 5px;}
+#siteNavCon .right li .siteNavPanel li a:hover{color:red; text-decoration: none;}
+.selected{
+
+}
+i.downUp{
+    background:url(../img/down.gif)  no-repeat 0 0;
+    width: 15px;
+    height: 10px;
+    display:inline-block;
+}
+li.current i.downUp{
+    background:url(../img/up.gif)  no-repeat 0 0;
+    display:inline-block;
+}
+
+li.current{
+    background-color: #fff;
+    border:1px solid #f0f0f0;
+    border-bottom: 1px solid #fff;
+}
+
+#Storage{
+    width: 1190px;
+    margin: 10px auto;
+}
+.headImg{
+    margin: 15px 0;
+}
+#goodContent{
+    width: 100%;
+    border: 1px solid #efefef;
+}
+#goodContent td{
+    border:0;
+}
+.goodsTitle{
+    background: #f5f5f5;
+    height: 40px;
+    text-align: center;
+}
+
+.img1{
+    float: left;
+    width:100px;
+    height: 100px;
+    line-height: 120px;
+    padding-left: 0;
+    margin:10px 5px 10px 20px;
+    border:1px solid #dfdfdf;
+}
+.goodPrice,.count{
+    text-align: center;
+    vertical-align: center;
+}
+.goodName{
+    float: left;
+    font-size: 10px;
+    font-family: "微软雅黑";
+    padding-top: 10px;
+}
+.good1Check{
+    margin-left: 15px;
+}
+.selected{
+    margin-left:15px;
+    background-color:#F40;
+}
+.sumGood{
+
+    float: left;
+    width: 40px;
+    height: 21px;
+    text-align: center;
+    border:0.1px solid #a9a9a9 ;
+    list-style: none;
+}
+.addGood{
+    float: left;
+    background: url("../img/jia.gif");
+    height: 21px;
+    width: 21px;
+    border-bottom: 0.1px solid #a9a9a9;
+    border-right: 0.1px solid #a9a9a9;
+    border-top: 0.1px solid #a9a9a9;
+
+}
+#addGood{
+    float: left;
+    background: url("../img/jia.gif");
+    height: 21px;
+    width: 21px;
+    border-bottom: 0.1px solid #a9a9a9;
+    border-right: 0.1px solid #a9a9a9;
+    border-top: 0.1px solid #a9a9a9;
+
+}
+.decGood{
+    margin-left: 36px;
+    float: left;
+    background: url("../img/jian.gif");
+    height: 21px;
+    width: 21px;
+    border-bottom: 0.1px solid #a9a9a9;
+    border-left: 0.1px solid #a9a9a9;
+    border-top: 0.1px solid #a9a9a9;
+}
+.delete,.save{
+    float:left;
+    margin-left: 15px;
+    background: none;
+    horiz-align: center;
+    vertical-align: center;
+    color: #a1a1a1;
+    font-family: "华文宋体";
+}
+
+.summery{
+    width: 1190px;
+    padding: 30px;
+}
+
+.bottom{
+    width: 100%;
+    height: 300px;
+    border:1px solid #f5f5f5;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.sumAll,.select{
+    font-weight: bold;
+    font-family: Arial;
+}
+.money,.tag{
+    color: #F40;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 微软雅黑;
+}
+.confirmBtn{
+    background: #F40;
+    width: 150px;
+    height:40px;
+    border-radius:4px;
+    text-align: center;
+    color:#fff;
+    float:right;
+    margin-right: 10px;
+    margin-top:130px
+
+}
+
+/*content部分*/
+#content{width:1190px;  margin:10px auto; }
+
+
+/*footer部分*/
+#footer{  background:#f5f5f5;  border-top:1px solid #eee; margin:10px 0;}
+#footerCon{ width:1190px;  margin:10px auto 0;    overflow: hidden;}
+#footerCon #links{ border-bottom: 1px solid #eee; overflow:hidden; padding-bottom: 20px; text-align: center}
+#footerCon #links dl{float:left;width: 297px; margin-right:0px;}
+#footerCon #links dl dt{color:#646464; padding-bottom: 10px; font-weight: 700; font-size: 14px; }
+#footerCon #links dl dd{ line-height: 25px;}
+#footerCon #otherLinks{ height:30px; line-height: 30px;  text-align: center;  }
+#footerCon #copyRight{  line-height: 30px;  text-align: center;  }
+
+/*header部分,采用圣杯布局*/
+#header{
+    width:1190px;
+    margin:10px auto ;
+    overflow:hidden;
+}
+.search{
+    width:100%;
+    height:114px;
+    float:left;
+}
+
+.logo{
+    width:140px;
+    height:58px;
+    float:left;
+    margin-left:-1190px;
+    margin-top:28px;
+}
+.QRCode{
+    width:94px;
+    height:96px;
+    float:left;
+    border:1px solid #eee;
+    margin-left:-96px;
+}
+
+
+.logo a{
+    display:block;
+    height:0px;
+    background:url(../img/sprite.png);
+    padding-top:58px;
+    overflow:hidden;
+}
+
+.QRCode{
+    width:94px;
+    height:96px;
+    border:1px solid #eee;
+    float:left;
+    margin-left:-96px;
+    padding:8px 0;
+    text-align:center;
+    position:relative;
+}
+.QRCode span{
+    width:18px;
+    height:18px;
+    border:1px solid #eee;
+    position:absolute;
+    left:-20px;
+    top:-1px;
+    cursor:pointer;
+}
+.QRCode span s{
+    width:10px;
+    height:9px;
+    background:url(../img/close.png);
+    display:inline-block;
+    margin-top:4px;
+    overflow:hidden;
+}
+#header .search .searchCon{ width:760px; height:94px; padding:20px 180px 0 250px;}
+
+.searchConT{ height:25px; }
+.searchConT li{ float:left; line-height:25px;width:50px; height:25px; text-align:center; cursor:pointer;}
+.searchConT li:hover{ background:#ffeee5; color:#ff5400;}
+.searchConT li.current{ background:#ff5400; color:#fff; font-weight:bold;}
+.searchConM{ height:40px;}
+.searchConM .left{width:721px; height:40px;  float:left;}
+.searchConM .left .text{width:618px; height:34px; background:#ff5500; float:left; padding:3px 0 3px 3px; position:relative;}
+.searchConM .left .text input{width:610px; height:34px; background:#fff;border:none;padding-left:30px; line-height:34px;}
+.searchConM .left .text label{ position:absolute; left:35px; top:10px; color:#9c9c9c;}
+.searchConM .left .text span{width:12px; height:12px; background:url(../img/search.png); position:absolute; left:15px; top:13px; overflow:hidden;}
+.searchConB{width:721px; height:20px; margin-top:4px; line-height:20px;}
+.searchConB a{ margin-right:9px; float:left;}
+.searchConB .more{ float:right; width:34px; height:18px; border:1px solid #eee; background:url(../img/more.png) no-repeat 32px 5px; line-height:18px;padding-left:5px;margin-right:1px;}
+.searchConM .left .btn{width:100px; height:40px; background:#ff4200; float:left;}
+.searchConM .left .btn input{width:100px; height:40px; background:#ff4200; border:none; cursor:pointer; color:#fff; font-size:20px; font-weight:bold; font-family:"黑体";}
+.searchConM .right{width:26px; height:40px; float:right;}
+
+
+
+
+
+
+
+
+
+/*header部分*/
+/*         #header{width:1190px; margin:10px auto ;overflow:hidden;}
+#header .search{ width:100%; height:114px; float:left;}
+#header .search .searchCon{ width:760px; height:94px; padding:20px 180px 0 250px;}
+
+.searchConT{ height:25px; }
+.searchConT li{ float:left; line-height:25px;width:50px; height:25px; text-align:center; cursor:pointer;}
+.searchConT li:hover{ background:#ffeee5; color:#ff5400;}
+.searchConT li.current{ background:#ff5400; color:#fff; font-weight:bold;}
+.searchConM{ height:40px;}
+.searchConM .left{width:721px; height:40px;  float:left;}
+.searchConM .left .text{width:618px; height:34px; background:#ff5500; float:left; padding:3px 0 3px 3px; position:relative;}
+.searchConM .left .text input{width:610px; height:34px; background:#fff;border:none;padding-left:8px; line-height:34px;}
+.searchConM .left .text label{ position:absolute; left:35px; top:10px; color:#9c9c9c;}
+.searchConM .left .text span{width:12px; height:12px; background:url(../img/search.png); position:absolute; left:15px; top:13px; overflow:hidden;}
+.searchConB{width:721px; height:20px; margin-top:4px; line-height:20px;}
+.searchConB a{ margin-right:9px; float:left;}
+.searchConB .more{ float:right; width:34px; height:18px; border:1px solid #eee; background:url(../img/more.png) no-repeat 32px 5px; line-height:18px;padding-left:5px;margin-right:1px;}
+.searchConM .left .btn{width:100px; height:40px; background:#ff4200; float:left;}
+.searchConM .left .btn input{width:100px; height:40px; background:#ff4200; border:none; cursor:pointer; color:#fff; font-size:20px; font-weight:bold; font-family:"黑体";}
+.searchConM .right{width:26px; height:40px; float:right;}
+
+#header .logo{width:140px; height:58px; float:left;margin-left:-1190px;margin-top:28px;}
+
+#header .logo a{ display:block; height:0px; background:url(../img/sprite.png);padding-top:58px; overflow:hidden;}
+#header .erweima{width:94px; height:96px; border:1px solid #eee; float:left;margin-left:-96px; padding:8px 0; text-align:center; position:relative;}
+#header .erweima span{width:18px; height:18px; border:1px solid #eee; position:absolute; left:-20px; top:-1px; cursor:pointer;}
+#header .erweima span s{width:10px; height:9px; background:url(../img/close.png); display:inline-block;margin-top:4px; overflow:hidden;}  */

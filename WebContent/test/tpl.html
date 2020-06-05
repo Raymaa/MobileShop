@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>template自定义模板</title>
+<script src="../plug/jquery-3.1.1.js" type="text/javascript"></script>
+<!-- <script src="js/jquery-1.8.2.min.js" type="text/javascript"></script> -->
+<script src="../plug/underscore-min.js" type="text/javascript"></script>
+<!--     <script src="js/underscore-min.js" type="text/javascript"></script> -->
+<style type="text/css">
+body {
+	font-size: 13px;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	width: 360px
+}
+
+li:first-child span {
+	float: left;
+	border-bottom: solid 1px #ccc;
+	background-color: #eee;
+	font-weight: bold
+}
+
+ul li span {
+	width: 80px;
+	text-align: left;
+	float: left;
+	padding: 0px 5px;
+	border-bottom: dashed 1px #ccc;
+	line-height: 28px;
+}
+</style>
+</head>
+<body>
+	<script type="text/template" id="tpl">
+    <%  var intSumScore=0,intAveScore=0;
+        for(var i = 0; i < list.length; i++) { 
+            var item = list[i] %>
+        <li>
+            <span><%=item.StuId%></span>
+            <span><%=item.Name%></span>
+            <span><%=item.Sex%></span>
+            <span><%=item.Score%></span>
+        </li>
+        <%
+           intSumScore+=parseInt(item.Score)
+           intAveScore=intSumScore/list.length;
+        } %>
+        <li>
+           <span>平均分：</span>
+           <span><%=intAveScore%></span>
+           <span>总分：</span>
+           <span><%=intSumScore%></span>
+        </li>
+</script>
+	<ul id="element">
+		<li><span>学号</span> <span>姓名</span> <span>性别</span> <span>总分</span>
+		</li>
+	</ul>
+	<script type="text/javascript">
+    var ele = $('#element'),
+        tpl = $('#tpl').html();
+    var data = {
+        list: [
+            { StuId: 's0101', Name: '刘小明', Sex: '男', Score: '345' },
+            { StuId: 's0102', Name: '李清燕', Sex: '女', Score: '445' },
+            { StuId: 's0103', Name: '张二保', Sex: '男', Score: '355' },
+            { StuId: 's0104', Name: '陈明基', Sex: '男', Score: '564' },
+            { StuId: 's0105', Name: '舒明珠', Sex: '女', Score: '543' }
+        ]
+    }
+    var html = _.template(tpl, data);
+    ele.append(html);
+</script>
+</body>
+</html>

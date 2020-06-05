@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Backbone 代码7-7</title>
+    </head>
+    <body>
+          
+       <script  src="../plug/jquery-1.8.2.min.js" type="text/javascript"></script> 
+       <script  src="../plug/underscore-min.js" type="text/javascript"></script> 
+       <script  src="../plug/backbone-min.js" type="text/javascript"></script> 
+       <script type="text/javascript">
+       
+       //方法1:将返回的数据未进行格式化
+       
+       //步骤1：构建Model的urlRoot
+      var goodId = 5;//这里假设goodId为5的商品存在，且有数据
+      var urlRoot =  "http://localhost:8080/MobileShop"+"/goods/";
+      //步骤2：创建Model类GoodsItem，将urlRoot传递进去，将goodsId设置为键值属性
+      var GoodsItem = Backbone.Model.extend({
+    	  urlRoot:urlRoot,   
+    	  idAttribute:"goodsId" 
+	    });
+     //步骤3：创建一个GoodsItem类的对象goods，并设置goodsId的值
+      var goods = new GoodsItem({goodsId:goodId});
+      //步骤4：调用goods的fetch方法，采用GET的方式，向服务器发送XHR请求
+      goods.fetch({
+    	  success:function(model,response){
+    		//通过model获取商品名称
+    		  console.log("商品编号：" +model.get("data").sn+"   商品名称："+ model.get("data").name+"    商品价格："+model.get("data").price);
+    	  },error :function(err){
+    		  console.log(err);
+    	  }
+      });
+    
+      
+      //方法2:将返回的数据进行格式化
+ /*      var goodId = 5;//这里假设goodId为5的商品存在，且有数据
+      var url =  "http://localhost:8080/MobileShop"+"/goods/";
+      var GoodsItem = Backbone.Model.extend({
+         urlRoot:url,
+         parse : function(response){
+	           return response.data;
+	      },
+	      idAttribute:"goodsId" 
+	    });
+      var goods = new GoodsItem({goodsId:goodId});
+      goods.fetch({
+    	  success:function(model,response){
+    		//通过model获取商品名称
+    		  console.log("商品编号：" +model.get("sn")+"商品名称：" +model.get("name")+"商品价格：" +model.get("price"));
+    	  },error :function(err){
+    		  console.log(err);
+    	  }
+      });  */
+       
+       </script>
+    </body>
+</html>

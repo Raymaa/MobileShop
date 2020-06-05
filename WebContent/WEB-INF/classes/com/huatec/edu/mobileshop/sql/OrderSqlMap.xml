@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.OrderDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	<!-- 订单表和会员表关联查询 -->
+	<select id="dynamicFindUnion" parameterType="map" resultMap="orderMap3">
+		select mo.*,mm.member_id,mm.uname
+		from ms_order mo
+		join ms_member mm
+		on mo.member_id=mm.member_id
+		<where>
+			<if test="status!=null">
+				mo.status=#{status}
+			</if>
+		</where>
+		limit #{begin},#{pageSize} 
+	</select>
+	<resultMap type="com.huatec.edu.mobileshop.entity.Order" id="orderMap3">
+		<id property="order_id" column="order_id"/>
+		<result property="sn" column="sn"/>
+		<result property="member_id" column="member_id"/>
+		<result property="status" column="status"/>
+		<result property="payment_id" column="payment_id"/>
+		<result property="logi_id" column="logi_id"/>
+		<result property="total_amount" column="total_amount"/>
+		<result property="address_id" column="address_id"/>
+		<result property="creatime" column="creatime"/>
+		<result property="modifytime" column="modifytime"/>
+		<association property="bm" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefMember">
+			<id property="member_id" column="member_id"/>
+			<result property="uname" column="uname"/>
+		</association>
+	</resultMap>
+	
+	<!-- 订单表和订单日志表关联查询 -->
+	<select id="findUnionByStatus" parameterType="int" 
+	resultMap="orderMap2">
+		select mo.order_id,mo.sn,mol.status,mol.time
+		from ms_order mo
+		join ms_order_log mol
+		on mo.order_id=mol.order_id and mo.status=mol.status
+		where mo.status=#{status}
+	</select>
+	<resultMap 
+	type="com.huatec.edu.mobileshop.entity.brief.BriefOrder" 
+	id="orderMap2">
+		<id property="order_id" column="order_id"/>
+		<result property="sn" column="sn"/>
+		<association property="bol" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefOrderLog">
+			<result property="status" column="status"/>
+			<result property="time" column="time"/>
+		</association>
+	</resultMap>
+	
+	<!-- 订单表、订单商品表、商品表关联查询 -->
+	<select id="findUnionByMemberId" parameterType="int" 
+	resultMap="orderMap1">
+		select mo.*,mog.*,mg.goods_id,mg.name goods_name,mg.price current_price,
+		mg.mktprice,mg.small,mg.thumbnail,
+		ml.sn logi_sn,ml.carriage
+		from ms_order mo 
+		left outer join ms_logi ml
+		on mo.logi_id=ml.logi_id
+		left outer join ms_order_goods mog 
+		on mo.order_id=mog.order_id 
+		left outer join ms_goods mg on 
+		mog.goods_id=mg.goods_id
+		where mo.member_id=#{member_id}
+		order by mo.creatime desc
+	</select>
+	<resultMap type="com.huatec.edu.mobileshop.entity.Order" id="orderMap1">
+		<id property="order_id" column="order_id"/>
+		<result property="sn" column="sn"/>
+		<result property="member_id" column="member_id"/>
+		<result property="status" column="status"/>
+		<result property="payment_id" column="payment_id"/>
+		<result property="logi_id" column="logi_id"/>
+		<result property="total_amount" column="total_amount"/>
+		<result property="address_id" column="address_id"/>
+		<result property="creatime" column="creatime"/>
+		<result property="modifytime" column="modifytime"/>
+		<association property="bl" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefLogi">
+			<result property="sn" column="logi_sn"/>
+			<result property="carriage" column="carriage"/>
+		</association>
+		<collection property="ogs" javaType="java.util.List" 
+		ofType="com.huatec.edu.mobileshop.entity.OrderGoods">
+			<id property="id" column="id"/>
+			<result property="order_id" column="order_id"/>
+			<result property="goods_id" column="goods_id"/>
+			<result property="goods_num" column="goods_num"/>
+			<result property="price" column="price"/>
+			<association property="bgfos" 
+			javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsForOrder">
+				<result property="name" column="goods_name"/>
+				<result property="price" column="current_price"/>
+				<result property="mktprice" column="mktprice"/>
+				<result property="small" column="small"/>
+				<result property="thumbnail" column="thumbnail"/>
+			</association>
+		</collection>
+	</resultMap>
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.Order" 
+	useGeneratedKeys="true" keyProperty="order_id" >
+		insert into ms_order
+		 (order_id,sn,member_id,status,payment_id,logi_id,
+		 total_amount,address_id,creatime,modifytime)
+		 values(#{order_id},#{sn},#{member_id},#{status},
+		 #{payment_id},#{logi_id},#{total_amount},#{address_id},
+		 #{creatime},#{modifytime})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.Order">
+		select * from ms_order
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_order where order_id=#{order_id}
+	</delete>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.Order">
+		select * from ms_order where order_id=#{order_id}
+	</select>
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" 
+	parameterType="com.huatec.edu.mobileshop.entity.Order">
+		update ms_order
+		<set>
+			<if test="status!=null">
+				status=#{status},
+			</if>
+			<if test="payment_id!=null">
+				payment_id=#{payment_id},
+			</if>
+			<if test="logi_id!=null">
+				logi_id=#{logi_id},
+			</if>
+			<if test="total_amount!=null">
+				total_amount=#{total_amount}
+			</if>
+			<if test="address_id!=null">
+				address_id=#{address_id}
+			</if>
+			<if test="creatime!=null">
+				creatime=#{creatime}
+			</if>
+			<if test="modifytime!=null">
+				modifytime=#{modifytime}
+			</if>
+		</set>
+		where order_id=#{order_id}
+	</update>
+	
+</mapper>

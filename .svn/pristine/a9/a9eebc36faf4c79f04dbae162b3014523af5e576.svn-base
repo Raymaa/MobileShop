@@ -1,0 +1,164 @@
+$(document).ready(function(){
+	  //步骤1：预设值当前页面id
+	 var pageId = 1;
+	//步骤2：构建url地址
+	 var path = "http://localhost:8080/MobileShop";
+	 var url = path+"/goods/enable/page/"+pageId;
+	 
+	//步骤3：创建模型类
+	var  GoodsItem = Backbone.Model.extend({
+		 idAttribute:"goodsId"  //为了保证collection的create方法的使用，将goodsId设置为键值属性
+	});
+	
+	//步骤4：创建集合类
+	var  OnLineGoodsList = Backbone.Collection.extend({
+		model: GoodsItem,
+		//url:url,  //可以在定义集合类时传入url
+	    parse : function(response){
+	        return response.data;
+	      }
+	});
+	
+    
+    //步骤5：实例化集合
+    var  onLineGoodsList = new OnLineGoodsList();
+    
+    //步骤6：采用fetch方法获取服务器数据
+  onLineGoodsList.fetch({
+	    reset:true, 
+	    url:url,//也可以在fetch时重构url
+	    success: function(collection, response) {
+	   
+	    // 1、获取数据成功后在控制台输出集合中的模型列表
+	    	/*
+    	console.log("加载输出");
+    	 for(var i=0;i<collection.models.length;i++){
+			 console.log(collection.models[i].toJSON());
+		 }
+    	 */
+    	 /*
+    	// 2、从collection中移除model，再输出
+    	 collection.remove(collection.models[3]);//删除第4个模型对象，下标从0开始
+    	 collection.shift();//删除第1个模型对象
+    	 collection.pop();//删除最后个模型对象
+    	 console.log("remove事件发生之后，再次输出");
+    	 for(var i=0;i<collection.models.length;i++){
+			 console.log(collection.models[i].toJSON());
+		 }
+    	 
+    	
+    	 
+    	  // 3、往collection里添加model，再输出
+    	 var newGoods1 = new GoodsItem();
+    	newGoods1.set( {"goods_id":100,"name":"测试商品1","price":1,"mktprice":1,"small":""});
+    	var newGoods2= new GoodsItem();
+    	newGoods2.set( {"goods_id":102,"name":"测试商品2","price":2,"mktprice":2,"small":""});
+    	var newGoods3 = new GoodsItem();
+    	newGoods3.set( {"goods_id":103,"name":"测试商品3","price":3,"mktprice":3,"small":""});
+    	collection.unshift(newGoods1);//在头部插入模型对象
+    	collection.add(newGoods2,{at:2});//在头部插入模型对象
+    	collection.push(newGoods3);//在尾部插入模型对象
+    	 console.log("add事件发生之后，再次输出");
+    	 for(var i=0;i<collection.models.length;i++){
+			 console.log(collection.models[i].toJSON());
+		 }
+		 
+	      */
+         }
+    });
+  
+  
+  // 往collection里添加model，通过create方法同步到服务器
+  /*
+  var newGoods4 = new GoodsItem();
+  newGoods4.set( {"goods_id":5,"name":"测试商品4","price":4,"mktprice":4,"small":""});
+  var newUrl = path+"/goods/"+5;
+  onLineGoodsList.create(
+		  newGoods4,
+		  {
+	       wait:true,
+	       url:newUrl,
+	       success:function(model,response,options){
+	    	   console.log("create 成功");
+	    	   console.log(response);
+	       }
+		  });
+ */
+
+
+
+    
+    /*
+    //不采用模板
+   //步骤7：创建视图类   
+   var GoodsListView = Backbone.View.extend({
+	   el: $("online"),
+	   // 为每一个任务条目绑定事件
+       initialize: function () {
+    	   this.listenTo(onLineGoodsList, 'all', this.render);
+       },
+       render: function(){
+    	   $("#onlineGoodsList").empty();//清空一次
+    	   for(var i=0;i < onLineGoodsList.models.length;i++){
+         	 $("#onlineGoodsList").append("<tr class='item'> <td> <input type='checkbox' data-goodsId='"
+         			 +onLineGoodsList.models[i].get("goods_id")+
+         			 "'> </td> <td>" +onLineGoodsList.models[i].get("goods_id")+
+         			 "</td> <td>"+onLineGoodsList.models[i].get("name")+
+         			 "</td><td>"+onLineGoodsList.models[i].get("price")+
+         			"</td><td>"+onLineGoodsList.models[i].get("mkt_enable")+
+         			"</td><td><a href='#'  class='edit' data-goodsId='"+onLineGoodsList.models[i].get("goods_id")+
+         			"'>编辑</a>  <a href='#' class='delete'  data-goodsId='"+onLineGoodsList.models[i].get("goods_id")+"'>删除</a></td></tr>"	 
+         	 );
+            }
+       },
+	    events: {
+	        'click #test' : 'deleteThis'
+	    },
+       // 移除对应条目，以及对应的数据对象
+	    deleteThis: function() {
+          alert("ok1");
+       }
+       
+   });
+   */
+   //采用模板
+   //优化步骤7：创建视图类   
+    //创建一个显示单个model对象的视图类
+     var GoodsItemView = Backbone.View.extend({
+    	 tagName : 'tr',       //设置生成的DOM元素，这里为表格中的一行
+	     className : 'item',   //设置class属性
+	     itemTemplate : _.template($("#onLineTemplate").html()),//设置模板
+	     initialize:function(){
+             this.render();
+	     },
+    	 render : function(){
+    		   console.log("进入单个视图");
+    		   console.log(this.model.toJSON());
+	       		this.$el.html(this.itemTemplate(this.model.toJSON()));
+	       		return this;  
+	       	}
+     });
+     
+     //创建一个显示Collection对象的视图类
+     var GoodsListView = Backbone.View.extend({
+    	    el : '#onlineGoodsList',
+	       	initialize: function() {
+	       		this.listenTo(onLineGoodsList,'all',this.render);//GoodsListView视图监听collection对象onLineGoodsList的all事件，render进行渲染
+	       	},
+	       	render :function(){
+	       		this.$el.empty();//清空
+	       		
+	       		for(var i=0;i < onLineGoodsList.models.length;i++){
+	       			var view = new GoodsItemView ({model :onLineGoodsList.models[i] });  
+	       			this.$el.append(view.$el);
+	       		}
+	       	}
+	       });
+   
+   //步骤8：实例化视图
+   var goodsListView = new GoodsListView;
+   goodsListView.render();
+  
+
+   
+});

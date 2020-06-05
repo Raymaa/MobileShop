@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Backbone 代码7-7</title>
+    </head>
+    <body>
+          
+       <script  src="../plug/jquery-1.8.2.min.js" type="text/javascript"></script> 
+       <script  src="../plug/underscore-min.js" type="text/javascript"></script> 
+       <script  src="../plug/backbone-min.js" type="text/javascript"></script> 
+       <script type="text/javascript">
+/*   var goodId = 5;//这里假设goodId为5的商品存在，且有数据
+      var url =  "http://localhost:8080/MobileShop"+"/goods/"+goodId;
+      var GoodsItem = Backbone.Model.extend({
+         url:url
+	    });
+      var goods = new GoodsItem();
+      goods.fetch({
+    	  success:function(model,response){
+    		//通过model获取商品名称
+    		  console.log("商品编号：" +model.get("data").sn+"   商品名称："+ model.get("data").name+"    商品价格："+model.get("data").price);
+    	  },error :function(err){
+    		  console.log(err);
+    	  }
+      });
+       */
+      
+      
+      var goodId = 5;//这里假设goodId为5的商品存在，且有数据
+      var url =  "http://localhost:8080/MobileShop"+"/goods/"+goodId;
+      var GoodsItem = Backbone.Model.extend({
+         url:url,
+         parse : function(response){
+	           return response.data;
+	      }
+         
+	    });
+      var goods = new GoodsItem();
+      goods.fetch({
+    	  success:function(model,response){
+    		//通过model获取商品名称
+    		  console.log("商品编号：" +model.get("sn")+"商品名称：" +model.get("name")+"商品价格：" +model.get("price"));
+    	  },error :function(err){
+    		  console.log(err);
+    	  }
+      }); 
+       
+       </script>
+    </body>
+</html>

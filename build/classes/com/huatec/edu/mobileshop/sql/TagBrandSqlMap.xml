@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.TagBrandDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	<!-- 检查是否重复关联 -->
+	<select id="findRepeat" parameterType="map" 
+	resultType="com.huatec.edu.mobileshop.entity.TagBrand">
+		select * from ms_tag_brand_ref 
+		where tag_id=#{tag_id} 
+		and brand_id=#{brand_id}
+	</select>
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.TagBrand" 
+	useGeneratedKeys="true" keyProperty="id" >
+		insert into ms_tag_brand_ref
+		 (id,tag_id,brand_id,sort,creatime,modifytime)
+		 values(#{id},#{tag_id},#{brand_id},#{sort},#{creatime},#{modifytime})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.TagBrand">
+		select * from ms_tag_brand_ref
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_tag_brand_ref where id=#{id}
+	</delete>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.TagBrand">
+		select * from ms_tag_brand_ref where id=#{id}
+	</select>
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" parameterType="com.huatec.edu.mobileshop.entity.TagBrand">
+		update ms_tag_brand_ref
+		<set>
+			<if test="tag_id!=null">
+				tag_id=#{tag_id},
+			</if>
+			<if test="brand_id!=null">
+				brand_id=#{brand_id},
+			</if>
+			<if test="sort!=null">
+				sort=#{sort},
+			</if>
+			<if test="modifytime!=null">
+				modifytime=#{modifytime}
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<!-- 标签品牌引用表和品牌表关联查询 -->
+	<select id="findUnionByTagId" parameterType="int" 
+	resultMap="tagBrandMap">
+		select mtbr.*,mb.brand_id,mb.name,mb.logo
+		from ms_tag_brand_ref mtbr 
+		 join ms_brand mb
+		on mtbr.brand_id=mb.brand_id
+		where mtbr.tag_id=#{tag_id}
+		order by mtbr.sort desc
+	</select>
+	<resultMap type="com.huatec.edu.mobileshop.entity.TagBrand" id="tagBrandMap">
+		<id property="id" column="id"/>
+		<result property="tag_id" column="tag_id"/>
+		<result property="brand_id" column="brand_id"/>
+		<result property="sort" column="sort"/>
+		<result property="creatime" column="creatime"/>
+		<result property="modifytime" column="modifytime"/>
+		<association property="briefBrand" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefBrand">
+			<id property="brand_id" column="brand_id"/>
+			<result property="name" column="name"/>
+			<result property="logo" column="logo"/>
+		</association>
+	</resultMap>
+	
+</mapper>

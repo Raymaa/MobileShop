@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>商品购物车</title>
+     <link rel="stylesheet" href="../../plug/font-awesome/css/font-awesome.min.css">
+     <link rel="shortcut icon" href="../../favicon.ico" />
+     <style type="text/css">
+          *{
+          font-size:12px;
+          color:#666666;
+          border:0;
+          padding:0;
+          margin:0;
+          }
+          a{
+            text-decoration:none;
+          }
+          table{
+            background-color:#e2f2ff;
+            margin:10px;
+            border-radius:4px;
+          }
+          .tab{
+            width:800px;
+            height:34px;
+            border-top:4px solid #a7cbff;
+            border-spacing:0; 
+          }
+          .tabb{
+            width:802px;
+            height:103px;
+            border:1px solid #cadeff;
+            border-spacing:0;
+          }
+          .tabf{
+            width:690px;
+            height:50px;
+            border:1px solid #c8c8c8;
+            background-color:#fff;
+            border-spacing:0;
+            border-radius:0;
+            position:relative;
+            z-index:1;
+          }
+          .th2{
+            width:60px;
+            border-right:1px solid #FFF;
+          }
+          .th3{
+            width:100px;
+            border-right:1px solid #FFF;
+          }
+          .th4{
+            width:194px;
+            border-right:1px solid #FFF;
+          }
+          .th5{
+            width:110px;
+            border-right:1px solid #FFF;
+          }
+          .td{
+            width:59px;
+            border-right:1px solid #e2f2ff;
+          }
+          .td1{
+            width:100px;
+            border-right:1px solid #e2f2ff;
+          }
+          .td2{
+            width:179px;
+            padding:0px 8px 0px 7px;
+            border-right:1px solid #e2f2ff;
+            text-align:justify;
+          }
+          .td3{
+            width:110px;
+            border-right:1px solid #e2f2ff;
+          }
+          .tdf{
+            width:396px;
+            border-right:1px solid #c8c8c8;
+          }
+          #inpf{
+            float:left;
+            margin-left:9px;
+          }
+          #inpf1{
+            float:right;
+            margin-right:12px;
+          }
+          #inpff{
+            float:left;
+            margin:1px 0px 0px 9px;
+          }
+          b{
+            display:block;
+            line-height:14px;
+            margin-top:4px;
+          }
+          td{
+            line-height:20px;
+          }
+          img{
+            border:1px solid #cccccc;
+            margin:7px 0px 0px 8px;
+          }
+          .spn{
+            float:left;
+            margin:0 0 62px 34px;
+            color:#000;
+            font-weight:bold;
+            font-size:14px;
+            display:block;
+          }
+          .spy{
+            float:left;
+            margin:0 0 64px 42px;
+            color:#ff5500;
+            font-weight:bold;
+            font-size:14px;
+            display:block;
+            font-family:Tahoma, Geneva, sans-serif;
+          }
+          .spw{
+            float:left;
+            margin:0 0 50px 32px;
+            color:#585858;
+            font-size:12px;
+            text-align:center;
+            display:block;
+            line-height:15px;
+          }
+          .spf{
+            float:left;
+            margin-left:6px;
+          } 
+          .smb{
+            width:75px;
+            height:24px;
+            background-color:#f0f0f0;
+            float:left;
+            margin:0 0 58px 21px;
+            line-height:22px;
+          }
+          .smbb{
+            display:block;
+            width:18px;
+            height:22px;
+            border:1px solid #ff6600;
+            text-align:center;
+            float:left;
+          }
+          .smbc{
+            display:block;
+            width:35px;
+            height:22px;
+            background-color:#ffffff;
+            border-bottom:1px solid #aaaaaa;
+            border-top:1px solid #aaaaaa;
+            text-align:center;
+            float:left;
+          }
+          .foot{
+            width:262px;
+            float:left;
+            margin-left:70px;
+            font-weight:normal;
+          }
+          .foot a{
+            float:left;
+            text-decoration:none;
+            color:#551a8b;
+          }
+          .foot span{
+            float:right;
+          }
+          .foot>span>b{
+            font-size:14px;
+            color:#ff0000;
+            display:inline;
+          }
+          .footrl{
+            float:left;
+            margin-left:20px;
+          }
+          .footrl>lable{
+            float:left;
+            margin-top:3px;
+            font-family:Arial;
+          }
+          .footrl>span{
+            font-family:Tahoma, Geneva, sans-serif;
+            font-size:24px;
+            color:#ff5500;
+            font-weight:bold;
+          }
+          .footrl>span>strong{
+            font-family:Arial;
+            font-size:24px;
+            color:#cccccc;
+            font-weight:normal;
+            margin:0px 4px 0px 8px;
+          }
+          #footrr{
+            width:118px;
+            height:50px;
+            background-color:#ff5500;
+            font-size:17px;
+            line-height:52px;
+            letter-spacing:4px;
+            color:#ffffff;
+            font-weight:bold;
+            border-radius:2px;
+            position:absolute;
+            left:692px;
+            z-index:2;
+          }
+     </style>
+    </head>
+    <body >
+
+          <form name="form1">
+           <table class="tab">
+            <tr>
+             <th class="th2"><input type="checkbox" name="che" id="inpf" value="全选"/>全选</th>
+             <th class="th3">商品图片</th>
+             <th class="th4">商品信息</th>
+             <th class="th5">单价</th>
+             <th class="th5">数量</th>
+             <th class="th5">小计</th>
+             <th>操作</th>
+            </tr>
+          </table>
+          <table class="tabb">
+            <tr>
+             <td class="td"><input type="checkbox" name="che0" id="inpf1"/></td>
+             <td class="td1"><img src="http://www.w3cfuns.com/data/attachment/album/201412/01/164435hdkddyy6a9e59ya5.jpg"/></td>
+             <td class="td2"><p><b>商品信息</b>教学质量真正做到尽心尽责，学员没有通过项目与考试一律不允许毕业，直到专门 </p></td>
+             <td class="td3"><a href="javascript:void(0)" class="spn" name = "price">2.60</a></td>
+             <td class="td3">
+               <div class="smb">
+                <a href="javascript:void(0)" class="smbb" name = "min">-</a>
+                <a href="javascript:void(0)" class="smbc" name = "nam">1</a>
+                <a href="javascript:void(0)" class="smbb" name = "add">+</a>
+               </div>
+             </td>
+            <td class="td3"><a href="javascript:void(0)" class="spy" name = "total">2.60</a></td>
+            <td><span class="spw">加入收藏<br><a href="javascript:void(0)" name="delete">删除</a></span></td>
+           </tr>
+          </table>
+          <table class="tabb">
+            <tr>
+             <td class="td"><input type="checkbox" name="che0" id="inpf1"/></td>
+             <td class="td1"><img src="http://www.w3cfuns.com/data/attachment/album/201412/01/164435hdkddyy6a9e59ya5.jpg"/></td>
+             <td class="td2"><p><b>商品信息</b>教学质量真正做到尽心尽责，学员没有通过项目与考试一律不允许毕业，直到专门 </p></td>
+             <td class="td3"><a href="javascript:void(0)" class="spn" name = "price">2.60</a></td>
+             <td class="td3">
+               <div class="smb">
+                <a href="javascript:void(0)" class="smbb" name = "min">-</a>
+                <a href="javascript:void(0)" class="smbc" name = "nam">2</a>
+                <a href="javascript:void(0)" class="smbb" name = "add">+</a>
+               </div>
+             </td>
+            <td class="td3"><a href="javascript:void(0)" class="spy" name = "total">5.20</a></td>
+            <td><span class="spw">加入收藏<br><a href="javascript:void(0)" name="delete">删除</a></span></td>
+           </tr>
+          </table>
+          <table class="tabb">
+            <tr>
+             <td class="td"><input type="checkbox" name="che0" id="inpf1"/></td>
+             <td class="td1"><img src="http://www.w3cfuns.com/data/attachment/album/201412/01/164435hdkddyy6a9e59ya5.jpg"/></td>
+             <td class="td2"><p><b>商品信息</b>教学质量真正做到尽心尽责，学员没有通过项目与考试一律不允许毕业，直到专门 </p></td>
+             <td class="td3"><a href="javascript:void(0)" class="spn" name = "price">2.60</a></td>
+             <td class="td3">
+               <div class="smb">
+                <a href="javascript:void(0)" class="smbb" name = "min">-</a>
+                <a href="javascript:void(0)" class="smbc" name = "nam">3</a>
+                <a href="javascript:void(0)" class="smbb" name = "add">+</a>
+               </div>
+             </td>
+            <td class="td3"><a href="javascript:void(0)" class="spy" name = "total">7.80</a></td>
+            <td><span class="spw">加入收藏<br><a href="javascript:void(0)" name="delete">删除</a></span></td>
+           </tr>
+          </table>
+          <table class="tabf">
+           <tr>
+            <th class="tdf">
+             <input type="checkbox" id="inpff" name="che" value="全选"/>
+             <span class="spf">全选</span>
+             <div class="foot">
+              <a href="javascript:void(0)" id="del">删除</a>
+              <span>共商品数：<b id="sum">3</b>件</span>
+             </div>
+            </th>
+            <td>
+             <div class="footrl"><lable>合计(不含运费)：</lable><span id="foott"><strong>&yen;</strong>0.00</span>
+             </div>
+            </td>
+           </tr>
+          <input type="submit" value="结算" id="footrr">
+          </table>
+          </form>
+  
+
+     <script language="javascript">
+      window.onload = function(){
+        var sum = document.getElementById("sum");
+        var price = document.getElementsByName("price");
+        var nam = document.getElementsByName("nam");
+        var minn = document.getElementsByName("min");
+        var add = document.getElementsByName("add");
+        var total = document.getElementsByName("total");
+        var foott = document.getElementById("foott");
+        var deleteA = document.getElementsByName("delete");
+        var del = document.getElementById("del");
+        var table = document.getElementsByTagName("table");
+        //全选
+        for(i = 0;i < form1.che.length;i++){
+          form1.che[i].onclick = function(){
+            for(var m = 0;m < form1.che0.length;m++){
+              form1.che0[m].checked = this.checked;
+              for(p = 0;p <form1.che.length;p++){
+                if(form1.che[p]!==this)form1.che[p].checked = this.checked;
+              }
+            }
+            tot();
+          }
+        }
+        //单选
+        for(var m2 = 0;m2 < form1.che0.length;m2++){
+          form1.che0[m2].onclick = function(){
+            if(!this.checked){
+              form1.che[0].checked = this.checked;
+              form1.che[1].checked = this.checked;
+            }
+            else{
+              for(var m3 = 0;m3 < form1.che0.length;m3++){
+                if(!form1.che0[m3].checked){
+                form1.che[0].checked = false;
+                form1.che[1].checked = false;
+                break;
+                }
+                else {
+                  form1.che[0].checked = this.checked;
+                  form1.che[1].checked = this.checked;
+                }
+              }
+            }
+            tot();
+          }
+        }
+        //合计函数
+        function tot(){
+          var arr = [],sumA = 0;
+          for(var m = 0;m < form1.che0.length;m++){
+            if(form1.che0[m].checked){
+              arr.push(total[m].innerHTML);
+              sumA += parseInt(nam[m].innerHTML);
+            }
+          }
+          if(arr.length>0){
+            var str = "<strong>&yen;</strong>";
+            var sumB = 0;
+            for(le = 0;le < arr.length;le++){
+              sumB += parseFloat(arr[le])
+            }
+            foott.innerHTML =  str + sumB.toFixed(2);;
+            sum.innerHTML = sumA;
+          }
+          else{
+            foott.innerHTML = "<strong>&yen;</strong>0.00";
+            sum.innerHTML = 0;
+          }
+        }
+        tot()
+        //选中删除
+        del.onclick = function(){
+          for(var i = 0;i < form1.che0.length;i++){
+            if(form1.che0[i].checked){
+              table[i+1].style.display = "none";
+              nam[i].innerHTML = 0;
+              total[i].innerHTML = (parseFloat(price[i].innerHTML)*parseFloat(nam[i].innerHTML)).toFixed(2);
+            }
+            tot()
+          }
+        }
+        //单项删除
+        for(p = 0;p < deleteA.length;p++){
+          deleteA[p].nam = p;
+          deleteA[p].onclick = function(){
+            table[this.nam+1].style.display = "none";
+            nam[this.nam].innerHTML = 0;
+            total[this.nam].innerHTML = (parseFloat(price[this.nam].innerHTML)*parseFloat(nam[this.nam].innerHTML)).toFixed(2);
+            tot()
+          }
+        }
+        for(q = 0;q < add.length;q++){
+          //货物增加
+          add[q].nam = q;
+          add[q].onclick = function(){
+            if(parseInt(nam[this.nam].innerHTML)<3){
+              nam[this.nam].innerHTML = parseFloat(nam[this.nam].innerHTML) + 1;
+              total[this.nam].innerHTML = (parseFloat(price[this.nam].innerHTML)*parseFloat(nam[this.nam].innerHTML)).toFixed(2);
+              tot()
+            }
+          }
+          //货物减少
+          minn[q].nam = q;
+          minn[q].onclick = function(){
+            if(parseInt(nam[this.nam].innerHTML)>0){
+              nam[this.nam].innerHTML = parseFloat(nam[this.nam].innerHTML) - 1;
+              total[this.nam].innerHTML = (parseFloat(price[this.nam].innerHTML)*parseFloat(nam[this.nam].innerHTML)).toFixed(2);
+              tot()
+            }
+          }
+        }
+      }
+      </script>
+    </body>
+</html>

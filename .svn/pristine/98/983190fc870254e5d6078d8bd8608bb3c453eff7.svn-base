@@ -1,0 +1,136 @@
+package com.huatec.edu.mobileshop.controller;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.huatec.edu.mobileshop.service.AdminService;
+import com.huatec.edu.mobileshop.util.Result;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
+
+import net.sf.json.JSONObject;
+
+@Controller
+//前后端交互时，前端有名为admin的文件夹，为避免冲突，所以这里命名为admin_manager
+@RequestMapping("/admin_manager")
+public class AdminController {
+	@Resource
+	private AdminService adminService;
+	
+	//前台使用backbone框架
+	@RequestMapping(value="/backbone",method=RequestMethod.POST)
+	@ResponseBody
+	//@ApiOperation：swagger用于方法的注释
+	@ApiOperation(value="新增管理员（backbone框架）",notes="超级管理员根据电话、真实姓名和角色id新增管理员")
+	public Result add2(HttpServletRequest request){
+		System.out.println("post方法");
+		try {
+			BufferedReader br;
+			br = new BufferedReader(new InputStreamReader(
+			        (ServletInputStream) request.getInputStream()));
+			String line = null;
+	        StringBuffer sb = new StringBuffer();
+	        while ((line = br.readLine()) != null) {
+	            sb.append(line);
+	        }
+	        String appMsg=sb.toString();
+	        System.out.println(appMsg);
+	        JSONObject j=JSONObject.fromObject(appMsg);
+	        Map jmap=j;
+	        String mobile=(String) jmap.get("mobile");
+	        String realName=(String) jmap.get("realName");
+	        String roleId1=(String) jmap.get("roleId");
+	        int roleId=Integer.parseInt(roleId1);
+	        Result result=adminService.addAdmin(mobile, realName, roleId);
+			return result;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	@RequestMapping(method=RequestMethod.POST)
+	@ResponseBody
+	//@ApiOperation：swagger用于方法的注释
+	@ApiOperation(value="新增管理员",notes="超级管理员根据电话、真实姓名和角色id新增管理员")
+	//@ApiParam：swagger用于字段的注释
+	//@RequestParam，用来处理Content-Type: 为 application/x-www-form-urlencoded编码的内容
+	public Result add(@ApiParam(value="电话")@RequestParam("mobile") String mobile,
+			@ApiParam(value="真实姓名")@RequestParam("realName") String realName,
+			@ApiParam(value="角色编号")@RequestParam("roleId") int roleId){
+		Result result=adminService.addAdmin(mobile, realName, roleId);
+		return result;
+	}
+	
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	@ResponseBody
+	//@RequestBody ,consumes="application/x-www-form-urlencoded"
+	@ApiOperation(value="登录验证",httpMethod="POST")
+	public Result checkLogin(@ApiParam(value="用户名/邮箱/电话")@RequestParam("input") String input,
+			@ApiParam(value="密码")@RequestParam("password") String password){
+		Result result=adminService.checkLogin(input, password);
+		return result;
+	}
+	
+	@RequestMapping(value="/{adminId}",method=RequestMethod.PUT)
+	@ResponseBody
+	@ApiOperation(value="完善基本信息",notes="管理员根据编号完善基本信息")
+	public Result updateById(@ApiParam(value="管理员编号")@PathVariable("adminId") int adminId,
+			@ApiParam(value="用户名")@RequestParam("username") String username,
+			@ApiParam(value="密码")@RequestParam("password") String password,
+			@ApiParam(value="邮箱")@RequestParam("email") String email,
+			@ApiParam(value="性别")@RequestParam("sex") int sex){
+		Result result=adminService.updateAdmin(adminId, username, password, email, sex);
+		return result;
+	}
+	
+	@RequestMapping(value="/info/{adminId}",method=RequestMethod.PUT)
+	@ResponseBody
+	@ApiOperation(value="更新管理员基本信息",notes="超级管理员根据编号更新基本信息")
+	public Result updateMobileAndRealName(@PathVariable("adminId") int adminId,
+			@ApiParam(value="电话")@RequestParam("mobile") String mobile,
+			@ApiParam(value="真实姓名")@RequestParam("realName") String realName,
+			@ApiParam(value="角色编号")@RequestParam("roleId") int roleId){
+		Result result=adminService.updateInfo(adminId, mobile, realName,roleId);
+		return result;
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="加载所有管理员")
+	public Result loadAll(){
+		Result result=adminService.loadAllAdmin();
+		return result;
+	}
+	
+	@RequestMapping(value="/{adminId}",method=RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="加载管理员信息")
+	public Result loadById(@PathVariable("adminId") int adminId){
+		Result result=adminService.loadAdminById(adminId);
+		return result;
+	}
+	
+	@RequestMapping(value="/{adminId}",method=RequestMethod.DELETE)
+	@ResponseBody
+	@ApiOperation(value="删除管理员")
+	public Result deleteById(@PathVariable("adminId") int adminId){
+		Result result=adminService.deleteAdminById(adminId);
+		return result;
+	}
+	
+}

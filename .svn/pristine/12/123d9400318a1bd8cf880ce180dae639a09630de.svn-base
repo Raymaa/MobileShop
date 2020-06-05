@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Backbone 代码7-6</title>
+    </head>
+    <body>
+          
+       <script  src="../plug/jquery-1.8.2.min.js" type="text/javascript"></script> 
+       <script  src="../plug/underscore-min.js" type="text/javascript"></script> 
+       <script  src="../plug/backbone-min.js" type="text/javascript"></script> 
+       <script type="text/javascript">
+      var  GoodsItem = Backbone.Model.extend({
+    	initialize: function() { 
+    	  this.set(sn,"sp000");
+    	  this.set(name,"Mobileshop商品");
+    	  this.set(price,"0");
+    	  console("构造函数中设置      商品编号："+this.get(sn)+"   商品名称"+this.get(name)+"    商品价格："+this.get(price)); 
+    	},
+		defaults: {
+			sn:"",
+			name:"",
+			price:""
+		}
+	    });
+      var newGoods = new GoodsItem();
+      newGoods.on("change",function(){
+    	  console.log("监听到Model对象newGoods的change事件：");
+    	  console.log(newGoods.toJSON());  
+    	  console("修改之后    商品编号："+this.get(sn)+"   商品名称"+this.get(name)+"    商品价格："+this.get(price)); 
+    	 
+      });
+      newGoods.set( {sn:"sp110",name:"书籍《web前端开发技术》",price:"50"});
+       
+       </script>
+    </body>
+</html>

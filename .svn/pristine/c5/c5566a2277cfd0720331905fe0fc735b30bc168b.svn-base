@@ -1,0 +1,228 @@
+
+$(document).ready(function(){
+
+    //用于给Model的relRoot构建
+    var path = "http://localhost:8080/MobileShop";
+	var urlRoot = path+"/backbone/goods/";     
+  
+    var  GoodsItem = Backbone.Model.extend({
+    	 urlRoot:urlRoot,
+		 idAttribute:"goodsId" , //将goodsId设置为键值属性
+		// defaults:{briefBrand:"",briefGoodsCat:"",goods_id:"",mkt_enable:"",mktprice:"",name:"",price:"",small:""},
+		 parse : function(response){//重构返回的值，因为通过Collection的fetch，自动实例化的Model，其parse也会被调用，所以要进行判断，如果返回值有data就返回data里的内容，没有data，就返回原来的样子
+				if(response.data != null){
+					return response.data;
+					}else{
+						return response;
+					}
+		        
+		      }
+	  });
+     
+
+     //用于给Collection的URL构建
+	 var pageId = 1;
+     var path = "http://localhost:8080/MobileShop";
+	 var url = path+"/goods/enable/page/"+pageId;
+     
+	var  OnLineGoodsList = Backbone.Collection.extend({
+		model: GoodsItem,
+		url:url,  //可以在定义集合类时传入url
+	    parse : function(response){
+	        return response.data;
+	      }
+	});
+	
+   //实例化Collection
+    var  onLineGoodsList = new OnLineGoodsList();
+    
+  //调用GET方式从服务器提取数据
+  onLineGoodsList.fetch({
+	    reset:true, 
+	    url:url,//也可以在fetch时重构url
+	    success: function(collection, response) {
+         }
+    });
+
+  //View定义
+     var GoodsItemView = Backbone.View.extend({
+    	 tagName : 'tr',       //设置生成的DOM元素，这里为表格中的一行
+	     className : 'item',   //设置class属性
+	     itemTemplate : _.template($("#onLineTemplate").html()),//设置模板
+	     events: {
+   	      "click a.offLine": "offGoods",
+   	      "click a.edit": "editGoods",
+   	      "click a.delete": "deleteGoods"
+   	    },
+	     initialize:function(){
+             this.render();
+             this.listenTo(this.model,'all',this.render);
+	     },
+    	 render : function(){
+    		    /*console.log("进入单个视图");
+    		    console.log(this.model.toJSON());*/
+	       		this.$el.html(this.itemTemplate(this.model.toJSON()));
+	       		return this;  
+	       	},
+	       	offGoods :function(e){//下架商品 2017.1.4
+		       	   //从当前model中去 获取goodsId
+	       		    var goodsId = this.model.get("goods_id");
+  
+	       		   //new一个GoodsItem
+	       		   var goods = new GoodsItem();
+	       		   
+	       		   //重构url
+	       		   var path = "http://localhost:8080/MobileShop";
+	       		   var urlRoot = path+"/backbone/goods/enable/";  
+	       		   goods.urlRoot = urlRoot ;
+	       		   
+	       		   //给goodId赋值，修改mktEnable为1
+		           goods.set({goodsId:goodsId,mktEnable:"1"}); 
+		           goods.save(); //因为goodsId是键值，并且不为空，所以save会以PUT方式请求数据
+		           
+		           //从collection中移除该model
+		           onLineGoodsList.remove(this.model);
+		       	},
+		    	editGoods :function(){//编辑商品
+		    		var that = this.model;//1-先定义一个model为that，好在fetch函数中运用
+		    		
+		    		//显示修改页面
+		    		 $('#editGoods').show();
+		       	     $('#editGoods').siblings().hide();
+		       	     
+			       	//从当前model中去 获取goodsId
+	       		    var goodsId = this.model.get("goods_id");
+		       		
+	       		    //new一个model，将goodsId传递给它
+	       		    var goods = new GoodsItem({goodsId:goodsId});
+	       		    
+	       		    //重构url
+		       		var path = "http://localhost:8080/MobileShop";
+		       		var urlRoot = path+"/backbone/goods/union/";   //调用这个url，通过fetch，将goodsid拼接到后面获取到商品的全部信息
+		       		goods.urlRoot = urlRoot ;
+		       		
+		       		
+
+		       		
+		       		goods.fetch({
+		       		 success:function(model,response){
+		       			//console.log(model);
+		         		//console.log("商品编号：" +model.get("sn")+"   商品名称："+ model.get("name")+"    商品价格："+model.get("price"));
+		       			//采用模板，将model的数据，显示在#editGoods 修改页面上
+		       			 var html = _.template($("#goodsTemplate").html(),model.toJSON());
+		       		     $("#editGoods").html(html);
+		       		     
+		       		     //绑定事件到提交按钮上
+		       		     $("a#editGoodsBtn").on('click',function(){//a#editGoodsBtn这个按钮，不在这个 View的this.$el范围内，所以不能用上面的events来绑定
+		       		    	 //提取数据
+		       		    	var name = $("#goodsName").val().trim();
+				       		var sn = $("#sn").val().trim();
+				       		var brief = $("#brief").val().trim();
+				       		var description = $("#description").val().trim();
+				       		var price = $("#price").val().trim();
+				       		var cost= $("#cost").val().trim();
+				       		var mktprice= $("#mktprice").val().trim();
+				            var weight= $("#weight").val().trim();
+				            var intro=$("#intro").val().trim();
+				           
+				           //下面这三个参数不变化
+				           var mktEnable = model.get("mkt_enable").toString()  ;
+				           var catId= model.get("cat_id").toString() ;
+				           var brandId= model.get("brand_id").toString() ;
+				            
+		       		    	 //构建url
+		 		       		var path = "http://localhost:8080/MobileShop";
+				       		var urlRoot = path+"/backbone/goods/";   //这个API用于获取到goodsId的全信息
+				       		goods.urlRoot = urlRoot ;
+				       		//设置参数
+		       		        goods.set({goodsId:goodsId,name:name,sn:sn,brief:brief,description:description,price:price,cost:cost,mktprice:mktprice,mktEnable:mktEnable,catId:catId,brandId:brandId,weight:weight,intro:intro});
+		       		    	 //与服务器同步
+		       		    	goods.save();
+		       		        that.set({mktprice:mktprice,name:name,price:price,mktEnable:mktEnable});//2-为model that 重置修改之后的值
+		       		     });   
+		       		 },error :function(err){
+		         		 console.log(err);
+		         	  }
+		       		});
+
+		        	 this.model = that;//3-重新设置this.model
+		      
+		       	},
+		       	deleteGoods :function(){//删除商品
+		       	 //从当前model中去 获取goodsId
+	       		  var goodsId = this.model.get("goods_id");
+		       	   
+	       		   //重新new一个GoodsItem，给它值
+	       		   var goods = new GoodsItem();
+
+		           goods.set({goodsId:goodsId}); 
+		           goods.destroy(); //DELETE方式
+		           
+		           //从collection中移除该model
+		           onLineGoodsList.remove(this.model);
+		       	}
+     });
+     
+     //创建一个显示Collection对象的视图类
+     var GoodsListView = Backbone.View.extend({
+    	    el : '#onlineGoodsList',
+    	    //事件绑定
+	       	initialize: function() {
+	       		this.listenTo(onLineGoodsList,'all',this.render);//GoodsListView视图监听collection对象onLineGoodsList的all事件，render进行渲染
+	       	},
+	       	render :function(){
+	       		this.$el.empty();//清空
+	       		for(var i=0;i < this.collection.models.length;i++){
+	       			var view = new GoodsItemView ({model :this.collection.models[i] });  
+	       			this.$el.append(view.$el);
+	       		}
+	       	}
+	       	
+	       });
+   
+     //实例化View，页面显示出数据
+   var goodsListView = new GoodsListView({collection:onLineGoodsList});
+   goodsListView.render();
+  
+   //绑定事件给搜索按钮
+   $("a#searchBtn").on("click",function(){
+	  var input = encodeURIComponent($("#online .searchInput").val().trim(),'utf8');
+	   
+	  // var input = $("#online .searchInput").val().trim();
+	  
+	   //准备url	 
+	    var path = "http://localhost:8080/MobileShop";
+		var url = path+"/backbone/goods/find";    
+        onLineGoodsList.fetch( {reset:true,
+                url:url,//也可以在fetch时重构url
+                data: $.param({ input : input}),
+       	        success: function(collection, response) {
+       	           goodsListView.render();//重新加载视图
+       	        }
+        });
+	   
+	   
+	   
+   });
+   
+   
+   
+  $("a#allOnlineGoods").on("click",function(){
+	   //准备url	 
+		 var pageId = 1;
+	     var path = "http://localhost:8080/MobileShop";
+		 var url = path+"/goods/enable/page/"+pageId;
+       onLineGoodsList.fetch( {reset:true,
+               url:url,//也可以在fetch时重构url
+      	        success: function(collection, response) {
+      	           goodsListView.render();//重新加载视图
+      	        }
+       });
+	   
+   });
+   
+   
+   
+
+   
+});

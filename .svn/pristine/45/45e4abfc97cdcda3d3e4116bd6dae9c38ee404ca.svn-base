@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>用户须知</title>
+     <link type="text/css" rel="stylesheet" href="css/userNotice.css" />
+    </head>
+    <body   >
+    
+     <!--以下是用户须知页面代码 -->
+     <div id="content" > 
+           <h2 class="red">用户须知</h2>
+           <hr >
+           <div id="smallDiv">
+             <p>您在申请注册流程中点击同意前，应当认真阅读以下协议。请您务必审慎阅读、充分理解协议中相关条款内容，其中包括：
+             </p>
+             <ol>
+             <li>与您约定免除或限制责任的条款；</li>
+             <li>与您约定法律适用和管辖的条款；</li>
+             <li class="red">注册信息必须真实。</li>
+             </ol>
+            
+             <p>如您对协议有任何疑问，可向平台客服咨询。</p>
+           </div>
+           <p >1 与您约定免除或限制责任的条款:</p>
+           <p >2 与您约定法律适用和管辖的条款:</p>
+           <p class="red">3 注册信息必须真实:</p>
+     </div>
+
+    
+    </body>
+</html>

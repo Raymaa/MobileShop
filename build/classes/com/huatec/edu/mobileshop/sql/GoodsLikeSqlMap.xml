@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.GoodsLikeDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	<!-- 商品收藏表和商品表关联查询 -->
+	<select id="findUnionByMemberId" parameterType="int" 
+	resultMap="likeMap1">
+		select mgl.*,mg.goods_id,mg.name,
+		mg.price,mg.mktprice,mg.small
+		from ms_goods_like mgl 
+		join ms_goods mg
+		on mgl.goods_id=mg.goods_id
+		where mgl.member_id=#{member_id}
+	</select>
+	<resultMap 
+	type="com.huatec.edu.mobileshop.entity.GoodsLike" 
+	id="likeMap1">
+		<id property="like_id" column="like_id"/>
+		<result property="goods_id" column="goods_id"/>
+		<result property="member_id" column="member_id"/>
+		<result property="creatime" column="creatime"/>
+		<result property="modifytime" column="modifytime"/>
+		<association property="briefGoods" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoods">
+			<id property="goods_id" column="goods_id"/>
+			<result property="name" column="name"/>
+			<result property="price" column="price"/>
+			<result property="mktprice" column="mktprice"/>
+			<result property="small" column="small"/>
+		</association>
+	</resultMap>
+	
+	<select id="findRepeat" parameterType="map" 
+	resultType="com.huatec.edu.mobileshop.entity.GoodsLike">
+		select * from ms_goods_like
+		where goods_id=#{goods_id}
+		and member_id=#{member_id}
+	</select>
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.GoodsLike" 
+	useGeneratedKeys="true" keyProperty="like_id" >
+		insert into ms_goods_like
+		 (like_id,goods_id,member_id,creatime,modifytime)
+		 values
+		 (#{like_id},#{goods_id},#{member_id},#{creatime},#{modifytime})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.GoodsLike">
+		select * from ms_goods_like
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_goods_like where like_id=#{like_id}
+	</delete>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.GoodsLike">
+		select * from ms_goods_like where like_id=#{like_id}
+	</select>
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" 
+	parameterType="com.huatec.edu.mobileshop.entity.GoodsLike">
+		update ms_goods_like
+		<set>
+			<if test="goods_id!=null">
+				goods_id=#{goods_id},
+			</if>
+			<if test="member_id!=null">
+				member_id=#{member_id},
+			</if>
+			<if test="modifytime!=null">
+				modifytime=#{modifytime}
+			</if>
+		</set>
+		where like_id=#{like_id}
+	</update>
+	
+</mapper>

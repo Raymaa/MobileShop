@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>用户注册</title>
+      <link type="text/css" rel="stylesheet" href="css/base.css" /> 
+    </head>
+    <body   >
+    <div id="siteNav">
+      <div id="siteNavCon">
+        <ul class="left">
+          <li>
+            <a href="#">欢迎来到MobileShop</a>
+          </li>
+          <li>
+            <a href="#" class="red">登录</a>
+          </li>
+           <li>
+            <a href="#">免费注册</a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li><a href="#">我的MobileShop</a></li>
+          <li><a href="#">购物车</a></li>
+          <li><a href="#">收藏夹</a></li>
+          <li><a href="#">商品分类</a></li>
+        </ul>
+      </div>
+    </div>
+    
+     <div id="content" style="background:#fff;  padding:20px;"> 
+                <div style="width:400px;">
+  <form action="" method="post">
+   <fieldset >
+     <legend>用户注册表单</legend>
+     <label>
+      用户名： <input type="text" id="userName" placeholder="请输入用户名"  required="required"  >
+     </label>
+     <br/> <br/>
+     <label>
+      邮箱： <input type="email" id="email" placeholder="请输入正确的邮箱"  required="required"  >
+     </label>
+     <br/> <br/>
+      <label>
+      密  码： <input type="password" id="userPassword"   >
+     </label>
+     <br/> <br/>
+      <label>
+      确认密码： <input type="password" id="userRePassword"   >
+     </label>
+      <br/> <br/>
+      <input type="submit"  value="提交"  name="submitBtn">
+   </fieldset>
+  </form>
+                </div>
+              
+     </div>
+
+       <div id="footer" >
+        <div id="footerCon">
+          <div id="links">
+                <dl>
+                <dt>用户指南</dt>
+                <dd><a href="#">新手指南</a></dd>
+                <dd><a href="#">会员积分</a></dd>
+                <dd><a href="#">常见问题</a></dd>
+                <dd><a href="#">反馈调查</a></dd>
+                </dl>  
+                 
+                <dl>
+                <dt>品牌服务</dt>
+                <dd><a href="#">闪电配送</a></dd>
+                <dd><a href="#">快捷支付</a></dd>
+                <dd><a href="#">售后保障</a></dd>
+                </dl>
+
+                <dl>
+                <dt>商家合作</dt>
+                <dd><a href="#">商家对接</a></dd>
+                <dd><a href="#">品牌资质</a></dd>
+                <dd><a href="#">进场流程</a></dd>
+                </dl>
+
+                <dl>
+                <dt>关于我们</dt>
+                <dd><a href="#">平台简介</a></dd>
+                <dd><a href="#">企业文化</a></dd>
+                <dd><a href="#">经营模式</a></dd>
+                <dd><a href="#">招贤纳士</a></dd>
+                </dl>
+                
+             </div>
+             <div id="otherLinks">
+               <a href="#">关于我们</a>|
+               <a href="#">购物指南</a>|
+               <a href="#">商家合作</a>|
+               <a href="#">联系我们</a>|
+               <a href="#">招贤纳士</a>|
+               <a href="#">反馈调查</a>
+             </div>
+             <div id="copyRight">
+               Copyright &copy;2016 - 2026 MobileShop 版权所有 | 消费者维权热线：40088888888
+             </div>
+          </div>
+       </div>
+    </body>
+</html>

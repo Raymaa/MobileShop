@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"  
+	xmlns:jee="http://www.springframework.org/schema/jee" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+	
+	<!-- 开启组件扫描 -->
+	<context:component-scan base-package="com.huatec.edu.mobileshop"/>
+	<!-- SpringMVC注解支持 -->
+	<mvc:annotation-driven/>
+	
+	<!-- 配置视图解析器ViewResolver，负责将视图名解析成具体的视图技术，比如解析成html、jsp等 -->
+	<bean id="viewResolver" 
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 前缀属性 -->
+		<property name="prefix" value="/"/>
+		<!-- 后缀属性 -->
+		<property name="suffix" value=".html"/>
+	</bean>
+	
+	<!-- 配置数据库连接信息 -->
+	<util:properties id="jdbc" location="classpath:db.properties"/>
+	<bean id="dbcp" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="#{jdbc.driver}"/>
+		<property name="url" value="#{jdbc.url}"/>
+		<property name="username" value="#{jdbc.user}"/>
+		<property name="password" value="#{jdbc.pwd}"/>
+	</bean>
+	
+	<!-- 配置SqlSessionFactoryBean -->
+	<!-- 可以定义一些属性来指定Mybatis框架的配置信息 -->
+	<bean id="ssf" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 数据源，注入连接信息 -->
+		<property name="dataSource" ref="dbcp"/>
+		<!-- 用于指定sql定义文件的位置(加classpath从src下找) -->
+		<property name="mapperLocations" 
+		value="classpath:com/huatec/edu/mobileshop/sql/*.xml"/>
+	</bean>
+	
+	<!-- 配置MapperFactoryBean（不常用） -->
+	<!-- <bean id="memberDao" 
+	class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="SqlSessionFactory" ref="ssf"/>	
+		<property name="mapperInterface" 
+		value="com.huatec.edu.mobileshop.dao.MemberDao"/>
+	</bean> -->
+	
+	<!-- 配置MapperScannerConfigurer -->
+	<!-- 按指定包扫描接口，批量生成接口实现对象，id为接口名首字母小写 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 指定扫描com.huatec.edu.mobileshop.dao包下所有接口 -->
+		<property name="basePackage" 
+		value="com.huatec.edu.mobileshop.dao"/>
+		<!-- 注入sqlSessionFactory（此句可不写，自动注入sqlSessionFactory） -->
+		<property name="sqlSessionFactory" ref="ssf"/>
+	</bean>
+	
+	<!-- 支持文件上传 -->
+	<bean id="multipartResolver" 
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	
+	<!-- DataSourceTransactionManager是PlatformTransactionManager的实现类 -->
+	<!-- <bean id="txManager" 
+	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dbcp"/>
+	</bean> -->
+	
+	<!-- XML配置实现声明式事务 -->
+	<!-- 声明事务管理组件 -->
+	<bean id="txManager" 
+	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dbcp"/>
+	</bean>
+	<!-- 配置事务范围和类型,指定txManager管理哪些方法 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<!-- loadGoodsByIdUnion方法中有对浏览记录的更新 -->
+			<tx:method name="loadGoodsByIdUnion" propagation="REQUIRED"/>
+			<tx:method name="load*" read-only="true"/>
+			<tx:method name="add*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="registMember" propagation="REQUIRED"/>
+			<tx:method name="checkLogin" propagation="REQUIRED"/>
+			<tx:method name="checkLogin2" propagation="REQUIRED"/>
+			<tx:method name="resetPwd" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	<!-- 指定txManager作用在哪些组件上 -->
+	<aop:config>
+		<aop:pointcut id="servicePoint" 
+		expression="within(com.huatec.edu.mobileshop.service.*)"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="servicePoint"/>
+	</aop:config>
+	
+	<!-- 注解实现声明式事务 -->
+	<!-- 声明事务管理组件 -->
+	<!-- <bean id="txManager" 
+	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dbcp"/>
+	</bean> -->
+	<!-- 带有@Transactional标记的方法会调用txManager组件追加事务控制 -->
+	<!-- <tx:annotation-driven transaction-manager="txManager"/> -->
+	
+	<!-- 使用MethodInvokingJobDetailFactoryBean，任务类可以不实现Job接口,
+	通过targetMethod指定调用方法 -->
+	<bean id="job" class="com.huatec.edu.mobileshop.util.job.UpdateStatusJob"/>
+	<bean id="jobMethod" 
+	class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="job"/>
+		<!-- 要执行的方法名称 -->
+		<property name="targetMethod" value="execute"/>
+	</bean>
+	
+	<!-- 调度触发器 -->
+	<bean id="cronTriggerBean" 
+	class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="jobMethod"/>
+		<!-- <property name="cronExpression" value="0/30 * * * * ?"></property> -->
+		<!-- 1分钟触发一次 -->
+		<property name="cronExpression" value="0 0/1 * * * ?"/>
+	</bean>
+	
+	<!-- 调度工厂 -->
+	<bean id="springJobSchedulerFactoryBean" 
+	class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTriggerBean"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig"></bean>
+	
+</beans>

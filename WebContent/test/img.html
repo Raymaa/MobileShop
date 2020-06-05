@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>img.html</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+	<!-- <form action="file/upload" method="post" enctype="multipart/form-data">
+    	<input type="file" name="file" />
+    	<input type="submit" value="提交"/>
+    </form> -->
+
+	<form id="uploadForm">
+		<p>
+			上传文件： <input type="file" name="file" /></ p> <input type="hidden"
+				id="fileUrl"> <input type="button" value="上传"
+				onclick="doUpload()" /> </br> 商品编号：</br> <input type="text" id="goodsId" /> </br>
+			是否为主图：</br> <input type="text" id="isdefault" /> </br> <input type="button"
+				value="确定" onclick="add()" /> </br>
+		<div id="text"></div>
+	</form>
+
+
+
+
+
+	<script type="text/javascript">
+	 function doUpload() {  
+	 var formData = new FormData($( "#uploadForm" )[0]);   
+     $.ajax({   
+          url:'http://localhost:8080/MobileShop/file/'+"upload",
+        //  url:'http://192.168.8.7:8080/MobileShop/file/'+"upload",
+          type: 'POST',   
+          data: formData,
+          async: false,   
+          cache: false,   
+          contentType: false,
+          processData: false,   
+          success: function (returndata) {   
+              alert(returndata.data);
+              var fileUrl=returndata.data;
+              $("#fileUrl").attr("value",fileUrl);
+             /*  var temp = "<img src='"+fileUrl+"'>";
+              $("#text").append(temp); */ 
+          },   
+          error: function (returndata) {   
+              alert(returndata);   
+          }   
+     });   
+
+	 }
+	 
+	 function add(){
+		 var goodsId=$("#goodsId").val().trim();
+		 var isdefault=$("#isdefault").val().trim();
+		 var fileUrl=$("#fileUrl").val().trim();
+		 
+		 $.ajax({
+				//url:"http://localhost:8080/MobileShop/img/"+"add",
+				url:"http://localhost:8080/MobileShop/img/"+"add",
+				type:"post",
+				dataType:"json",
+				data:{"goodsId":goodsId,"isdefault":isdefault,"img":fileUrl},
+				success:function(result){
+					alert(result.msg);
+					var fileUrl1=result.data.big;
+					var temp1 = "<img src='"+fileUrl1+"'>";
+		            $("#text").append(temp1);
+		            alert(fileUrl1);
+				},
+				error:function(){
+					alert("新增商品图片异常");
+				}
+			});
+	 }
+	 
+     </script>
+
+
+
+
+</body>
+</html>

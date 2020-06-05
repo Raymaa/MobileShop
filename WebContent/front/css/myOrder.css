@@ -1,0 +1,159 @@
+@CHARSET "UTF-8";
+.pageWrap{
+    margin:0 auto;
+    width: 40%;
+    overflow: hidden;
+    margin-bottom:20px;
+}
+
+.pageWrap .pageNum{
+    display: inline-block;
+    float: left;
+    
+}
+
+.pageWrap .pageSkip{
+    display: inline-block;
+    float: right;
+}
+
+.pageNum a{
+    float: left;
+    padding: 8px 8px;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    font-weight: lighter;
+}
+
+
+.pageNum b{
+    float: left;
+    padding: 8px 8px;
+    font-weight: lighter;
+    transition: background-color .3s;
+}
+
+.pageCur, .pagePrev{
+    background-color: #EEEEEE;
+    border: 1px solid #ddd;
+}
+
+.pageNum a:hover:not(.active){
+    background-color: #EEEEEE;
+    text-decoration: none;
+}
+
+.pageSkip{
+    margin-top: 4px;
+    margin-left: 10px;
+    width: 50%;
+    color: #999;
+}
+
+.pageSkip .jumpTo{
+    width: 10%;
+    text-align:center;
+    color: #999;
+    font-size: 12px;
+}
+
+#ordercontent{
+	margin-top: 20px;
+	width: 1190px;
+	margin:10px auto;
+	overflow: hidden;
+}
+
+#ordercontent #usercenter{
+	float: left;
+	width: 200px;
+
+	border: 1px solid #dddddd;
+}
+
+#ordercontent #usercenter .usercen{
+	width: 200px;
+	height: 40px;
+	background: #ff4022;
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 40px;
+}
+
+#ordercontent #usercenter .userce{
+	width: 200px;
+	height: 153px;
+	text-align: center;
+}
+
+#ordercontent #usercenter .userce .head{
+	margin-top: 10px;
+	width: 84px;
+	height: 84px;
+	border-radius: 84px;
+	text-align: center;
+	border: 1px solid ;
+
+}
+
+#ordercontent #usercenter .userce .uname{
+	margin-top: 10px;
+	margin-bottom: 5px;
+
+}
+
+#usercenter .userce .uname .username{
+	font-size: 20px;
+	color: #d5006c;
+}
+
+.Title{
+	height: 36px;
+	background: #ededed;
+	font-size: 15px;
+	line-height: 36px;
+	border-bottom: 1px solid #dddddd;
+}
+
+.Title .Titledetial{
+	padding-left: 11px;
+	padding-top: 5px;
+	height: 23px;
+}
+
+.Title span{
+	position: relative;
+	top:-5px;
+}
+
+.Item{
+	height: 37px;
+	line-height: 37px;
+	text-align: center;
+	font-size: 14px;
+}
+
+#ordermanage{
+	margin-left: 11px;
+	float: left;
+	width: 970px;
+}
+
+
+#ordermanage .Titlename{
+	width: 970px;
+	height: 40px;
+	font-size: 25px;
+	line-height: 40px;
+	border-bottom: 1px solid #dddddd;
+}
+
+#ordermanage .Titlename .pic{
+	display: inline-block;
+	background: red;
+	width: 10px;
+	height: 18px;
+	padding-left: 10px;
+}
+

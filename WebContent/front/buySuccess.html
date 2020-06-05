@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>购买成功</title>
+    <link type="text/css" rel="stylesheet" href="../css/base.css" />
+    <link type="text/css" rel="stylesheet" href="css/buy.css" />
+    <link type="text/css" rel="stylesheet" href="css/buySuccess.css" />
+</head>
+
+<body>
+    <!-- 顶栏 -->
+    <div id="siteNav">
+        <div id="siteNavCon">
+            <ul class="left">
+                <li>
+                    <a href="../index.html">欢迎来到MobileShop</a>
+                </li>
+                <li>
+                    <a href="./login.html" class="red">登录</a>
+                </li>
+                <li>
+                    <a href="./register.html">免费注册</a>
+                </li>
+            </ul>
+            <ul class="right">
+                <li class="navTitle" id="menu" onmouseover="fun1()" onmouseout="fun2()">
+                    <a href="#">我的MobileShop<i class="downUp"></i></a>
+                    <ul class="siteNavPanel" id="menuContent">
+                        <li><a href="./myOrder.html">待付款订单</a></li>
+                        <li><a href="./myOrder.html">商品已发货</a></li>
+                        <li><a href="./myOrder.html">待评价订单</a></li>
+                    </ul>
+                </li>
+                <li><a href="./goodsCarts.html">购物车</a></li>
+                <li><a href="#">收藏夹</a></li>
+                <li><a href="./goodsList.html">商品分类</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 搜索栏 -->
+    <div id="header">
+        <div class="search">
+            <div class="searchCon">
+                <ul class="searchConT">
+                    <ul>
+                        <li class="current">宝贝</li>
+                    </ul>
+                </ul>
+                <div class="searchConM">
+                    <div class="left">
+                        <div class="text">
+                            <input type="text" name="" id="text" />
+                            <label for="text">背带牛仔裙袭来</label>
+                            <span></span>
+                        </div>
+                        <div class="btn">
+                            <input type="button" value="搜索" />
+                        </div>
+                    </div>
+                    <p class="right"><a href="./goodsList.html">高级搜索</a></p>
+                </div>
+                <p class="searchConB">
+                    <a href="./goodsList.html">背带裙</a>
+                    <a href="./goodsList.html">手机</a>
+                    <a href="./goodsList.html" class="orange">巧克力</a>
+                    <a href="./goodsList.html">休闲男鞋</a>
+                    <a href="./goodsList.html">情侣装</a>
+                    <a href="./goodsList.html">运动鞋</a>
+                    <a href="./goodsList.html">凉席</a>
+                    <a href="./goodsList.html">香水</a>
+                    <a href="./goodsList.html">行车记录仪</a>
+                    <a href="./goodsList.html">黄金吊坠</a>
+                    <a href="./goodsList.html">凉鞋</a>
+                    <a href="./goodsList.html">女包</a>
+                    <a href="./goodsList.html">珍珠项链</a>
+                    <a href="./goodsList.html" class="more">更多</a>
+                </p>
+            </div>
+        </div>
+        <div class="logo">
+            <h1><a href="../index.html">MobileShop</a></h1>
+        </div>
+        <div class="QRCode" id="QRCode">
+            <p><a href="#" class="orange">手机逛商城</a></p>
+            <a href="#">
+                <img src="img/QRCode.png" width="80" height="80" />
+            </a>
+            <span onclick="closeQRCode()"><s></s></span>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <!-- 订单情况图标 -->
+    <div id="tip">
+        <div class="tip-logo">
+            <img src="img/img3.jpg" alt="" />
+        </div>
+    </div>
+    <!-- 主内容 -->
+    <div id="main2" class="main2">
+        <div id="main-content2" class="main-content2">
+            <div class="success-Msg">
+                感谢您在本店购物！您的订单已提交成功，请记住您的订单号：<span class="red">2020050218160</span>
+            </div>
+            <div class="delevery-style">
+                您选的配送方式为：<span id="delevery-style" class="red">申通快递</span>；
+            </div>
+            <div class="pay-style">
+                您选定的支付方式为：<span id="pay-style" class="red">支付宝</span>；
+            </div>
+            <div class="pay-amout">
+                您的付款金额为：<span id="pay-amout" class="red">￥2019.00</span>
+            </div>
+            <hr />
+            <p><a href="../index.html">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">用户中心</a></p>
+        </div>
+    </div>
+
+
+
+
+    <!-- 底部导航 -->
+    <div id="footer">
+        <div id="footerCon">
+            <div id="links">
+                <dl>
+                    <dt>用户指南</dt>
+                    <dd><a href="guide.html">新手指南</a></dd>
+                    <dd><a href="memberLevel.html">会员积分</a></dd>
+                    <dd><a href="#">常见问题</a></dd>
+                    <dd><a href="feedback.html">反馈调查</a></dd>
+                </dl>
+                <dl>
+                    <dt>品牌服务</dt>
+                    <dd><a href="#">闪电配送</a></dd>
+                    <dd><a href="#">快捷支付</a></dd>
+                    <dd><a href="#">售后保障</a></dd>
+                </dl>
+                <dl>
+                    <dt>商家合作</dt>
+                    <dd><a href="#">商家对接</a></dd>
+                    <dd><a href="#">品牌资质</a></dd>
+                    <dd><a href="#">进场流程</a></dd>
+                </dl>
+                <dl>
+                    <dt>关于我们</dt>
+                    <dd><a href="#">平台简介</a></dd>
+                    <dd><a href="#">企业文化</a></dd>
+                    <dd><a href="#">经营模式</a></dd>
+                    <dd><a href="#">招贤纳士</a></dd>
+                </dl>
+            </div>
+            <div id="otherLinks">
+                <a href="#">关于我们</a>|
+                <a href="#">购物指南</a>|
+                <a href="#">商家合作</a>|
+                <a href="#">联系我们</a>|
+                <a href="#">招贤纳士</a>|
+                <a href="#">反馈调查</a>
+                <a href="#">反馈调查</a>
+            </div>
+            <div id="copyRight">
+                Copyright &copy;2016 - 2026 MobileShop 版权所有 | 消费者维权热线：<span class="red">40088888888</span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="../js/base.js" type="text/javascript"></script>
+    <script src="js/buySuccess.js" type="text/javascript"></script>
+
+</body>
+
+</html>

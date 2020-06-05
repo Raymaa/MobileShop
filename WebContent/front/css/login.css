@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+/* 
+* @Author: Marte
+* @Date:   2016-08-11 09:03:11
+* @Last Modified by:   Marte
+* @Last Modified time: 2016-11-04 09:36:21
+*/
+
+.log{
+    margin: 0 auto;
+    width:1190px;
+    overflow: hidden;
+}
+.log-left{
+    float: left;
+     margin-left:50px;
+}
+.log-right{
+    float: left;
+    width:411px;
+    height: 133px;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    background: #f9f9f9;
+    margin-left:152px;
+    margin-top:99px;
+}
+
+.log-right h1{
+    color: #555;
+    font-family: "microsoft yahei";
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20px;
+    padding: 15px 0 25px 25px;
+    text-align: center;
+}
+
+.logcon{
+	border:1px,solid,#c0c0c0;
+}
+
+
+.msg{color:red; font-size: 14px;display:none;}                    
+/* #license {
+    float: left;
+    display: inline;
+    margin: 11px 10px 0px 10px;
+} */

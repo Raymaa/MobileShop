@@ -1,0 +1,129 @@
+/* 
+* @Author: Marte
+* @Date:   2016-08-11 09:03:11
+* @Last Modified by:   Marte
+* @Last Modified time: 2016-12-08 14:53:57
+*/
+/*样式准备第1步： 重新定义部分Html标签的样式*/
+body, div, a, img, h1, h2, h3, h4, h4, h5, p, ol, ul, li, dl, dt, dd {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: none;
+}
+/* input{ margin:0; padding:0; list-style:none; border:none;} */
+
+/*样式准备第2步： 定义body默认样式*/
+body {
+	font-size: 12px;
+	font-family: "宋体";
+	color: #616161;
+}
+
+/*样式准备第3步： 定义a的默认样式*/
+a {
+	color: #999;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+/*content部分*/
+#content {
+	width: 100%;
+	height: 800px;
+	background: url(../img/bg.jpg) no-repeat 0 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+.login-wrap {
+	margin: 200px auto;
+	width: 800px;
+	overflow: hidden;
+}
+
+.login-con {
+	width: 600px;
+	height: 300px;
+	border: 1px solid #d8d8d8;
+	border-radius: 5px;
+	background: #f9f9f9;
+	margin-left: 50px;
+}
+
+.login-con h1 {
+	color: #555;
+	font-family: "microsoft yahei";
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 20px;
+	padding: 15px 0 25px 25px;
+	text-align: center;
+}
+
+.login-same {
+	overflow: hidden;
+	padding: 0 100px;
+}
+
+.login-same dl {
+	clear: both;
+	float: left;
+	padding: 0;
+	width: 100%;
+	margin: 10px;
+}
+
+.login-same dl dt {
+	color: #777;
+	float: left;
+	font-size: 14px;
+	line-height: 28px;
+	text-align: right;
+	width: 22%;
+}
+
+.login-same dl dd {
+	float: right;
+	text-align: left;
+	width: 75%;
+	position: relative;
+}
+
+.login-same dl dd .text {
+	background-color: #fff;
+	border: 1px solid #bbb;
+	font-family: Tahoma;
+	height: 20px;
+	line-height: 20px;
+	padding: 3px !important;
+	width: 200px;
+}
+
+.login_ent {
+	background: #f08300;
+	border: 0 none;
+	border-radius: 2px;
+	color: #fff;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 700;
+	height: 34px;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+	width: 210px;
+	float: left;
+	text-align: center;
+}
+
+div.load {
+	position: absolute;
+	left: 560px;
+	z-index: 9999;
+	top: 200px;
+	display: none;
+}

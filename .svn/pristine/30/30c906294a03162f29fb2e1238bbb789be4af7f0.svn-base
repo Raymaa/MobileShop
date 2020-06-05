@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>商品列表</title>
+     <link type="text/css" rel="stylesheet" href="css/base.css" />
+     <link type="text/css" rel="stylesheet" href="css/goodsList.css" />
+     <link rel="stylesheet" href="../plug/font-awesome/css/font-awesome.min.css">
+     <link rel="shortcut icon" href="../favicon.ico" />
+
+    </head>
+    <body >
+    
+   <div id="header" >
+      <div class="search">
+      <div class="searchCon">
+          <ul class="searchConT">
+               <li class="current">宝贝</li>
+          </ul>
+      <div class="searchConM">
+          <div class="left">
+              <div class="text"><input type="text" name="" id="text" />
+                <label for="text">背带牛仔裙袭来</label>
+                <span></span>
+              </div>
+              <div class="btn"><input type="button" value="搜索" /></div>
+          </div>
+          <p class="right"><a href="#">高级搜索</a></p>
+      </div>
+       <p class="searchConB">
+             <a href="#">背带裙</a>
+             <a href="#">手机</a>
+             <a href="#" class="orange">巧克力</a>
+             <a href="#">休闲男鞋</a>
+             <a href="#">情侣装</a>
+             <a href="#">运动鞋</a>
+             <a href="#">凉席</a>
+             <a href="#">香水</a>
+             <a href="#">行车记录仪</a>
+             <a href="#">黄金吊坠</a>
+             <a href="#">凉鞋</a>
+             <a href="#">女包</a>
+             <a href="#">珍珠项链</a>
+             <a href="#" class="more">更多</a>
+         </p> <!-- .searchConB结束 -->
+      </div> <!-- .searchCon结束 -->
+    </div><!-- .search结束 -->
+    <div class="logo">
+      <h1><a href="#">MobileShop</a></h1>
+    </div><!-- .logo结束 -->
+      <div class="QRCode">
+         <p><a href="#" class="orange">手机逛商城</a></p>
+         <a href="#"><img src="img/QRCode.png" width="80" height="80" /></a>
+         <span><s></s></span>
+      </div>
+ </div> 
+
+    
+    </body>
+</html>

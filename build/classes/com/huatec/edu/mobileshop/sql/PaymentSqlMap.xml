@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.PaymentDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.Payment" 
+	useGeneratedKeys="true" keyProperty="payment_id" >
+		insert into ms_payment
+		 (payment_id,sn,paytype_id,amount,status,paytime,remark)
+		 values(#{payment_id},#{sn},#{paytype_id},#{amount},#{status},#{paytime},#{remark})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.Payment">
+		select * from ms_payment
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_payment where payment_id=#{payment_id}
+	</delete>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.Payment">
+		select * from ms_payment where payment_id=#{payment_id}
+	</select>
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" 
+	parameterType="com.huatec.edu.mobileshop.entity.Payment">
+		update ms_payment
+		<set>
+			<if test="paytype_id!=null">
+				paytype_id=#{paytype_id},
+			</if>
+			<if test="amount!=null">
+				amount=#{amount},
+			</if>
+			<if test="status!=null">
+				status=#{status},
+			</if>
+			<if test="paytime!=null">
+				paytime=#{paytime}
+			</if>
+			<if test="remark!=null">
+				remark=#{remark}
+			</if>
+		</set>
+		where payment_id=#{payment_id}
+	</update>
+	
+</mapper>

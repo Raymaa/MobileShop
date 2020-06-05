@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>欢迎来到MobileShop</title>
+     <link type="text/css" rel="stylesheet" href="css/base.css" />
+     <link type="text/css" rel="stylesheet" href="css/index.css" />
+     <link rel="stylesheet" href="plug/font-awesome/css/font-awesome.min.css">
+     <link rel="shortcut icon" href="../favicon.ico" />
+   <!--   <script  src="js/base.js" type="text/javascript"></script> -->
+     
+    </head>
+    <body >
+    <div id="siteNav">
+      <div id="siteNavCon">
+        <ul class="left">
+          <li>
+            <a href="#">欢迎来到MobileShop</a>
+          </li>
+          <li>
+            <a href="#" class="red">登录</a>
+          </li>
+           <li>
+            <a href="#">免费注册</a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li class="navTitle" id="menu" onmouseover="fun1()"  onmouseout="fun2()">
+           <a href="#" >我的MobileShop <i class="downUp"></i></a>
+            <ul  class="siteNavPanel"  id="menuContent">
+              <li><a href="#">待付款订单</a></li>
+              <li><a href="#">商品已发货</a></li>
+              <li><a href="#">待评价订单</a></li>
+            </ul>
+          </li>
+          <li><a href="#">购物车</a></li>
+          <li><a href="#">收藏夹</a></li>
+          <li><a href="#">商品分类</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="header" >
+     
+      <div class="search">
+      <div class="searchCon">
+          <ul class="searchConT">
+              <ul>
+                <li class="current">宝贝</li>
+
+              </ul>
+            </ul>
+          <div class="searchConM">
+              <div class="left">
+                  <div class="text"><input type="text" name="" id="text" />
+                    <label for="text">背带牛仔裙袭来</label>
+                    <span></span>
+                    </div>
+                  <div class="btn"><input type="button" value="搜索" /></div>
+                </div>
+              <p class="right"><a href="#">高级搜索</a></p>
+            </div>
+          <p class="searchConB"><a href="#">背带裙</a><a href="#">手机</a><a href="#" class="orange">巧克力</a><a href="#">休闲男鞋</a><a href="#">情侣装</a><a href="#">运动鞋</a><a href="#">凉席</a><a href="#">香水</a><a href="#">行车记录仪</a><a href="#">黄金吊坠</a><a href="#">凉鞋</a><a href="#">女包</a><a href="#">珍珠项链</a><a href="#" class="more">更多</a></p>
+        </div>
+    </div>
+  <div class="logo">
+      <h1><a href="#">MobileShop</a></h1>
+  </div>
+   <div class="QRCode" id="QRCode">
+         <p><a href="#" class="orange">手机逛商城</a></p>
+         <a href="#"><img src="img/QRCode.png" width="80" height="80" /></a>
+         <span onclick="closeQRCode()" ><s></s></span>
+      </div>
+
+    </div>
+     <div id="content" > 
+        <div class="mainNav">
+                 <!--存频道-->
+                 <div class="innerCon">
+                   <div class="innerConRight">
+                     <a href="#">品牌街
+                     <div class="hoverImg"></div>
+                     </a>
+                     <a href="#">水果城</a>
+                     <a href="#">服装店</a>
+                     <a href="#">旅行社</a>
+                     <a href="#">生鲜店</a>
+                     <a href="#">品牌街</a>
+                     <a href="#">水果城</a>
+                     <a href="#">服装店</a>
+                     <a href="#">旅行社</a>
+                     <a href="#">生鲜店</a>
+                   </div>
+                 </div>
+        </div>
+        <div class="categoryAndBanner">
+           <div class="category">
+                 <!--存分类导航-->
+                 <div class="categoryType">
+                     <i  class="fa fa-list-ul"></i>
+                     <div class="title">商品分类</div>
+                 </div>
+
+                 <div class="categoryContent">
+                       <div class="category-tab-Con">
+                         <ul>
+                           <li class="nav-item"  >
+                             <a href="#">服装</a><a href="#">女装</a>
+                           </li>
+                            <li class="nav-item " >
+                             <a href="#">男装</a><a href="#">运动户外</a>
+                           </li>
+                            <li class="nav-item">
+                             <a href="#">女鞋</a><a href="#">男鞋</a><a href="#">箱包</a>
+                           </li>
+                            <li class="nav-item">
+                             <a href="#">化妆品</a><a href="#">个人护理</a>
+                           </li>
+                           <li class="nav-item">
+                             <a href="#">手表</a><a href="#">珠宝饰品</a><a href="#">眼镜</a>
+                           </li>
+                            <li class="nav-item">
+                             <a href="#">手机</a><a href="#">数码</a><a href="#">电脑办公</a>
+                           </li>
+                            <li class="nav-item">
+                             <a href="#">服装</a><a href="#">女装</a>
+                           </li>
+                            <li class="nav-item">
+                             <a href="#">服装</a><a href="#">女装</a>
+                           </li>
+                           <li class="nav-item">
+                             <a href="#">服装</a><a href="#">女装</a>
+                           </li>
+                            <li class="nav-item">
+                             <a href="#">服装</a><a href="#">女装</a>
+                           </li>
+                            <li class="nav-item">
+                             <a href="#">服装</a><a href="#">女装</a>
+                           </li>
+                            <li class="nav-item">
+                             <a href="#">服装</a><a href="#">女装</a>
+                           </li>
+                             <li class="nav-item">
+                             <a href="#">服装</a><a href="#">女装</a>
+                           </li>
+                         </ul>
+                       </div><!--category-tab-Con存分类导航标题-->
+                       <div class="content-con">
+                          <div class="pannel-con">
+                            <div class="line"> 
+                            <a href="#">冬季新品</a>  <a href="#">女装商场同款</a>  <a href="#">气质连衣裙</a>  <a href="#">羽绒服中长款</a>  <a href="#">毛呢百搭休闲裤</a>  <a href="#">内衣新品</a>  <a href="#">情侣家居服</a> 
+                            </div>
+                             <div class="line">
+                            <a href="#">羽绒服</a>  <a href="#">毛呢外套</a>  <a href="#">毛衣</a>  <a href="#">针织衫</a>  <a href="#">衬衫</a>  <a href="#">风衣</a>  <a href="#">短外套</a> 
+                            </div>
+                          </div>
+                          
+
+                            <div class="pannel-con ">
+                            <div class="line">
+                            <a href="#">新品推荐</a>  <a href="#">商场同款</a>  <a href="#">时尚羽绒毛</a>  <a href="#">呢大衣</a>  <a href="#">温暖毛衣</a>  <a href="#">修身夹克</a>  <a href="#">牛仔夹克</a> 
+                            </div>
+                             <div class="line">
+                            <a href="#"> 西装</a>  <a href="#">潮流卫衣</a>  <a href="#">束脚裤</a>  <a href="#">破洞牛仔裤</a> 
+                            </div>
+                             <div class="line">
+                            <a href="#">潮牌</a>  <a href="#">中老年加大码</a>  <a href="#">职业装</a>  <a href="#">中国风情侣装</a> 
+                            </div>
+                             <div class="line">
+                            <a href="#"> 衬衫</a>  <a href="#">长袖T恤</a>  <a href="#">卫衣</a>  <a href="#">针织衫/毛衣背心</a> 
+                            </div>
+                             <div class="line">
+                            <a href="#"> 冲锋衣</a>  <a href="#">抓绒衣</a>  <a href="#">登山鞋</a>  <a href="#">户外休闲衣</a> 
+                            </div>
+                          </div><!--pannel-con-->
+
+                       </div><!--content-con存分类导航的内容-->
+                 </div><!--categoryContent-->
+
+           </div><!--category-->
+
+
+          <div class="banner">
+                <ul id="slider-content" class="full_screen" >
+                      <li style="display:block;" ><img src="img/banner/banner1.jpg" /> </li>
+                      <li ><img src="img/banner/banner2.jpg" /> </li>
+                      <li ><img src="img/banner/banner3.jpg" /> </li>
+                      <li ><img src="img/banner/banner4.jpg" /> </li>
+                </ul>
+                <ul id="slider-nav"  class="slider-nav"  >
+                <li class="on"><a href="javascript:void(0)">1</a></li>
+                <li ><a href="javascript:void(0)">2</a></li>
+                <li><a href="javascript:void(0)">3</a></li>
+                <li><a href="javascript:void(0)">4</a></li>
+                </ul>
+          </div>
+        </div>
+
+        
+
+        <div class="brand">
+           <!--存品牌标签-->
+            <div class="brand-left">
+            <a href="javascript:void" ><img src="img/brand/brand-left.jpg"></a>
+            </div>
+            <ul class="brands-list">
+              <li class="brand-item">
+                 <img src="img/brand/brand1.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+               <li class="brand-item">
+                 <img src="img/brand/brand2.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+               <li class="brand-item">
+                 <img src="img/brand/brand3.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+               <li class="brand-item">
+                 <img src="img/brand/brand4.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+               <li class="brand-item">
+                 <img src="img/brand/brand5.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+               <li class="brand-item">
+                 <img src="img/brand/brand6.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+               <li class="brand-item">
+                 <img src="img/brand/brand7.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+               <li class="brand-item">
+                 <img src="img/brand/brand8.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+                <li class="brand-item">
+                 <img src="img/brand/brand9.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+              <li class="brand-item">
+                 <img src="img/brand/brand10.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+                <li class="brand-item">
+                 <img src="img/brand/brand11.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+              <li class="brand-item">
+                 <img src="img/brand/brand12.jpg">
+                 <div class="black-cover"></div>
+                 <div class="content-cover">
+                   <p>广告词</p>
+                   <a  href="javascript:void" class="collect">点击进入</a>
+                 </div>
+              </li>
+
+            </ul>
+        
+        </div>
+
+        <div class="recommand">
+           <!--推荐商品-->
+            
+        
+        </div>
+
+      
+        <div class="floor" >
+           <!--存每个频道，例如1F 服装鞋包-->
+           <!--1F 服装鞋包-->
+           <div  class="floor-line-con">
+              <div class="floor-left">
+                 <div class="left-title">
+                   <i class="color-mark"></i>
+                   <h2>服装鞋包</h2>
+                 </div>
+                 <div class="left-img">
+                    <a href="javascript:void">
+                      <img src="img/floor/floor1_left.jpg">
+                    </a>
+                 </div>
+                 <div class="left-tag">
+                   <ul>
+                     <li>
+                       <a href="javascript:void">POLO衫</a>
+                       <a href="javascript:void">秋装</a>
+                       <a href="javascript:void">裙子</a>
+                       <a href="javascript:void">冬靴</a>
+                       <a href="javascript:void">内增高</a>
+                       <a href="javascript:void">雪地靴</a>
+                       <a href="javascript:void">西装</a>
+                       <a href="javascript:void">瑜伽服</a>
+                       <a href="javascript:void">打底裤</a>
+                       <a href="javascript:void">半裙</a>
+                       <a href="javascript:void">运动鞋</a>
+                       <a href="javascript:void">帽子</a>
+                     </li>
+                   </ul>
+                 </div>
+              </div><!--floor-left-->
+              <div class="floor-right" id="floor1">
+                <ul class="floor-nav" id="floor1Nav">
+                 <!--   <li  class="selected" onmouseover="changeTab(this)"  data-index='1'> -->
+                 <li  class="selected"   data-index='1'> 
+                     <i ></i>
+                     <h3>男装</h3>
+                   </li>
+                    <li   data-index='2'>
+                     <i></i>
+                     <h3>女装</h3>
+                   </li>
+                    <li data-index='3'>
+                     <i ></i>
+                     <h3>鞋靴</h3>
+                   </li>
+                    <li data-index='4'>
+                     <i ></i>
+                     <h3>箱包</h3>
+                   </li>
+                </ul>
+                <div class="floor-goodslist" style="display:block;" data-index='1'>
+                  <ul>
+                    <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/man/goods1.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">海澜之家男装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/man/goods2.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">海澜之家男装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                     <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/man/goods3.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">海澜之家男装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                     <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/man/goods4.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">海澜之家男装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                     <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/man/goods5.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">海澜之家男装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                      <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/man/goods6.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">海澜之家男装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                       <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/man/goods7.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">海澜之家男装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                     <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/man/goods8.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">海澜之家男装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                  </ul>
+             </div><!--男装-->
+               
+              <div class="floor-goodslist" data-index='2'>
+                  <ul>
+                    <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/gril/goods1.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">女装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                    <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/gril/goods2.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">女装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                     <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/gril/goods3.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">女装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                     <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/gril/goods4.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">女装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                     <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/gril/goods5.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">女装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                     <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/gril/goods6.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">女装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                     <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/gril/goods7.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">女装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                     <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/gril/goods8.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">女装</a></dt>
+                        <dd class="goods-price">
+                          <em>￥399.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                  </ul>
+             </div><!--女装-->
+                  <div class="floor-goodslist" data-index='3'>
+                  <ul>
+                    <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/shoe/goods1.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">男士皮鞋</a></dt>
+                        <dd class="goods-price">
+                          <em>￥699.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                  </ul>
+             </div><!--鞋靴-->
+                 <div class="floor-goodslist" data-index='4'>
+                  <ul>
+                    <li>
+                      <dl>
+                        <dd class="goods-img">
+                          <a href="#">
+                            <img src="img/floor/luggage/goods1.jpg">
+                          </a>
+                        </dd>
+                        <dt class="goods-name"><a href="#">箱包</a></dt>
+                        <dd class="goods-price">
+                          <em>￥599.00</em>
+                        </dd>
+                      </dl>
+                    </li>
+                  </ul>
+             </div><!--箱包-->
+
+              </div><!--floor-right-->
+
+           </div><!--floor-line-->
+
+        </div>
+
+     </div>
+
+       <div id="footer" >
+        <div id="footerCon">
+          <div id="links">
+          <dl>
+          <dt>用户指南</dt>
+          <dd><a href="guide.html">新手指南</a></dd>
+          <dd><a href="memberLevel.html">会员积分</a></dd>
+          <dd><a href="#">常见问题</a></dd>
+          <dd><a href="feedback.html">反馈调查</a></dd>
+          </dl>  
+                 
+                <dl>
+                <dt>品牌服务</dt>
+                <dd><a href="#">闪电配送</a></dd>
+                <dd><a href="#">快捷支付</a></dd>
+                <dd><a href="#">售后保障</a></dd>
+                </dl>
+
+                <dl>
+                <dt>商家合作</dt>
+                <dd><a href="#">商家对接</a></dd>
+                <dd><a href="#">品牌资质</a></dd>
+                <dd><a href="#">进场流程</a></dd>
+                </dl>
+
+                <dl>
+                <dt>关于我们</dt>
+                <dd><a href="#">平台简介</a></dd>
+                <dd><a href="#">企业文化</a></dd>
+                <dd><a href="#">经营模式</a></dd>
+                <dd><a href="#">招贤纳士</a></dd>
+                </dl>
+                
+             </div>
+             <div id="otherLinks">
+               <a href="#">关于我们</a>|
+               <a href="#">购物指南</a>|
+               <a href="#">商家合作</a>|
+               <a href="#">联系我们</a>|
+               <a href="#">招贤纳士</a>|
+               <a href="#">反馈调查</a>
+               <a href="#">反馈调查</a>
+             </div>
+             <div id="copyRight">
+               Copyright &copy;2016 - 2026 MobileShop 版权所有 | 消费者维权热线：<span class="red">40088888888</span>
+             </div>
+          </div>
+       </div>
+        <script  src="plug/jquery-3.1.1.js" type="text/javascript"></script>
+        <script  src="js/base.js" type="text/javascript"></script> 
+        <script  src="js/index.js" type="text/javascript"></script>
+
+    </body>
+</html>

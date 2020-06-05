@@ -1,0 +1,202 @@
+/* 
+* @Author: Marte
+* @Date:   2016-08-11 09:03:11
+* @Last Modified by:   Marte
+* @Last Modified time: 2016-11-04 12:37:15
+*/
+
+/*样式准备第1步： 重新定义部分Html标签的样式*/
+body,div,a,img,h1,h2,h3,h4,h4,h5,p,ol,ul,li,dl,dt,dd{ margin:0; padding:0; list-style:none; border:none;}
+/* input{ margin:0; padding:0; list-style:none; border:none;} */
+
+/*样式准备第2步： 定义body默认样式*/
+body{ font-size:12px; font-family:"宋体"; color:#616161; }
+
+/*样式准备第3步： 定义a的默认样式*/
+a{ color:#999; text-decoration:none;}
+a:hover{ text-decoration:underline;}
+
+
+/*样式准备第4步：为旧版本浏览器格式化Html5元素*/
+article, aside, dialog, footer, header, section, footer, nav, figure, menu { display:block; }
+
+.red{color:red;}
+
+/*siteNav部分*/
+#siteNav{ height:35px; background:#f5f5f5;border-bottom:1px solid #eee;}
+#siteNavCon{width:1190px;margin:0px auto; height:35px;line-height: 35px;
+}
+#siteNavCon .left{ float:left;}
+#siteNavCon .left li{float:left;margin-right:15px;}
+
+#siteNavCon .right{float:right; position:relative;}
+#siteNavCon .right li{ float:left; margin-right:15px;}
+#siteNavCon .right li.navTitle{ width:106px;   }
+#siteNavCon .right li .siteNavPanel{ width:105px;background-color: #fff; border:1px solid #f0f0f0;border-top: 1px solid #fff;
+  position:absolute;
+  z-index: 999;
+  display:none;
+ }
+ #siteNavCon .right li .siteNavPanel li a{height:30px;line-height: 30px;padding:2px 0 2px 5px;}
+ #siteNavCon .right li .siteNavPanel li a:hover{color:red; text-decoration: none;}
+
+i.downUp{
+background:url(../img/down.gif)  no-repeat 0 0;
+width: 15px;
+height: 10px;
+display:inline-block;
+}
+li.current i.downUp{
+background:url(../img/up.gif)  no-repeat 0 0;
+display:inline-block;
+}
+
+li.current{
+     background-color: #fff; 
+     border:1px solid #f0f0f0; 
+     border-bottom: 1px solid #fff;
+}
+
+
+
+
+
+
+
+
+
+
+/*content部分*/
+#content{width:1190px;  margin:10px auto; }
+
+
+/*footer部分*/
+#footer{  background:#f5f5f5;  border-top:1px solid #eee; margin:10px 0px;}
+#footerCon{ width:1190px;  margin:10px auto 0px;    overflow: hidden;}
+#footerCon #links{ border-bottom: 1px solid #eee; overflow:hidden; padding-bottom: 20px; }
+#footerCon #links dl{float:left;width: 200px; margin-right:52px;}
+#footerCon #links dl dt{color:#646464; padding-bottom: 10px; font-weight: 700; font-size: 14px; }
+#footerCon #links dl dd{ line-height: 25px;}
+#footerCon #otherLinks{ height:30px; line-height: 30px;  text-align: center;  }
+#footerCon #copyRight{  line-height: 30px;  text-align: center;  }
+
+   /*header部分,采用圣杯布局*/
+#header{
+        width:1190px; 
+        margin:10px auto ;
+        overflow:hidden;
+       }
+.search{
+        width:100%;
+        height:114px;
+        float:left;
+}
+
+.logo{
+        width:140px; 
+        height:58px; 
+        float:left;
+        margin-left:-1190px;
+        margin-top:28px;
+}
+.QRCode{
+        width:94px; 
+        height:96px; 
+        float:left;
+        border:1px solid #eee;
+        margin-left:-96px; 
+}
+
+
+.logo a{ 
+        display:block; 
+        height:0px; 
+        background:url(../img/sprite.png) ;
+        padding-top:58px; 
+        overflow:hidden;
+       }
+
+
+
+ .QRCode{
+        width:94px; 
+        height:96px; 
+        border:1px solid #eee; 
+        float:left;
+        margin-left:-96px; 
+        padding:8px 0; 
+        text-align:center; 
+        position:relative;
+      }
+ .QRCode span{
+        width:18px; 
+        height:18px; 
+        border:1px solid #eee; 
+        position:absolute; 
+        left:-20px; 
+        top:-1px; 
+        cursor:pointer;
+        }
+ .QRCode span s{
+        width:10px; 
+        height:9px; 
+        background:url(../img/close.png); 
+        display:inline-block;
+        margin-top:4px; 
+        overflow:hidden;
+        }
+#header .search .searchCon{ width:760px; height:94px; padding:20px 180px 0 250px;}
+
+.searchConT{ height:25px; }
+.searchConT li{ float:left; line-height:25px;width:50px; height:25px; text-align:center; cursor:pointer;}
+.searchConT li:hover{ background:#ffeee5; color:#ff5400;}
+.searchConT li.current{ background:#ff5400; color:#fff; font-weight:bold;}
+.searchConM{ height:40px;}
+.searchConM .left{width:721px; height:40px;  float:left;}
+.searchConM .left .text{width:618px; height:34px; background:#ff5500; float:left; padding:3px 0 3px 3px; position:relative;}
+.searchConM .left .text input{width:610px; height:34px; background:#fff;border:none;padding-left:8px; line-height:34px;}
+.searchConM .left .text label{ position:absolute; left:35px; top:10px; color:#9c9c9c;}
+.searchConM .left .text span{width:12px; height:12px; background:url(../img/search.png); position:absolute; left:15px; top:13px; overflow:hidden;}
+.searchConB{width:721px; height:20px; margin-top:4px; line-height:20px;}
+.searchConB a{ margin-right:9px; float:left;}
+.searchConB .more{ float:right; width:34px; height:18px; border:1px solid #eee; background:url(../img/more.png) no-repeat 32px 5px; line-height:18px;padding-left:5px;margin-right:1px;}
+.searchConM .left .btn{width:100px; height:40px; background:#ff4200; float:left;}
+.searchConM .left .btn input{width:100px; height:40px; background:#ff4200; border:none; cursor:pointer; color:#fff; font-size:20px; font-weight:bold; font-family:"黑体";}
+.searchConM .right{width:26px; height:40px; float:right;}
+
+
+
+
+
+
+
+
+
+   /*header部分*/
+/*         #header{width:1190px; margin:10px auto ;overflow:hidden;}
+#header .search{ width:100%; height:114px; float:left;}
+#header .search .searchCon{ width:760px; height:94px; padding:20px 180px 0 250px;}
+
+.searchConT{ height:25px; }
+.searchConT li{ float:left; line-height:25px;width:50px; height:25px; text-align:center; cursor:pointer;}
+.searchConT li:hover{ background:#ffeee5; color:#ff5400;}
+.searchConT li.current{ background:#ff5400; color:#fff; font-weight:bold;}
+.searchConM{ height:40px;}
+.searchConM .left{width:721px; height:40px;  float:left;}
+.searchConM .left .text{width:618px; height:34px; background:#ff5500; float:left; padding:3px 0 3px 3px; position:relative;}
+.searchConM .left .text input{width:610px; height:34px; background:#fff;border:none;padding-left:8px; line-height:34px;}
+.searchConM .left .text label{ position:absolute; left:35px; top:10px; color:#9c9c9c;}
+.searchConM .left .text span{width:12px; height:12px; background:url(../img/search.png); position:absolute; left:15px; top:13px; overflow:hidden;}
+.searchConB{width:721px; height:20px; margin-top:4px; line-height:20px;}
+.searchConB a{ margin-right:9px; float:left;}
+.searchConB .more{ float:right; width:34px; height:18px; border:1px solid #eee; background:url(../img/more.png) no-repeat 32px 5px; line-height:18px;padding-left:5px;margin-right:1px;}
+.searchConM .left .btn{width:100px; height:40px; background:#ff4200; float:left;}
+.searchConM .left .btn input{width:100px; height:40px; background:#ff4200; border:none; cursor:pointer; color:#fff; font-size:20px; font-weight:bold; font-family:"黑体";}
+.searchConM .right{width:26px; height:40px; float:right;}
+
+#header .logo{width:140px; height:58px; float:left;margin-left:-1190px;margin-top:28px;}
+
+#header .logo a{ display:block; height:0px; background:url(../img/sprite.png);padding-top:58px; overflow:hidden;}
+#header .erweima{width:94px; height:96px; border:1px solid #eee; float:left;margin-left:-96px; padding:8px 0; text-align:center; position:relative;}
+#header .erweima span{width:18px; height:18px; border:1px solid #eee; position:absolute; left:-20px; top:-1px; cursor:pointer;}
+#header .erweima span s{width:10px; height:9px; background:url(../img/close.png); display:inline-block;margin-top:4px; overflow:hidden;}  */

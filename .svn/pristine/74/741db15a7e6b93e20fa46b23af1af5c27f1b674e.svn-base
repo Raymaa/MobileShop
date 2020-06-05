@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>用户反馈</title>
+   <link type="text/css" rel="stylesheet" href="css/base.css" /> 
+    </head>
+    <body   >
+    <div id="siteNav">
+      <div id="siteNavCon">
+        <ul class="left">
+          <li>
+            <a href="#">欢迎来到MobileShop</a>
+          </li>
+          <li>
+            <a href="#" class="red">登录</a>
+          </li>
+           <li>
+            <a href="#">免费注册</a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li><a href="#">我的MobileShop</a></li>
+          <li><a href="#">购物车</a></li>
+          <li><a href="#">收藏夹</a></li>
+          <li><a href="#">商品分类</a></li>
+        </ul>
+      </div>
+    </div>
+    
+     <div id="content" style="background:#fff;"> 
+                <div  style="height:30px;"></div>
+                <div  style="height:120px;" >
+                <h1 style="color:red;"  align="center" >用户反馈</h1>
+                <hr  size="2"  color="red" />
+                <p style="font-size:14px;">
+                 亲爱的用户：<br/><br/>
+                 感谢您对MobileShop的支持，您对MobileShop有任何意见和建议，或在使用过程中遇到问题，<br/>都可以在本页进行反馈，我们会认真阅读您的反馈，不断优化产品，为您提供更好的服务！
+                </p> 
+                </div>
+                <form>
+                <div style="border:2px solid #ccc;  height:700px; background:#f8f8f8; padding:20px; ">
+                  <!--用户反馈表单-->
+                  
+                    1.您常用的账号名是？<input type="text" id="name" placeholder="请输入账号名"   ><br/>
+                    2.您常用电话号码是？<input type="text" id="phone" placeholder="请输入电话号码" ><br/>
+    3.您对目前当当网首页的整体满意度如何？<br/>
+    <input type="radio" name="contentment"  value="满意">满意 <br/>
+    <input type="radio" name="contentment"  value="一般">一般 <br/>
+    <input type="radio" name="contentment"  value="不满意">不满意 <br/>
+    4.您访问页面速度的情况是？<br/>
+    <input type="radio" name="speed"  value="很快">很快 <br/>
+    <input type="radio" name="speed"  value="一般">一般 <br/>
+    <input type="radio" name="speed"  value="较慢">较慢 <br/>
+                    5.您从哪里知道MobileShop？<br/>
+                    <input type="checkbox"  value="">朋友推荐 <br/>
+                    <input type="checkbox"  value="">线下传单<br/>
+                    <input type="checkbox"  value="">线上广告<br/>
+                    其他渠道：<input type="text"  placeholder="请输入"   ><br/>
+
+                    6.您的意见与建议？<br/>
+                    <textarea name="suggest"  cols="50"  rows="4"   >
+                    
+                    </textarea><br/><br/>
+                   7.你住在哪个城市？
+                    <select  size="1">
+                    <option value="beijing">北京</option>
+                    <option value="shanghai">上海</option>
+                    <option value="shenzhengs">深圳</option>
+                    <option value="guangzhou">广州</option>
+                    </select>
+
+                    <select  size="2">
+                    <option value="beijing">北京</option>
+                    <option value="shanghai">上海</option>
+                    <option value="shenzhengs">深圳</option>
+                    <option value="guangzhou">广州</option>
+                    </select>
+                  <br/><br/><br/>
+                   8.你在这里最喜欢买什么商品？
+                    <select  size="8">
+                    <optgroup label="食品类">
+                       <option value="beijing">干果</option>
+                       <option value="shanghai">面包</option>
+                       <option value="shenzhengs">生鲜</option>
+                       <option value="guangzhou">酒</option>
+                    </optgroup>
+                     <optgroup label="服装类">
+                       <option value="beijing">男装</option>
+                       <option value="shanghai">女装</option>
+                       <option value="shenzhengs">婴儿服装</option>
+                    </optgroup>   
+                    </select>
+                   <br/><br/><br/>
+                  9.上传你的头像？
+                  <input type="file" >
+                    <br/><br/>
+
+                    <button type="submit">提交</button>
+
+
+                </div>
+                </form>
+
+     </div>
+
+       <div id="footer" >
+        <div id="footerCon">
+          <div id="links">
+                <dl>
+                <dt>用户指南</dt>
+                <dd><a href="#">新手指南</a></dd>
+                <dd><a href="#">会员积分</a></dd>
+                <dd><a href="#">常见问题</a></dd>
+                <dd><a href="#">反馈调查</a></dd>
+                </dl>  
+                 
+                <dl>
+                <dt>品牌服务</dt>
+                <dd><a href="#">闪电配送</a></dd>
+                <dd><a href="#">快捷支付</a></dd>
+                <dd><a href="#">售后保障</a></dd>
+                </dl>
+
+                <dl>
+                <dt>商家合作</dt>
+                <dd><a href="#">商家对接</a></dd>
+                <dd><a href="#">品牌资质</a></dd>
+                <dd><a href="#">进场流程</a></dd>
+                </dl>
+
+                <dl>
+                <dt>关于我们</dt>
+                <dd><a href="#">平台简介</a></dd>
+                <dd><a href="#">企业文化</a></dd>
+                <dd><a href="#">经营模式</a></dd>
+                <dd><a href="#">招贤纳士</a></dd>
+                </dl>
+                
+             </div>
+             <div id="otherLinks">
+               <a href="#">关于我们</a>|
+               <a href="#">购物指南</a>|
+               <a href="#">商家合作</a>|
+               <a href="#">联系我们</a>|
+               <a href="#">招贤纳士</a>|
+               <a href="#">反馈调查</a>
+             </div>
+             <div id="copyRight">
+               Copyright &copy;2016 - 2026 MobileShop 版权所有 | 消费者维权热线：40088888888
+             </div>
+          </div>
+       </div>
+    </body>
+</html>

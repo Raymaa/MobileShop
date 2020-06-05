@@ -1,0 +1,27 @@
+/* 
+* @Author: Marte
+* @Date:   2016-08-11 09:03:11
+* @Last Modified by:   Marte
+* @Last Modified time: 2016-08-26 14:52:05
+*/
+
+/* 以下是页面的样式*/
+
+
+body  { font-family:"宋体";  color:#616161;  }
+
+
+body{ 
+font: oblique bold 15px "宋体";  /* body元素默认文本字体是“宋体”*/
+color:#616161;  /* body元素默认文本颜色是“#616161”*/
+}
+h2,h3{/* h2、h3元素文本颜色为红色*/
+color:red;
+}
+#content{
+ width:1190px;  /* content部分的宽*/
+ background: #fafafa;/* content部分的背景色*/
+  }
+.red{
+ color:red;/*red类文本颜色为红色*/
+}

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.GoodsDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	<select id="findAllEnableByPage" parameterType="com.huatec.edu.mobileshop.util.Page" 
+	resultType="com.huatec.edu.mobileshop.entity.brief.BriefGoods">
+		select goods_id,name,price,small,mkt_enable
+		from ms_goods
+		where mkt_enable=0
+		limit #{begin},#{pageSize}
+	</select>
+	<!-- 动态查询，参数类型可以传递map形式 -->
+	<select id="dynamicFind" parameterType="map" 
+	resultType="com.huatec.edu.mobileshop.entity.brief.BriefGoods">
+		select goods_id,name,price,small,mkt_enable 
+		from ms_goods
+		<where>
+			<if test="cat_id!=null">
+				cat_id=#{cat_id}
+			</if>
+			<if test="brand_id!=null">
+				and brand_id=#{brand_id}
+			</if>
+			<if test="name!=null">
+				and name like #{name}
+			</if>
+			<if test="mkt_enable!=null">
+				and mkt_enable=#{mkt_enable}
+			</if>
+		</where>
+	</select>
+	<!-- 关联查询 （根据商品id）-->
+	<!-- 商品表、品牌表、分类表、分类表2（父分类）、商品图片表、库存表 -->
+	<select id="findUnionById" parameterType="int" resultMap="goodsMap2">
+		select mg.*,
+		mb.brand_id,mb.name brand_name,
+		mgc.cat_id,mgc.name cat_name,
+		mgc2.cat_id parent_cat_id,mgc2.name parent_cat_name,
+		mgi.*,
+		mgs.store_id,mgs.store,mgs.enable_store
+		from ms_goods mg 
+		left outer join ms_goods_cat mgc 
+		on mg.cat_id=mgc.cat_id 
+		left outer join ms_brand mb 
+		on mg.brand_id=mb.brand_id 
+		left outer join ms_goods_cat mgc2 
+		on mgc.parent_id=mgc2.cat_id
+		left outer join ms_goods_img mgi
+		on mg.goods_id=mgi.goods_id
+		left outer join ms_goods_store mgs
+		on mg.goods_id=mgs.goods_id
+		where mg.goods_id=#{goods_id}
+	</select>
+	<resultMap 
+	type="com.huatec.edu.mobileshop.entity.Goods" 
+	id="goodsMap2">
+		<id property="goods_id" column="goods_id"/>
+		<result property="name" column="name"/>
+		<result property="sn" column="sn"/>
+		<result property="brief" column="brief"/>
+		<result property="description" column="description"/>
+		<result property="price" column="price"/>
+		<result property="mktprice" column="mktprice"/>
+		<result property="mkt_enable" column="mkt_enable"/>
+		<result property="weight" column="weight"/>
+		<result property="intro" column="intro"/>
+		<result property="params" column="params"/>
+		<result property="creatime" column="creatime"/>
+		<result property="last_modify" column="last_modify"/>
+		<result property="view_count" column="view_count"/>
+		<result property="buy_count" column="buy_count"/>
+		<result property="thumbnail" column="thumbnail"/>
+		<result property="big" column="big"/>
+		<result property="small" column="small"/>
+		<result property="original" column="original"/>
+		<association property="briefBrand" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefBrand">
+			<id property="brand_id" column="brand_id"/>
+			<result property="name" column="brand_name"/>
+		</association>
+		<association property="briefGoodsCat1" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsCat">
+			<id property="cat_id" column="cat_id"/>
+			<result property="name" column="cat_name"/>
+		</association>
+		<association property="briefGoodsCat2" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsCat">
+			<id property="cat_id" column="parent_cat_id"/>
+			<result property="name" column="parent_cat_name"/>
+		</association>
+		<association property="goodStore" 
+		javaType="com.huatec.edu.mobileshop.entity.GoodStore">
+			<id property="store_id" column="store_id"/>
+			<result property="store" column="store"/>
+			<result property="enable_store" column="enable_store"/>
+		</association>
+		<collection property="gis"
+		javaType="java.util.List" 
+		ofType="com.huatec.edu.mobileshop.entity.GoodsImg">
+			<id property="img_id" column="img_id"/>
+			<result property="goods_id" column="goods_id"/>
+			<result property="thumbnail" column="thumbnail"/>
+			<result property="big" column="big"/>
+			<result property="small" column="small"/>
+			<result property="original" column="original"/>
+			<result property="isdefault" column="isdefault"/>
+		</collection>
+	</resultMap>
+	
+	<!-- 关联查询+分页 -->
+	<select id="findUnionByPage" 
+	parameterType="com.huatec.edu.mobileshop.util.Page" 
+	resultMap="goodsMap1">
+		select mg.goods_id,mg.name,mg.price,mg.mkt_enable,
+		mgc.cat_id,mgc.name cat_name,mb.brand_id,mb.name brand_name 
+		from ms_goods mg 
+		join ms_goods_cat mgc 
+		on mg.cat_id=mgc.cat_id 
+		join ms_brand mb 
+		on mg.brand_id=mb.brand_id 
+		limit #{begin},#{pageSize}
+	</select>
+	<resultMap 
+	type="com.huatec.edu.mobileshop.entity.brief.BriefGoods" 
+	id="goodsMap1">
+		<id property="goods_id" column="goods_id"/>
+		<result property="name" column="name"/>
+		<result property="price" column="price"/>
+		<result property="mkt_enable" column="mkt_enable"/>
+		<association property="briefGoodsCat" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsCat">
+			<id property="cat_id" column="cat_id"/>
+			<result property="name" column="cat_name"/>
+		</association>
+		<association property="briefBrand" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefBrand">
+			<id property="brand_id" column="brand_id"/>
+			<result property="name" column="brand_name"/>
+		</association>
+	</resultMap>
+	
+	<select id="findByName" parameterType="string" 
+	 resultType="com.huatec.edu.mobileshop.entity.brief.BriefGoods">
+		select goods_id,name,price from ms_goods where name=#{name}
+	</select>
+	
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.Goods" 
+	useGeneratedKeys="true" keyProperty="goods_id" >
+		insert into ms_goods
+		 (goods_id,name,sn,brief,description,price,cost,mktprice,mkt_enable,cat_id,brand_id,
+		 weight,intro,params,creatime,last_modify,view_count,buy_count,thumbnail,big,small,original)
+		 values(#{goods_id},#{name},#{sn},#{brief},#{description},#{price},#{cost},#{mktprice},
+		 #{mkt_enable},#{cat_id},#{brand_id},#{weight},#{intro},#{params},#{creatime},
+		 #{last_modify},#{view_count},#{buy_count},#{thumbnail},#{big},#{small},#{original})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.Goods">
+		select * from ms_goods
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_goods where goods_id=#{goods_id}
+	</delete>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.Goods">
+		select * from ms_goods where goods_id=#{goods_id}
+	</select>
+	
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" parameterType="com.huatec.edu.mobileshop.entity.Goods">
+		update ms_goods
+		<set>
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="sn!=null">
+				sn=#{sn},
+			</if>
+			<if test="brief!=null">
+				brief=#{brief},
+			</if>
+			<if test="description!=null">
+				description=#{description},
+			</if>
+			<if test="price!=null">
+				price=#{price},
+			</if>
+			<if test="cost!=null">
+				cost=#{cost},
+			</if>
+			<if test="mktprice!=null">
+				mktprice=#{mktprice},
+			</if>
+			<if test="mkt_enable!=null">
+				mkt_enable=#{mkt_enable},
+			</if>
+			<if test="cat_id!=null">
+				cat_id=#{cat_id},
+			</if>
+			<if test="brand_id!=null">
+				brand_id=#{brand_id},
+			</if>
+			<if test="weight!=null">
+				weight=#{weight},
+			</if>
+			<if test="intro!=null">
+				intro=#{intro},
+			</if>
+			<if test="params!=null">
+				params=#{params},
+			</if>
+			<if test="view_count!=null">
+				view_count=#{view_count},
+			</if>
+			<if test="buy_count!=null">
+				buy_count=#{buy_count},
+			</if>
+			<if test="thumbnail!=null">
+				thumbnail=#{thumbnail},
+			</if>
+			<if test="big!=null">
+				big=#{big},
+			</if>
+			<if test="small!=null">
+				small=#{small},
+			</if>
+			<if test="original!=null">
+				original=#{original},
+			</if>
+			<if test="last_modify!=null">
+				last_modify=#{last_modify},
+			</if>
+		</set>
+		where goods_id=#{goods_id}
+	</update>
+	
+</mapper>

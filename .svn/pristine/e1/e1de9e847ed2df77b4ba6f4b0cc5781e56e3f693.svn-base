@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Backbone collection</title>
+    </head>
+    <body>
+          
+       <script  src="../plug/jquery-1.8.2.min.js" type="text/javascript"></script> 
+       <script  src="../plug/underscore-min.js" type="text/javascript"></script> 
+       <script  src="../plug/backbone-min.js" type="text/javascript"></script> 
+       <script type="text/javascript">
+       
+       //1-实现功能:加载所有商品
+       //步骤1：构建url地址
+       var url =  "http://localhost:8080/MobileShop"+"/backbone/goods";
+      //步骤2：创建Model类GoodsItem，将url地址传递进去
+      var GoodsItem = Backbone.Model.extend({
+         urlRoot:url,
+         idAttribute:"goodsId"  //将goodsId设置为键值属性
+	    });
+      //步骤3：创建一个GoodsItem类的对象goods
+      var goods = new GoodsItem();
+      //步骤4：给goods一个商品数据，实际工作中，是通过表单输入的
+      goods.set({goodsId:5,name:"正品Davidoff 大卫杜夫冷水女士淡香水5",sn:"sp123457",brief:"Cool Water（冷水）女士香水可以说是男用香水的一款延伸之作",description:"30/50/100ml气质优雅包邮",price:"89",cost:"80",mktprice:"90",mktEnable:"0",catId:"23",brandId:"5",weight:"300",intro:"商品品牌  Davidoff/大卫杜夫"});
+     //步骤5：调用goods的save方法，采用POST的方式，向服务器发送XHR请求，url地址就是步骤1中的，传递的参数就是步骤4中设置的数据
+      goods.save(); 
+
+       </script>
+    </body>
+</html>

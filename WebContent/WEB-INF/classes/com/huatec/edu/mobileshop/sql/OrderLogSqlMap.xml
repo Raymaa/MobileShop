@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.OrderLogDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	<select id="findByOrderId" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.brief.BriefOrderLog">
+		select status,time from ms_order_log where order_id=#{order_id}
+	</select>
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.OrderLog" 
+	useGeneratedKeys="true" keyProperty="log_id" >
+		insert into ms_order_log
+		 (log_id,order_id,status,time)
+		 values(#{log_id},#{order_id},#{status},#{time})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.OrderLog">
+		select * from ms_order_log
+	</select>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.OrderLog">
+		select * from ms_order_log where log_id=#{log_id}
+	</select>
+	
+</mapper>

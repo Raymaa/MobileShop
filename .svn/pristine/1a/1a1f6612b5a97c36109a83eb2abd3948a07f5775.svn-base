@@ -1,0 +1,64 @@
+$(document).ready(function(){
+
+$("#loginBtn").on("click",function(e){
+   e.preventDefault();//阻止元素发生默认的行为
+  //提取账号和密码
+  var input = $("#userName").val().trim();
+  var password = $("#password").val().trim();
+  var url = "http://localhost:8080/MobileShop"+"/admin_manager/login";
+ //简单测试
+/*  $.post(url, {input: input,password:password}, function(data) {
+    alert(data.msg);
+  });*/
+  
+  //加深，用.done() .fail() .always()
+/*  $.post(url, {input: input,password:password})
+  .done(function(data){
+	  //当登录成功时，跳转到后台首页
+	  if(data.status==0){
+			window.location.href="main.html";
+      //将管理员id和姓名都存入session
+			$.session.set('userId', data.data.admin_id);
+			$.session.set('userName', data.data.username);
+		}else{
+			alert(data.msg);
+		}
+  })
+  .fail(function(){
+	   alert("服务器忙，请稍后再试");
+  })
+  .always(function(){
+    alert("不管是否登录成功都会执行");
+  });*/
+ 
+  
+  //换一种写法，$.ajax()   语法：$.ajax({name:value, name:value, ... })
+  $.ajax({
+    type:"post",
+    data:{input: input,password:password},
+    url:url,
+    timeout:2000,
+    beforeSend:function(){//加载中的图片
+      $(".load").css("display","block");
+    },
+    complete:function(){//加载中的图片消失
+     $(".load").css("display","none");
+    },
+    success:function(data){
+         if(data.status==0){
+          window.location.href="main.html";
+          //将管理员id和姓名都存入session
+          $.session.set('userId', data.data.admin_id);
+          $.session.set('userName', data.data.username);
+        }else{
+         alert(data.msg); 
+        }
+    },
+    fail:function(){
+       alert("服务器忙，请稍后再试");
+    }
+  })  
+  
+});
+})
+

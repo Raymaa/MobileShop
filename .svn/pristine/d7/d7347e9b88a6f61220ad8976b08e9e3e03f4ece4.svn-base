@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>用户指南</title>
+   <link type="text/css" rel="stylesheet" href="css/base.css" /> 
+    </head>
+    <body   >
+    <div id="siteNav">
+      <div id="siteNavCon">
+        <ul class="left">
+          <li>
+            <a href="#">欢迎来到MobileShop</a>
+          </li>
+          <li>
+            <a href="#" class="red">登录</a>
+          </li>
+           <li>
+            <a href="#">免费注册</a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li><a href="#">我的MobileShop</a></li>
+          <li><a href="#">购物车</a></li>
+          <li><a href="#">收藏夹</a></li>
+          <li><a href="#">商品分类</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="header" style="background:#ccc;">
+     
+      <div class="search">
+      <div class="searchCon">
+          <ul class="searchConT">
+              <ul>
+                <li class="current">宝贝</li>
+
+              </ul>
+            </ul>
+          <div class="searchConM">
+              <div class="left">
+                  <div class="text"><input type="text" name="" id="text" />
+                    <label for="text">背带牛仔裙袭来</label>
+                    <span></span>
+                    </div>
+                  <div class="btn"><input type="button" value="搜索" /></div>
+                </div>
+              <p class="right"><a href="#">高级搜索</a></p>
+            </div>
+          <p class="searchConB"><a href="#">背带裙</a><a href="#">手机</a><a href="#" class="orange">巧克力</a><a href="#">休闲男鞋</a><a href="#">情侣装</a><a href="#">运动鞋</a><a href="#">凉席</a><a href="#">香水</a><a href="#">行车记录仪</a><a href="#">黄金吊坠</a><a href="#">凉鞋</a><a href="#">女包</a><a href="#">珍珠项链</a><a href="#" class="more">更多</a></p>
+        </div>
+    </div>
+  <div class="logo">
+      <h1><a href="#">MobileShop</a></h1>
+    </div>
+   <div class="QRCode">
+         <p><a href="#" class="orange">手机逛商城</a></p>
+         <a href="#"><img src="img/QRCode.png" width="80" height="80" /></a>
+         <span><s></s></span>
+   </div>
+
+    </div>
+     <!--以下是用户指南content部分的代码 -->
+     <div id="content" style="background:#fff;"> 
+                <h2>用户指南</h2>
+                <hr  size="5"  color="red" />
+                <h3 style="color:red;">如何注册MobileShop账号？</h3>
+                <p> 假如你还没有MobileShop账号，你可以到注册页面进行注册，操作步骤如下所示：</p>
+                 <figure>
+                 <img src="img/register1.jpg"   alt="用户注册按钮位置" title="用户注册1"  width="1138px"  >
+                  <figcaption>图1-用户注册按钮</figcaption>
+                </figure>
+                 <p> 按照注册页面的要求进行填写，并提交:</p>
+
+                  <img src="img/register2.jpg"  alt="用户注册表单页面" title="用户注册2" border="2px "  >
+               <p> 优惠券：</p>
+                <figure>
+                 <img src="img/coupon.jpg"   alt="优惠券" title="优惠券"  >
+                  <figcaption>图3-优惠券</figcaption>
+                </figure>
+
+                 <!-- <h3 style="color:red;">VIP积分</h3>
+                  <p> 注册为MobileShop会员之后，您每一次的购物我们都为您计算积分，以下是积分及所对应的折扣和优惠：</p> -->
+     </div>
+
+       <div id="footer" >
+        <div id="footerCon">
+          <div id="links">
+                <dl>
+                <dt>用户指南</dt>
+                <dd><a href="#">新手指南</a></dd>
+                <dd><a href="#">会员积分</a></dd>
+                <dd><a href="#">常见问题</a></dd>
+                <dd><a href="#">反馈调查</a></dd>
+                </dl>  
+                 
+                <dl>
+                <dt>品牌服务</dt>
+                <dd><a href="#">闪电配送</a></dd>
+                <dd><a href="#">快捷支付</a></dd>
+                <dd><a href="#">售后保障</a></dd>
+                </dl>
+
+                <dl>
+                <dt>商家合作</dt>
+                <dd><a href="#">商家对接</a></dd>
+                <dd><a href="#">品牌资质</a></dd>
+                <dd><a href="#">进场流程</a></dd>
+                </dl>
+
+                <dl>
+                <dt>关于我们</dt>
+                <dd><a href="#">平台简介</a></dd>
+                <dd><a href="#">企业文化</a></dd>
+                <dd><a href="#">经营模式</a></dd>
+                <dd><a href="#">招贤纳士</a></dd>
+                </dl>
+                
+             </div>
+             <div id="otherLinks">
+               <a href="#">关于我们</a>|
+               <a href="#">购物指南</a>|
+               <a href="#">商家合作</a>|
+               <a href="#">联系我们</a>|
+               <a href="#">招贤纳士</a>|
+               <a href="#">反馈调查</a>
+             </div>
+             <div id="copyRight">
+               Copyright &copy;2016 - 2026 MobileShop 版权所有 | 消费者维权热线：40088888888
+             </div>
+          </div>
+       </div>
+    </body>
+</html>

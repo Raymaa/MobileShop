@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Backbone事件管理-小例子</title>
+    </head>
+    <body>
+          
+       <script  src="../plug/jquery-1.8.2.min.js" type="text/javascript"></script> 
+       <script  src="../plug/underscore-min.js" type="text/javascript"></script> 
+       <script  src="../plug/backbone-min.js" type="text/javascript"></script> 
+       <script type="text/javascript">
+      var  GoodsItem = Backbone.Model.extend({
+		defaults: {
+			sn:"",
+			name:"",
+			price:""
+		}
+	    });
+      var newGoods = new GoodsItem();
+      newGoods.on("change",function(){
+    	  console.log(newGoods.toJSON());  
+      });
+      newGoods.set( {sn:"sp110",name:"书籍《web前端开发技术》",price:"50"});
+       
+       
+       
+       </script>
+    </body>
+</html>

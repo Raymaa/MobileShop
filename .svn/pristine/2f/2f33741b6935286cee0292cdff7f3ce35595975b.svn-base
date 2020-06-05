@@ -1,0 +1,85 @@
+package com.huatec.edu.mobileshop.service;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.huatec.edu.mobileshop.dao.RoleDao;
+import com.huatec.edu.mobileshop.entity.Role;
+import com.huatec.edu.mobileshop.util.Result;
+@Service
+public class RoleServiceImpl implements RoleService {
+	@Resource
+	private RoleDao roleDao;
+	
+	public Result addRole(String name, String description) {
+		Result result=new Result();
+		Role checkRole=roleDao.findByName(name);
+		if(checkRole!=null){
+			result.setStatus(1);
+			result.setMsg("已经存在此角色名");
+			return result;
+		}
+		Role role=new Role();
+		role.setRole_id(null);
+		role.setName(name);
+		role.setDescription(description);
+		role.setCreatime(null);
+		role.setModifytime(null);
+		roleDao.save(role);
+		result.setStatus(0);
+		result.setMsg("新增角色成功");
+		result.setData(role);
+		return result;
+	}
+	public Result loadAllRole() {
+		Result result=new Result();
+		List<Role> roles=roleDao.findAll();
+		result.setStatus(0);
+		result.setMsg("加载所有角色成功");
+		result.setData(roles);
+		return result;
+	}
+	public Result updateRole(int roleId, String name, String description) {
+		Result result=new Result();
+		Role checkRole1=roleDao.findById(roleId);
+		if(checkRole1==null){
+			result.setStatus(1);
+			result.setMsg("不存在此角色");
+			return result;
+		}
+		Role checkRole2=roleDao.findByName(name);
+		if(checkRole2!=null){
+			result.setStatus(1);
+			result.setMsg("已经存在此角色名");
+			return result;
+		}
+		Role role=new Role();
+		role.setRole_id(roleId);
+		role.setName(name);
+		role.setDescription(description);
+		Timestamp now=new Timestamp(System.currentTimeMillis());
+		role.setModifytime(now);
+		roleDao.dynamicUpdate(role);
+		result.setStatus(0);
+		result.setMsg("更新角色信息成功");
+		return result;
+	}
+	public Result deleteRoleById(int roleId) {
+		Result result=new Result();
+		Role checkRole=roleDao.findById(roleId);
+		if(checkRole==null){
+			result.setStatus(1);
+			result.setMsg("不存在此角色");
+			return result;
+		}
+		roleDao.deleteById(roleId);
+		result.setStatus(0);
+		result.setMsg("删除此角色成功");
+		return result;
+	}
+
+}

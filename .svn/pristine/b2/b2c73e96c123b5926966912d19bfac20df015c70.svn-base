@@ -1,0 +1,211 @@
+package com.huatec.edu.mobileshop.service;
+
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.huatec.edu.mobileshop.dao.BrandDao;
+import com.huatec.edu.mobileshop.dao.GoodsTypeDao;
+import com.huatec.edu.mobileshop.dao.TypeBrandDao;
+import com.huatec.edu.mobileshop.entity.Brand;
+import com.huatec.edu.mobileshop.entity.GoodsType;
+import com.huatec.edu.mobileshop.entity.TypeBrand;
+import com.huatec.edu.mobileshop.util.Result;
+@Service
+public class TypeBrandServiceImpl implements TypeBrandService {
+	@Resource
+	private TypeBrandDao typeBrandDao;
+	@Resource
+	private GoodsTypeDao goodsTypeDao;
+	@Resource
+	private BrandDao brandDao;
+	//新增类型品牌关联信息
+	public Result add(int typeId, int brandId) {
+		Result result=new Result();
+		GoodsType goodsType=goodsTypeDao.findById(typeId);
+		//判断是否存在此商品类型
+		if(goodsType==null){
+			result.setStatus(1);
+			result.setMsg("不存在此商品类型");
+			return result;
+		}
+		//判断此商品类型是否可用
+		if(goodsType.getDisabled()==1){
+			result.setStatus(1);
+			result.setMsg("此商品类型不可用");
+			return result;
+		}
+		Brand brand=brandDao.findById(brandId);
+		//判断是否存在此品牌
+		if(brand==null){
+			result.setStatus(1);
+			result.setMsg("不存在此品牌");
+			return result;
+		}
+		//判断此品牌是否可用
+		if(brand.getDisabled()==1){
+			result.setStatus(1);
+			result.setMsg("此品牌不可用");
+			return result;
+		}
+		//判断是否已经关联过
+		List<TypeBrand> tbs=typeBrandDao.findByTypeId(typeId);
+		if(!tbs.isEmpty()){
+			for(TypeBrand tb:tbs){
+				if(tb.getBrand_id()==brandId){
+					result.setStatus(1);
+					result.setMsg("此类型已经关联过此品牌");
+					return result;
+				}
+			}
+		}
+		TypeBrand typeBrand=new TypeBrand();
+		typeBrand.setId(null);
+		typeBrand.setType_id(typeId);
+		typeBrand.setBrand_id(brandId);
+		typeBrand.setCreatime(null);
+		typeBrand.setModifytime(null);
+		typeBrandDao.save(typeBrand);
+		result.setStatus(0);
+		result.setMsg("商品类型与品牌关联成功");
+		result.setData(typeBrand);
+		return result;
+	}
+	//加载所有（关联查询）
+	public Result loadAll() {
+		Result result=new Result();
+		List<TypeBrand> tbs=typeBrandDao.findUnion();
+		//判断是否有类型品牌关联信息
+		if(tbs.isEmpty()){
+			result.setStatus(1);
+			result.setMsg("没有类型品牌关联信息");
+			result.setData(tbs);
+			return result;
+		}
+		result.setStatus(0);
+		result.setMsg("加载所有类型品牌关联信息成功");
+		result.setData(tbs);
+		return result;
+	}
+	//根据id加载（关联查询）
+	public Result loadById(int id) {
+		Result result=new Result();
+		TypeBrand typeBrand=typeBrandDao.findUnionById(id);
+		if(typeBrand==null){
+			result.setStatus(1);
+			result.setMsg("没有此类型品牌关联信息");
+			return result;
+		}
+		result.setStatus(0);
+		result.setMsg("加载类型品牌关联信息成功");
+		result.setData(typeBrand);
+		return result;
+	}
+	//根据类型id加载（关联查询）
+	public Result loadByTypeId(int typeId) {
+		Result result=new Result();
+		GoodsType goodsType=goodsTypeDao.findById(typeId);
+		if(goodsType==null){
+			result.setStatus(1);
+			result.setMsg("不存在此商品类型");
+			return result;
+		}
+		List<TypeBrand> tbs=typeBrandDao.findUnionByTypeId(typeId);
+		if(tbs.isEmpty()){
+			result.setStatus(1);
+			result.setMsg("此类型没有关联品牌");
+			result.setData(tbs);
+			return result;
+		}
+		result.setStatus(0);
+		result.setMsg("查询此类型关联的品牌成功");
+		result.setData(tbs);
+		return result;
+	}
+	//根据品牌id加载（关联查询）
+	public Result loadByBrandId(int brandId) {
+		Result result=new Result();
+		Brand brand=brandDao.findById(brandId);
+		if(brand==null){
+			result.setStatus(1);
+			result.setMsg("不存在此品牌");
+			return result;
+		}
+		List<TypeBrand> tbs=typeBrandDao.findUnionByBrandId(brandId);
+		if(tbs.isEmpty()){
+			result.setStatus(1);
+			result.setMsg("此品牌没有关联类型");
+			result.setData(tbs);
+			return result;
+		}
+		result.setStatus(0);
+		result.setMsg("查询此品牌关联的类型成功");
+		result.setData(tbs);
+		return result;
+	}
+	//根据id更新
+	public Result update(int id, int typeId, int brandId) {
+		Result result=new Result();
+		//判断是否有此类型品牌关联信息
+		TypeBrand checkTB=typeBrandDao.findById(id);
+		if(checkTB==null){
+			result.setStatus(1);
+			result.setMsg("没有此类型品牌关联信息");
+			return result;
+		}
+		GoodsType goodsType=goodsTypeDao.findById(typeId);
+		//判断是否有此商品类型
+		if(goodsType==null){
+			result.setStatus(1);
+			result.setMsg("没有此商品类型");
+			return result;
+		}
+		//判断此商品类型是否可用
+		if(goodsType.getDisabled()==1){
+			result.setStatus(1);
+			result.setMsg("此商品类型不可用");
+			return result;
+		}
+		Brand brand=brandDao.findById(brandId);
+		//判断是否有此品牌
+		if(brand==null){
+			result.setStatus(1);
+			result.setMsg("没有此品牌");
+			return result;
+		}
+		//判断此品牌是否可用
+		if(brand.getDisabled()==1){
+			result.setStatus(1);
+			result.setMsg("此品牌不可用");
+			return result;
+		}
+		TypeBrand typeBrand=new TypeBrand();
+		typeBrand.setId(id);
+		typeBrand.setType_id(typeId);
+		typeBrand.setBrand_id(brandId);
+		Timestamp now=new Timestamp(System.currentTimeMillis());
+		typeBrand.setModifytime(now);
+		typeBrandDao.dynamicUpdate(typeBrand);
+		result.setStatus(0);
+		result.setMsg("更新类型品牌关系成功");
+		return result;
+	}
+	//根据id删除
+	public Result deleteById(int id) {
+		Result result=new Result();
+		TypeBrand typeBrand=typeBrandDao.findById(id);
+		if(typeBrand==null){
+			result.setStatus(1);
+			result.setMsg("没有此类型品牌关联信息");
+			return result;
+		}
+		typeBrandDao.deleteById(id);
+		result.setStatus(0);
+		result.setMsg("删除此类型品牌关系成功");
+		return result;
+	}
+
+}

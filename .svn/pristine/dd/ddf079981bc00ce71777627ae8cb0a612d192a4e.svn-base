@@ -1,0 +1,145 @@
+$(document).ready(function(){
+	var path = "http://localhost:8080/MobileShop";
+	var urlRoot = path+"/backbone/store";  
+	var  Store = Backbone.Model.extend({
+   	 urlRoot:urlRoot,
+	 parse : function(response){//重构返回的值，因为通过Collection的fetch，自动实例化的Model，其parse也会被调用，所以要进行判断，如果返回值有data就返回data里的内容，没有data，就返回原来的样子
+			if(response.data != null){
+				return response.data;
+				}else{
+					return response;
+				}
+	        
+	      }
+  });
+	var storeOne = new Store();
+//	  
+//	   store.urlRoot = urlRoot ;
+	
+	//当鼠标单击stepFour时，获取值，并与数据库同步
+	$("a#saveStore").on("click",function(){
+		   var goodsId = $(this).attr("data-goodsId");
+		   var  store = $("#Number_store").val().trim();
+		    
+		   //给goodId赋值，修改mktEnable为1
+		   storeOne.set({goodsId:goodsId,store:store}); 
+		   
+		   
+		   storeOne.save(null,{
+		  		success:function(model,response){//当添加成功之后，出现下一步 
+		  			  //获取到id
+//		  		    console.log(model);
+		  	  		$("a#saveStore").hide();
+		  	  		$("a#stepFour").show();//出现下一步按钮
+
+		  	  }
+		  	  });
+	});
+	   
+	
+	
+	   $("a#stepFour").on('click',function(){
+			//跳转到参数设置页面
+			$("div.params").siblings().hide();
+			$("div.params").show();
+			var goodsId = $(this).attr("data-goodsId");//后面点击“保存”按钮时用
+		
+			
+			var path = "http://localhost:8080/MobileShop";
+			var catId = $(this).attr("data-catId");
+			var urlRoot = path+"/cat/union/"+catId;
+			
+			var  Params = Backbone.Model.extend({
+			   	 urlRoot:urlRoot,
+				 parse : function(response){//重构返回的值
+						if(response.data != null){
+							var jsonStr = response.data.briefGoodsType.params;
+                           /* console.log(jsonObj);*/
+						   //要重构数据的结构
+							var jsonObj = JSON.parse(jsonStr); 
+                          
+                    /*        for (var key in jsonObj)
+						    {  
+						        console.log(key); //获取到了
+						        console.log(jsonObj[key]);
+						    }*/
+
+							/*$.each(jsonObj, function(i) {
+							    alert(jsonObj[i]);
+							    alert(i);
+							});*/
+							
+							
+                            return jsonObj;
+							}else{
+								return response;
+							}
+				        
+				      }
+			  });
+			
+			var params = new Params();
+			params.fetch({success:function(model,response){
+				//console.log(model);
+			}});
+			
+			//视图
+			var ParamsView = Backbone.View.extend({
+				  el:"div.params-same",
+                  // paramsTemplate : _.template($("#paramsTemplate").html()),//设置模板
+				     initialize:function(){
+			             this.render();
+			             this.listenTo(this.model,'all',this.render);
+				     },
+			    	 render : function(){
+			    		   //提取出model的key，放在params名处
+			    		 console.log(this.model.toJSON());
+			    		 var paramsName = _.keys(this.model.toJSON());//提取所有的key值
+			    		// var that =  this.$el.find(".paramsName");
+			    		/* for(var i=0;i<that.length;i++){
+			    			 that.eq(i).empty();
+			    			 that.eq(i).html( paramsName[i]);
+			    		 }*/
+			    		 var that =  this.$el;
+			    		 that.empty();
+			    		 for(var i=0;i<paramsName.length;i++){
+                             that.append("<dl><dt class='paramsName'>"+paramsName[i]+"</dt> <dd> <input type='text' class='text params' value='' placeholder='参数值'></dd></dl>" );
+			    		 }
+			    		 
+				       	}
+			});
+			
+			var paramsView = new ParamsView({model:params});	
+			
+			
+			//单击“保存”，保存参数
+			 $("a#saveParams").on('click',function(){
+				 //提取值
+				
+				 var paramsArray =["","","","",""];
+				 for(var i=0;i<$("input.params").length;i++){
+					 paramsArray[i] = $("input.params").eq(i).val().trim();
+				 }
+			    
+				var myparams = new Params();
+				var path = "http://localhost:8080/MobileShop";
+				var urlRoot = path+"/backbone/goods/params/";
+				myparams.urlRoot = urlRoot;
+				myparams.idAttribute = "goodsId";
+				 //设置参数
+				myparams.set({goodsId:goodsId,param1:paramsArray[0],param2:paramsArray[1],param3:paramsArray[2],param4:paramsArray[3],param5:paramsArray[4]});
+			  	  //与服务器同步
+				myparams.save(null,{
+			  		  success:function(model,response){
+                         alert(response.msg);
+			  		  }
+				});
+
+			 });
+			
+	   });
+	
+	
+	
+	
+})

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.GoodsTypeDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" 
+	size="512" readOnly="true"/>
+	
+	<select id="findByDisabled" parameterType="int" 
+	 resultType="com.huatec.edu.mobileshop.entity.GoodsType">
+		select * from ms_goods_type where disabled=#{disabled}
+	</select>
+	
+	<select id="findByName" parameterType="string" 
+	 resultType="com.huatec.edu.mobileshop.entity.GoodsType">
+		select * from ms_goods_type where name=#{name}
+	</select>
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" 
+	parameterType="com.huatec.edu.mobileshop.entity.GoodsType" 
+	useGeneratedKeys="true" keyProperty="type_id" >
+		insert into ms_goods_type
+		 (type_id,name,params,disabled,
+		 is_physical,creatime,modifytime)
+		 values(#{type_id},#{name},#{params},#{disabled},
+		 #{is_physical},#{creatime},#{modifytime})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" 
+	resultType="com.huatec.edu.mobileshop.entity.GoodsType">
+		select * from ms_goods_type
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_goods_type where type_id=#{type_id}
+	</delete>
+	
+	<select id="findById" 
+	parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.GoodsType">
+		select * from ms_goods_type where type_id=#{type_id}
+	</select>
+	
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" 
+	parameterType="com.huatec.edu.mobileshop.entity.GoodsType">
+		update ms_goods_type
+		<set>
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="params!=null">
+				params=#{params},
+			</if>
+			<if test="disabled!=null">
+				disabled=#{disabled},
+			</if>
+			<if test="is_physical">
+				is_physical=#{is_physical},
+			</if>
+			<if test="modifytime!=null">
+				modifytime=#{modifytime}
+			</if>
+		</set>
+		where type_id=#{type_id}
+	</update>
+	
+</mapper>

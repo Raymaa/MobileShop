@@ -1,0 +1,28 @@
+ var AppRouter = Backbone.Router.extend({
+      initialize: function(){
+    	  $('#main').show();
+    	  $('#main').siblings().hide();
+      },
+      routes:{
+    	   'main':'showMain',
+    	   'publishGoods':'showPublishGoods',
+           'online':'showOnline',
+           'stockGoods':'showStockGoods'
+      } ,
+      showPublishGoods: function (){
+    	  $('#publishGoods').show();
+    	  $('#publishGoods').siblings().hide();
+      },
+      showOnline: function (){
+    	  $('#online').show();
+    	  $('#online').siblings().hide();
+      },
+      showStockGoods: function (){
+    	  $('#stockGoods').show();
+    	  $('#stockGoods').siblings().hide();
+      },
+      
+ })
+ 
+   var app = new AppRouter();//实例化一个AppRouter
+   Backbone.history.start(); //通过history对象的start方法启动对URL地址变化的监听

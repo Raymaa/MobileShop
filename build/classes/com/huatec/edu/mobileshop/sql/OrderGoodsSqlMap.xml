@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.OrderGoodsDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	
+	<!-- 订单商品表、商品表关联查询 -->
+	<select id="findUnionByOrderId" parameterType="int" 
+	resultMap="orderGoodsMap2">
+		select mog.*,
+		mg.name,mg.price current_price,
+		mg.mktprice,mg.small,mg.thumbnail
+		from ms_order_goods mog  
+		join ms_goods mg on 
+		mog.goods_id=mg.goods_id
+		where mog.order_id=#{order_id}
+	</select>
+	<resultMap type="com.huatec.edu.mobileshop.entity.OrderGoods" 
+	id="orderGoodsMap2">
+		<id property="id" column="id"/>
+		<result property="order_id" column="order_id"/>
+		<result property="goods_id" column="goods_id"/>
+		<result property="goods_num" column="goods_num"/>
+		<result property="price" column="price"/>
+		<association property="bgfos" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsForOrder">
+			<result property="name" column="name"/>
+			<result property="price" column="current_price"/>
+			<result property="mktprice" column="mktprice"/>
+			<result property="small" column="small"/>
+			<result property="thumbnail" column="thumbnail"/>
+		</association>
+	</resultMap>
+	
+	<select id="findRepeat" parameterType="map" 
+	resultType="com.huatec.edu.mobileshop.entity.OrderGoods">
+		select * from ms_order_goods
+		where order_id=#{order_id}
+		and goods_id=#{goods_id}
+	</select>
+	
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.OrderGoods" 
+	useGeneratedKeys="true" keyProperty="id" >
+		insert into ms_order_goods
+		 (id,order_id,goods_id,goods_num,price)
+		 values(#{id},#{order_id},#{goods_id},#{goods_num},#{price})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.OrderGoods">
+		select * from ms_order_goods
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_order_goods where id=#{id}
+	</delete>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.OrderGoods">
+		select * from ms_order_goods where id=#{id}
+	</select>
+	
+	
+	
+	<!-- 订单商品表、订单表、商品表关联查询 -->
+	<!-- <select id="findUnionByMemberId" parameterType="int" 
+	resultMap="orderGoodsMap1">
+		select mog.*,mo.*,
+		mg.name goods_name,mg.price current_price,
+		mg.mktprice,mg.small,mg.thumbnail
+		from ms_order_goods mog 
+		join ms_order mo 
+		on mog.order_id=mo.order_id 
+		join ms_goods mg on 
+		mog.goods_id=mg.goods_id
+		where mo.member_id=#{member_id}
+	</select>
+	<resultMap type="com.huatec.edu.mobileshop.entity.OrderGoods" 
+	id="orderGoodsMap1">
+		<id property="id" column="id"/>
+		<result property="order_id" column="order_id"/>
+		<result property="goods_id" column="goods_id"/>
+		<result property="goods_num" column="goods_num"/>
+		<result property="price" column="price"/>
+		<association property="order" 
+		javaType="com.huatec.edu.mobileshop.entity.Order">
+			<id property="order_id" column="order_id"/>
+			<result property="sn" column="sn"/>
+			<result property="member_id" column="member_id"/>
+			<result property="status" column="status"/>
+			<result property="payment_id" column="payment_id"/>
+			<result property="logi_id" column="logi_id"/>
+			<result property="total_amount" column="total_amount"/>
+			<result property="address_id" column="address_id"/>
+			<result property="creatime" column="creatime"/>
+			<result property="modifytime" column="modifytime"/>
+		</association>
+		<association property="bgfos" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsForOrder">
+			<result property="name" column="goods_name"/>
+			<result property="price" column="current_price"/>
+			<result property="mktprice" column="mktprice"/>
+			<result property="small" column="small"/>
+			<result property="thumbnail" column="thumbnail"/>
+		</association>
+	</resultMap> -->
+	
+</mapper>

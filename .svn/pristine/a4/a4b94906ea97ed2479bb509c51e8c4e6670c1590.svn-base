@@ -1,0 +1,67 @@
+$(document).ready(function(){
+	 var path = "http://localhost:8080/MobileShop";
+	 var pageId = 1;
+	 var url = path+"/goods/enable/page/"+pageId;
+	 
+	//创建模型类
+	var  GoodsItem = Backbone.Model.extend();
+	
+	//创建集合类
+	var  OnLineGoodsList = Backbone.Collection.extend({
+		model: GoodsItem,
+		url:url,
+	    parse : function(response){
+	        return response.data;
+	      }
+	});
+	
+    
+    //实例化集合
+    var  onLineGoodsList = new OnLineGoodsList();
+    //采用fetch方法获取服务器数据
+    onLineGoodsList.fetch();
+     
+    for(var i=0;i<onLineGoodsList.models.length;i++){
+		 console.log(onLineGoodsList.models[i].toJSON());
+	 }
+
+
+    
+    
+   /*
+   //创建视图类
+   var GoodsListView = Backbone.View.extend({
+	   el: $("online"),
+	   // 为每一个任务条目绑定事件
+       initialize: function () {
+    	   this.listenTo(onLineGoodsList, 'all', this.render);
+       },
+       render: function(){
+    	   $("#onlineGoodsList").empty();//清空一次
+    	   for(var i=0;i < onLineGoodsList.models.length;i++){
+         	 $("#onlineGoodsList").append("<tr class='item'> <td> <input type='checkbox' data-goodsId='"
+         			 +onLineGoodsList.models[i].get("goods_id")+
+         			 "'> </td> <td>" +onLineGoodsList.models[i].get("goods_id")+
+         			 "</td> <td>"+onLineGoodsList.models[i].get("name")+
+         			 "</td><td>"+onLineGoodsList.models[i].get("price")+
+         			"</td><td>"+onLineGoodsList.models[i].get("mkt_enable")+
+         			"</td><td><a href='#'  class='edit' data-goodsId='"+onLineGoodsList.models[i].get("goods_id")+
+         			"'>编辑</a>  <a href='#' class='delete'  data-goodsId='"+onLineGoodsList.models[i].get("goods_id")+"'>删除</a></td></tr>"	 
+         	 );
+            }
+       },
+	    events: {
+	        'click #test' : 'deleteThis'
+	    },
+       // 移除对应条目，以及对应的数据对象
+	    deleteThis: function() {
+          alert("ok1");
+       }
+       
+   });
+   //实例化视图
+   var goodListView = new GoodsListView;
+   goodListView.render();//渲染一次
+   */
+
+});

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册页面</title>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#regist").click(function(){
+					//获取input中的值
+					var uname=$("#uname").val().trim();
+					var password=$("#password").val().trim();
+					var email=$("#email").val().trim();
+					$.ajax({
+						url:"http://localhost:8080/MobileShop"+"/member",
+						type:"post",
+						data:{"uname":uname,"password":password,"email":email},
+						dataType:"json",
+						success:function(result){
+							alert(result.msg);
+						},
+						error:function(){
+							alert("注册异常");
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+			用户名：<input type="text" id="uname"/>
+			密码：<input type="password" id="password"/>
+			邮箱：<input type="text" id="email"/>
+			<button id="regist">注册</button>
+	</body>
+</html>

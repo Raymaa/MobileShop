@@ -1,0 +1,33 @@
+$("body").append("
+<textarea id='aa'></textarea>
+"); var editor = KindEditor.create('textarea[id="aa"]');
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>后台管理平台</title>
+<link type="text/css" rel="stylesheet" href="css/main.css" />
+<link rel="stylesheet"
+	href="../plug/font-awesome/css/font-awesome.min.css">
+<link rel="shortcut icon" href="../favicon.ico" />
+<link rel="stylesheet"
+	href="../plug/kindeditor/themes/simple/simple.css">
+<script src="../plug/jquery-3.1.1.js" type="text/javascript"></script>
+<script src="../plug/session.js" type="text/javascript"></script>
+<script src="../plug/underscore-min.js" type="text/javascript"></script>
+<script src="../plug/backbone-min.js" type="text/javascript"></script>
+<!-- 富文本编辑器 -->
+<script charset="utf-8" src="../plug/kindeditor/kindeditor.js"
+	type="text/javascript"></script>
+<script charset="utf-8" src="../plug/kindeditor/lang/zh_CN.js"
+	type="text/javascript"></script>
+<script>
+           $("body").append("<textarea id='aa'></textarea>");
+    	   var editor = KindEditor.create('textarea[id="aa"]');//这句在后面即可
+
+       </script>
+</head>
+<body>
+
+</body>

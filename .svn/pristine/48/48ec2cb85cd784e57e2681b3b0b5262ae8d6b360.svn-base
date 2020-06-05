@@ -1,0 +1,67 @@
+$(document).ready(function(){
+	//创建模型类
+	var  GoodsItem = Backbone.Model.extend({
+		defaults: {
+			sn:"",
+			name:"",
+			price:""
+		}
+	});
+	
+	//创建集合类
+	var  GoodsList = Backbone.Collection.extend({
+		model: GoodsItem
+	});
+	
+    var data =[
+                {"sn":"sp001","name":"汇源果汁","price":"4.5"},
+				{"sn":"sp002","name":"圣诞袜子","price":"8"},
+				{"sn":"sp003","name":"圣诞苹果","price":"20"}
+				];
+    
+    //实例化集合，并将数据传递给它
+    var goodsList = new GoodsList(data);
+    
+   //创建视图类
+   var GoodsListView = Backbone.View.extend({
+	   el: $("body"),
+       initialize: function () {
+    	   this.listenTo(goodsList, 'add', this.render);
+       },
+       render: function(){
+    	   $("#goodsInfo").empty();//清空一次
+    	   for(var i=0;i < goodsList.models.length;i++){
+         	 $("#goodsInfo").append("<tr class='item'> <td >"+goodsList.models[i].get("sn")+"</td> <td>"+goodsList.models[i].get("name")+"</td><td>"+goodsList.models[i].get("price")+"</td></tr>");
+            }
+       }
+   });
+   //实例化视图
+   var goodListView = new GoodsListView;
+   goodListView.render();//渲染一次
+
+	
+   
+   $('.addBtn').on('click',function(e){   
+	   e.preventDefault();
+       e.stopPropagation();
+      //获取表单中数据
+       var goodsId = $("#goodsId").val().trim();
+       var goodsName =  $("#goodsName").val().trim();
+       var price =$("#price").val().trim();
+       //创建一个 GoodsItem模型对象
+       var newGoods = new GoodsItem();
+       newGoods.set( {"sn":goodsId,"name":goodsName,"price":price});
+       //添加到goodsList集合对象中去
+       goodsList.push(newGoods);
+      
+       
+       //在控制台输出一次
+       for(var i=0;i<goodsList.models.length;i++){
+    	   console.log(goodsList.models[i].toJSON());
+       }
+       
+   });
+   
+	
+	
+});

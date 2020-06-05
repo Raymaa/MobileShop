@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.GoodsCommentDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	<!-- 评论表、商品表关联查询 -->
+	<select id="findUnionByMemberId" parameterType="int" resultMap="goodsCommentMap2">
+		select mgc.*,mg.goods_id,mg.name,
+		mg.price,mg.mktprice,mg.small,mg.mkt_enable
+		from ms_goods_comment mgc
+		join ms_goods mg
+		on mgc.goods_id=mg.goods_id
+		where member_id=#{member_id}
+	</select>
+	<resultMap type="com.huatec.edu.mobileshop.entity.GoodsComment" 
+	id="goodsCommentMap2">
+		<id property="comment_id" column="comment_id"/>
+		<result property="order_id" column="order_id"/>
+		<result property="goods_id" column="goods_id"/>
+		<result property="member_id" column="member_id"/>
+		<result property="score" column="score"/>
+		<result property="content" column="content"/>
+		<result property="isopen" column="isopen"/>
+		<result property="creatime" column="creatime"/>
+		<association property="briefGoods" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoods">
+			<id property="goods_id" column="goods_id"/>
+			<result property="name" column="name"/>
+			<result property="price" column="price"/>
+			<result property="mktprice" column="mktprice"/>
+			<result property="small" column="small"/>
+			<result property="mkt_enable" column="mkt_enable"/>
+		</association>
+	</resultMap>
+	<!-- 评论表、会员表关联查询 -->
+	<select id="findUnionByGoodsId" parameterType="int" resultMap="goodsCommentMap1">
+		select mgc.*,mm.uname
+		from ms_goods_comment mgc
+		join ms_member mm
+		on mgc.member_id=mm.member_id
+		where goods_id=#{goods_id}
+	</select>
+	<resultMap type="com.huatec.edu.mobileshop.entity.GoodsComment" 
+	id="goodsCommentMap1">
+		<id property="comment_id" column="comment_id"/>
+		<result property="order_id" column="order_id"/>
+		<result property="goods_id" column="goods_id"/>
+		<result property="member_id" column="member_id"/>
+		<result property="score" column="score"/>
+		<result property="content" column="content"/>
+		<result property="isopen" column="isopen"/>
+		<result property="creatime" column="creatime"/>
+		<association property="briefMember" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefMember">
+			<id property="member_id" column="member_id"/>
+			<result property="uname" column="uname"/>
+		</association>
+	</resultMap>
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.GoodsComment" 
+	useGeneratedKeys="true" keyProperty="comment_id" >
+		insert into ms_goods_comment
+		 (comment_id,order_id,goods_id,member_id,score,content,isopen,creatime)
+		 values(#{comment_id},#{order_id},#{goods_id},#{member_id},#{score},
+		 #{content},#{isopen},#{creatime})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.GoodsComment">
+		select * from ms_goods_comment
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_goods_comment where comment_id=#{comment_id}
+	</delete>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.GoodsComment">
+		select * from ms_goods_comment where comment_id=#{comment_id}
+	</select>
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" 
+	parameterType="com.huatec.edu.mobileshop.entity.GoodsComment">
+		update ms_goods_comment
+		<set>
+			<if test="score!=null">
+				score=#{score},
+			</if>
+			<if test="content!=null">
+				content=#{content},
+			</if>
+			<if test="isopen!=null">
+				isopen=#{isopen}
+			</if>
+		</set>
+		where comment_id=#{comment_id}
+	</update>
+	
+</mapper>

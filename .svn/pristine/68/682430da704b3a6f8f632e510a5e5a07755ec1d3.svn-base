@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Backbone 案例1</title>
+      <link type="text/css" rel="stylesheet" href="css/main.css" /> 
+      <link rel="stylesheet" href="../plug/font-awesome/css/font-awesome.min.css">
+     <link rel="shortcut icon" href="../favicon.ico" />
+    </head>
+    <body>
+    
+       <script type="text/javascript">
+       $(document).ready(function(){
+    	 alert("ok");  
+       });
+       </script>
+       <script  src="../plug/jquery-3.1.1.js" type="text/javascript"></script>
+       <script  src="../plug/underscore.js" type="text/javascript"></script> 
+       <script  src="../plug/backbone.js" type="text/javascript"></script> 
+    </body>
+</html>

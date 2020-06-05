@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>用户注册</title>
+      <link type="text/css" rel="stylesheet" href="css/base.css" /> 
+      <link type="text/css" rel="stylesheet" href="css/register.css" /> 
+      <link rel="stylesheet" href="../plug/font-awesome/css/font-awesome.min.css">
+     <link rel="shortcut icon" href="../favicon.ico" />
+    </head>
+    <body   >
+ <div id="siteNav">
+      <div id="siteNavCon">
+        <ul class="left">
+          <li>
+            <a href="#">欢迎来到MobileShop</a>
+          </li>
+          <li>
+            <a href="#" class="red">登录</a>
+          </li>
+           <li>
+            <a href="#">免费注册</a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li class="navTitle" id="menu" onmouseover="fun1()"  onmouseout="fun2()">
+           <a href="#" >我的MobileShop <i class="downUp"></i></a>
+            <ul  class="siteNavPanel"  id="menuContent">
+              <li><a href="#">待付款订单</a></li>
+              <li><a href="#">商品已发货</a></li>
+              <li><a href="#">待评价订单</a></li>
+            </ul>
+          </li>
+          <li><a href="#">购物车</a></li>
+          <li><a href="#">收藏夹</a></li>
+          <li><a href="#">商品分类</a></li>
+        </ul>
+      </div>
+    </div>
+
+    
+     <div id="content" > 
+          <div class="reg">
+              <div class="reg-left">
+                 <img src="img/left.jpg">
+              </div>
+              <div class="reg-right">
+                  <h1>用户注册</h1>
+                  <form id="register_form">
+                    <div class="reg-same">
+                      <dl>
+                        <dt>用户名：</dt>
+                        <dd><input type="text" class="text" name="userName" value="" id="userName" placeholder="必须是字母和数字，长度不小于6"></dd>
+                        <dd id="nameMsg" class="msg ">不少于6个字符</dd>
+                      </dl>
+                        <dl>
+                        <dt>邮箱：</dt>
+                        <dd><input type="text" class="text" name="email" value="" id="userEmail" placeholder="例如:hs@163.com"></dd>
+                        <dd id="emailMsg" class="msg">xiaohong@163.com</dd>
+                      </dl>
+                       <dl>
+                        <dt>密码：</dt>
+                        <dd><input type="password" class="text" name="userName" value="" id="userPassword" placeholder="不少于8个字符"></dd>
+                         <dd id="pswMsg" class="msg">不少于8个字符</dd>
+                      </dl>
+                        <dl>                     
+                          <dt>确认密码：</dt>
+                        <dd><input type="password"  class="text" name="repassword" value="" id="rePassword" placeholder="两次密码要一致"></dd>
+                         <dd id="rePswMsg" class="msg">两次输入的密码要一致</dd>
+                      </dl>
+                       <dl>                     
+                          <dt>&nbsp;</dt>
+                        <dd>
+                        <input type="button" class="regis_ent m_register" id="registerBtn" value="注册新用户">
+                        <input type="checkbox"   checked="checked" value="agree" fun="checkLicense" name="license" id="license" class="satisfied">
+                        <span>阅读并同意<a href="#">用户协议</a></span>
+                        
+                        </dd>
+                      </dl>
+
+                    </div>
+                  </form>
+
+              </div>
+          </div>
+              
+     </div>
+
+       <div id="footer" >
+        <div id="footerCon">
+          <div id="links">
+                <dl>
+                <dt>用户指南</dt>
+                <dd><a href="#">新手指南</a></dd>
+                <dd><a href="#">会员积分</a></dd>
+                <dd><a href="#">常见问题</a></dd>
+                <dd><a href="#">反馈调查</a></dd>
+                </dl>  
+                 
+                <dl>
+                <dt>品牌服务</dt>
+                <dd><a href="#">闪电配送</a></dd>
+                <dd><a href="#">快捷支付</a></dd>
+                <dd><a href="#">售后保障</a></dd>
+                </dl>
+
+                <dl>
+                <dt>商家合作</dt>
+                <dd><a href="#">商家对接</a></dd>
+                <dd><a href="#">品牌资质</a></dd>
+                <dd><a href="#">进场流程</a></dd>
+                </dl>
+
+                <dl>
+                <dt>关于我们</dt>
+                <dd><a href="#">平台简介</a></dd>
+                <dd><a href="#">企业文化</a></dd>
+                <dd><a href="#">经营模式</a></dd>
+                <dd><a href="#">招贤纳士</a></dd>
+                </dl>
+                
+             </div>
+             <div id="otherLinks">
+               <a href="#">关于我们</a>|
+               <a href="#">购物指南</a>|
+               <a href="#">商家合作</a>|
+               <a href="#">联系我们</a>|
+               <a href="#">招贤纳士</a>|
+               <a href="#">反馈调查</a>
+             </div>
+             <div id="copyRight">
+               Copyright &copy;2016 - 2026 MobileShop 版权所有 | 消费者维权热线：40088888888
+             </div>
+          </div>
+       </div>
+        <script  src="js/base.js" type="text/javascript"></script> 
+       <script  src="js/register.js" type="text/javascript"></script> 
+    </body>
+</html>

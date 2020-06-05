@@ -1,0 +1,213 @@
+package com.huatec.edu.mobileshop.service;
+
+import java.sql.Timestamp;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.huatec.edu.mobileshop.dao.AdminDao;
+import com.huatec.edu.mobileshop.dao.RoleDao;
+import com.huatec.edu.mobileshop.entity.Admin;
+import com.huatec.edu.mobileshop.entity.Role;
+import com.huatec.edu.mobileshop.util.MSUtil;
+import com.huatec.edu.mobileshop.util.Result;
+@Service
+public class AdminServiceImpl implements AdminService {
+	@Resource
+	private AdminDao adminDao;
+	@Resource
+	private RoleDao roleDao;
+	
+	public Result addAdmin(String mobile, String realName, int roleId) {
+		Result result=new Result();
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("mobile", mobile);
+		Admin checkAdmin=adminDao.dynamicFind(map);
+		if(checkAdmin!=null){
+			result.setStatus(1);
+			result.setMsg("此电话号码已经存在");
+			return result;
+		}
+		Role role=roleDao.findById(roleId);
+		if(role==null){
+			result.setStatus(1);
+			result.setMsg("不存在此角色");
+			return result;
+		}
+		Admin admin=new Admin();
+		admin.setAdmin_id(null);
+		admin.setUsername("");//默认username为空
+		admin.setPassword(MSUtil.md5("111111"));//默认密码为六个1
+		admin.setEmail("");//默认email为空
+		admin.setReal_name(realName);
+		admin.setSex(0);//默认为男
+		admin.setMobile(mobile);
+		admin.setRole_id(roleId);
+		admin.setCreatime(null);
+		admin.setModifytime(null);
+		adminDao.save(admin);
+		result.setStatus(0);
+		result.setMsg("新增管理员成功");
+		return result;
+	}
+
+	public Result checkLogin(String input, String password) {
+		Result result=new Result();
+		String regexMobile="\\d{11}";
+		String regexEmail="\\w+@\\w+(\\.[a-zA-Z]+)+";
+		if("".equals(input)){
+			result.setStatus(1);
+			result.setMsg("输入的用户名/邮箱/手机号为空");
+			return result;
+		}
+		//手机号登录
+		if(input.matches(regexMobile)){
+			Map<String,Object> map=new HashMap<String,Object>();
+			map.put("mobile", input);
+			Admin admin=adminDao.dynamicFind(map);
+			return check(password,admin);
+		}
+		//邮箱登录
+		if(input.matches(regexEmail)){
+			Map<String,Object> map=new HashMap<String,Object>();
+			map.put("email", input);
+			Admin admin=adminDao.dynamicFind(map);
+			return check(password,admin);
+		}
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("username", input);
+		Admin admin=adminDao.dynamicFind(map);
+		return check(password,admin);
+	}
+	
+	private Result check(String password, Admin admin) {
+		Result result=new Result();
+		if(admin==null){
+			result.setStatus(1);
+			result.setMsg("不存在此用户");
+			return result;
+		}
+		if(!MSUtil.md5(password).equals(admin.getPassword())){
+			result.setStatus(1);
+			result.setMsg("密码不正确");
+			return result;
+		}
+		result.setStatus(0);
+		result.setMsg("登录成功");
+		result.setData(admin);
+		return result;
+	}
+
+	public Result updateAdmin(int adminId,String username, String password, String email, int sex) {
+		Result result=new Result();
+		Admin checkAdmin1=adminDao.findById(adminId);
+		if(checkAdmin1==null){
+			result.setStatus(1);
+			result.setMsg("不存在此管理员");
+			return result;
+		}
+		if(!"".equals(username)){
+			Map<String,Object> map=new HashMap<String,Object>();
+			map.put("username", username);
+			Admin checkAdmin2=adminDao.dynamicFind(map);
+			if(checkAdmin2!=null && !username.equals(checkAdmin1.getUsername())){
+				result.setStatus(1);
+				result.setMsg("用户名已经存在");
+				return result;
+			}
+		}
+		if(!"".equals(email)){
+			Map<String,Object> map=new HashMap<String,Object>();
+			map.put("email", email);
+			Admin checkAdmin2=adminDao.dynamicFind(map);
+			if(checkAdmin2!=null && !email.equals(checkAdmin1.getEmail())){
+				result.setStatus(1);
+				result.setMsg("邮箱已经存在");
+				return result;
+			}
+		}
+		Admin admin=new Admin();
+		admin.setAdmin_id(adminId);
+		admin.setUsername(username);
+		admin.setPassword(MSUtil.md5(password));
+		admin.setEmail(email);
+		admin.setSex(sex);
+		Timestamp now=new Timestamp(System.currentTimeMillis());
+		admin.setModifytime(now);
+		adminDao.dynamicUpdate(admin);
+		result.setStatus(0);
+		result.setMsg("更新管理员基本信息成功");
+		return result;
+	}
+
+	public Result updateInfo(int adminId, String mobile, String realName,int roleId) {
+		Result result=new Result();
+		Admin checkAdmin1=adminDao.findById(adminId);
+		if(checkAdmin1==null){
+			result.setStatus(1);
+			result.setMsg("不存在此管理员");
+			return result;
+		}
+		if(!"".equals(mobile)){
+			Map<String,Object> map=new HashMap<String,Object>();
+			map.put("mobile", mobile);
+			Admin checkAdmin2=adminDao.dynamicFind(map);
+			if(checkAdmin2!=null && !mobile.equals(checkAdmin1.getMobile())){
+				result.setStatus(1);
+				result.setMsg("手机号已经存在");
+				return result;
+			}
+		}
+		Admin admin=new Admin();
+		admin.setAdmin_id(adminId);
+		admin.setMobile(mobile);
+		admin.setReal_name(realName);
+		admin.setRole_id(roleId);
+		adminDao.dynamicUpdate(admin);
+		result.setStatus(0);
+		result.setMsg("更新成功");
+		return result;
+	}
+
+	public Result loadAllAdmin() {
+		Result result=new Result();
+		List<Admin> admins=adminDao.findUnion();
+		result.setStatus(0);
+		result.setMsg("加载所有管理员成功");
+		result.setData(admins);
+		return result;
+	}
+	
+	public Result loadAdminById(int adminId) {
+		Result result=new Result();
+		Admin admin=adminDao.findById(adminId);
+		if(admin==null){
+			result.setStatus(1);
+			result.setMsg("不存在此管理员");
+			return result;
+		}
+		result.setStatus(0);
+		result.setMsg("加载管理员信息成功");
+		result.setData(admin);
+		return result;
+	}
+	
+	public Result deleteAdminById(int adminId) {
+		Result result=new Result();
+		Admin checkAdmin1=adminDao.findById(adminId);
+		if(checkAdmin1==null){
+			result.setStatus(1);
+			result.setMsg("不存在此管理员");
+			return result;
+		}
+		adminDao.deleteById(adminId);
+		result.setStatus(0);
+		result.setMsg("删除管理员成功");
+		return result;
+	}
+
+}

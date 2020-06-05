@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.GoodStoreDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	<!-- 库存表、商品表关联查询+分页 -->
+	<select id="findUnionByPage" 
+	parameterType="com.huatec.edu.mobileshop.util.Page" 
+	resultMap="storeMap1">
+		select mgs.*,mg.goods_id,mg.name,mg.price
+		from ms_goods_store mgs join ms_goods mg
+		on mgs.goods_id=mg.goods_id
+		limit #{begin},#{pageSize}
+	</select>
+	<resultMap 
+	type="com.huatec.edu.mobileshop.entity.GoodStore" 
+	id="storeMap1">
+		<id property="store_id" column="store_id"/>
+		<result property="goods_id" column="goods_id"/>
+		<result property="store" column="store"/>
+		<result property="enable_store" column="enable_store"/>
+		<result property="operate_type" column="operate_type"/>
+		<result property="intime" column="intime"/>
+		<result property="outime" column="outime"/>
+		<association 
+		property="briefGoods" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoods">
+			<id property="goods_id" column="goods_id"/>
+			<result property="name" column="name"/>
+			<result property="price" column="price"/>
+		</association>
+	</resultMap>
+	
+	<select id="findByGoodsId" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.GoodStore">
+		select * from ms_goods_store where goods_id=#{goods_id}
+	</select>
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.GoodStore" 
+	useGeneratedKeys="true" keyProperty="store_id" >
+		insert into ms_goods_store
+		 (store_id,goods_id,store,enable_store,operate_type,intime,outime)
+		 values
+		 (#{store_id},#{goods_id},#{store},#{enable_store},#{operate_type},#{intime},#{outime})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.GoodStore">
+		select * from ms_goods_store
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_goods_store where store_id=#{store_id}
+	</delete>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.GoodStore">
+		select * from ms_goods_store where store_id=#{store_id}
+	</select>
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" 
+	parameterType="com.huatec.edu.mobileshop.entity.GoodStore">
+		update ms_goods_store
+		<set>
+			<if test="goods_id!=null">
+				goods_id=#{goods_id},
+			</if>
+			<if test="store!=null">
+				store=#{store},
+			</if>
+			<if test="enable_store!=null">
+				enable_store=#{enable_store},
+			</if>
+			<if test="operate_type!=null">
+				operate_type=#{operate_type},
+			</if>
+			<if test="intime!=null">
+				intime=#{intime},
+			</if>
+			<if test="outime!=null">
+				outime=#{outime}
+			</if>
+		</set>
+		where store_id=#{store_id}
+	</update>
+	
+</mapper>

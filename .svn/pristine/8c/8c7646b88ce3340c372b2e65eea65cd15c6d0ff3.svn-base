@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Backbone model save、destory方法的用法</title>
+    </head>
+    <body>
+          
+       <script  src="../plug/jquery-1.8.2.min.js" type="text/javascript"></script> 
+       <script  src="../plug/underscore-min.js" type="text/javascript"></script> 
+       <script  src="../plug/backbone-min.js" type="text/javascript"></script> 
+       <script type="text/javascript">
+       //1-实现功能:新增商品
+       /*
+      
+       //步骤1：构建url地址
+       var url =  "http://localhost:8080/MobileShop"+"/backbone/goods";
+      //步骤2：创建Model类GoodsItem，将url地址传递进去
+      var GoodsItem = Backbone.Model.extend({
+         url:url
+	    });
+      //步骤3：创建一个GoodsItem类的对象goods
+      var goods = new GoodsItem();
+      //步骤4：给goods一个商品数据，实际工作中，是通过表单输入的
+      goods.set({name:"正品Davidoff 大卫杜夫冷水女士淡香水1",sn:"sp123457",brief:"Cool Water（冷水）女士香水可以说是男用香水的一款延伸之作",description:"30/50/100ml气质优雅包邮",price:"89",cost:"80",mktprice:"90",catId:"23",brandId:"5",weight:"300",intro:"商品品牌  Davidoff/大卫杜夫"});
+     //步骤5：调用goods的save方法，采用POST的方式，向服务器发送XHR请求，url地址就是步骤1中的，传递的参数就是步骤4中设置的数据
+      goods.save(); 
+   
+      */
+      
+      
+    
+     //2-实现功能：更改商品mktEnable状态码.mktEnable为0：上架，1：不上架
+     //步骤1：预设值当前商品id
+      var goodsId = "5"; 
+      //步骤2：构建url地址
+      var url =  "http://localhost:8080/MobileShop"+"/backbone/goods/enable";
+      //步骤3：创建Model类GoodsItem，将url地址传递进去
+      var GoodsItem = Backbone.Model.extend({
+          urlRoot:url,
+          defaults:{
+        	  goodsId:"",
+        	  mktEnable:""
+          },
+          idAttribute:"goodsId"  //将goodsId设置为键值属性
+ 	    });
+       //步骤4：创建一个GoodsItem类的对象goods
+       var goods = new GoodsItem();
+       //步骤5：给键值属性goodsId和mktEnable赋值
+       goods.set({goodsId:goodsId,mktEnable:"1"});
+      //步骤6：调用goods的save方法，因为键值属性goodsId有值，则采用PUT方式，向服务器发送XHR请求，url地址就是步骤1中的，传递的参数就是步骤5中设置的数据
+       goods.save(); 
+     
+     /*
+       //3-实现功能：删除商品
+       //步骤1：预设值当前商品id
+        var goodsId = "32"; 
+        //步骤2：构建url地址
+        var url =  "http://localhost:8080/MobileShop"+"/goods/"+goodsId;
+        //步骤3：创建Model类GoodsItem，将url地址传递进去
+        var GoodsItem = Backbone.Model.extend({
+            url:url,
+            defaults:{
+          	  goodsId:""
+            },
+            idAttribute:"goodsId"  //将goodsId设置为键值属性
+   	    });
+         //步骤4：创建一个GoodsItem类的对象goods
+         var goods = new GoodsItem();
+         //步骤5：给键值属性goodsId赋值
+         goods.set({goodsId:goodsId});
+        //步骤6：调用goods的destroy方法，以DELETE的方式发送XHR请求
+         goods.destroy({
+        	 success:function(model,response){
+        		 console.log(response.msg);
+        	 },error:function(error){
+        		 console.log("操作异常");
+        	 }
+         }); 
+      */
+     /* 
+     //4-实现功能：修改管理员信息，修改的内容有mobile、realName、roleId
+     var adminId = 5;
+     var url =  "http://localhost:8080/MobileShop"+"/admin_manager/info";
+   
+      //步骤2：创建Model类ManagerItem，将url地址传递进去
+      var ManagerItem = Backbone.Model.extend({
+    	  urlRoot:url,
+         defaults:{
+        	 mobile:"",realName:"",roleId:""
+         }
+	    });
+      //步骤3：创建一个ManagerItem类的对象manager
+      var manager= new ManagerItem();
+      //步骤4：给manager，实际工作中是通过表单输入的
+      manager.set({id:adminId,mobile:"1892733234",realName:"小张",roleId:"2"});
+     //步骤5：调用manager的save方法，采用POST的方式，向服务器发送XHR请求，url地址就是步骤1中的，传递的参数就是步骤4中设置的数据
+      manager.save();  
+      */
+     
+     
+      
+       
+       </script>
+    </body>
+</html>

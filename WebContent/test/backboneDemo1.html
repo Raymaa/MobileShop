@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Backbone 案例1</title>
+<!-- <link type="text/css" rel="stylesheet" href="css/main.css" />  -->
+<link rel="shortcut icon" href="../favicon.ico" />
+<style type="text/css">
+ul {
+	list-style-type: none;
+	padding: 0px;
+	margin: 0px;
+	width: 300px;
+}
+
+ul li span {
+	float: left;
+	padding: 0px 5px;
+	border-bottom: dashed 1px #ccc;
+	width: 80px;
+	line-height: 28px;
+}
+</style>
+</head>
+<body>
+	<h3>1-第一个backbone案例</h3>
+	<div id="showHere"></div>
+	<div id="show"></div>
+
+	<h3>2-Underscore template()函数</h3>
+	<ul id="element" style="overflow: hidden;">
+		<li><span>学号</span> <span>姓名</span> <span>分数</span></li>
+	</ul>
+
+	<h3>3-MVC</h3>
+	<ul id="goodsList">
+		<li><span>商品编号</span> <span>商品名称</span></li>
+	</ul>
+
+
+
+
+	<script src="../plug/jquery-3.1.1.js" type="text/javascript"></script>
+	<!--   <script  src="../plug/jquery-migrate.js" type="text/javascript"></script>  -->
+	<!--   <script  src="js/jquery-1.8.2.min.js" type="text/javascript"></script>  -->
+	<script src="../plug/underscore-min.js" type="text/javascript"></script>
+	<script src="../plug/backbone-min.js" type="text/javascript"></script>
+	<script src="js/backboneDemo.js" type="text/javascript"></script>
+
+
+	<script type="text/template" id="tpl">
+        <%
+        for(var i = 0;i <list.length;i++){
+              var item = list[i];%>
+          <li>
+             <span><%= item.StuId%></span>
+             <span><%= item.Name%></span>
+             <span><%= item.Score%></span>
+          </li>
+            <%
+              }
+             %>
+          
+       </script>
+
+	<script type="text/template" id="goodsListTpl">
+      
+          <li>
+             <span><%= sn%></span>
+             <span><%= name%></span>
+          </li>
+
+          
+       </script>
+
+</body>
+</html>

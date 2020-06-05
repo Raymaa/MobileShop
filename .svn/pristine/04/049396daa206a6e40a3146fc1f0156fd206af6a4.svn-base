@@ -1,0 +1,78 @@
+@charset "utf-8";
+/* CSS Document */
+/* body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
+body, button, input, select, textarea { font:12px/1.5 tahoma, arial, \5b8b\4f53; color:#3c3c3c;}
+ */
+/* form, fieldset, legend, button, input, textarea{ margin:0; padding:0; }
+button, input, select, textarea { font:12px/1.5 tahoma, arial, \5b8b\4f53; color:#3c3c3c;} */
+
+
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre,  th, td { margin:0; padding:0; }
+body{ font:12px/1.5 tahoma, arial, \5b8b\4f53; color:#3c3c3c;} 
+
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { text-decoration:none;  color:#3c3c3c;}
+a:hover { text-decoration:underline; color:#ff4400;}
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+
+.orange{ color:#f22e00!important;}
+.siteNavWrap{ height:35px; background:#f5f5f5; border-bottom:1px solid #eee;}
+.siteNav{width:1190px; height:35px; margin:0 auto; line-height:35px;}
+.siteNav .left{ float:left;}
+.siteNav .left li{ float:left;margin-right:15px;}
+.siteNav .left li a{ margin-left:5px; color:#6c6c6c;}
+.siteNav .right{ float:right;}
+.siteNav .right li{ float:left; padding:0 6px;}.siteNav .right li a{ float:left; color:#6c6c6c;}
+.grayarr{ width:4px; height:2px; background:url(../images/grayarr.png); float:left; margin:16px 0 0 12px; overflow:hidden;}
+.redarr{ width:4px; height:2px; background:url(../images/redarr.png); float:left; margin:16px 0 0 12px; overflow:hidden;}
+.car{width:12px; height:11px; background:url(../images/car.png); float:left; margin:12px 5px 0 0; overflow:hidden;}
+.fav{width:12px; height:10px; background:url(../images/fav.png); float:left; margin:12px 5px 0 0; overflow:hidden;}
+.site{ width:8px; height:6px; background:url(../images/site.png); float:left; margin:14px 7px 0 0; overflow:hidden;}
+.siteBanner{width:1190px; height:90px; margin:0 auto;}
+.header{width:1190px; height:114px; margin:11px auto 6px;}
+.header .search{ width:100%; height:114px; float:left;}
+.header .search .searchCon{ width:760px; height:94px; padding:20px 180px 0 250px;}
+.searchConT{ height:25px; }
+.searchConT li{ float:left; line-height:25px;width:50px; height:25px; text-align:center; cursor:pointer;}
+.searchConT li:hover{ background:#ffeee5; color:#ff5400;}
+.searchConT li.current{ background:#ff5400; color:#fff; font-weight:bold;}
+.searchConM{ height:40px;}
+.searchConM .left{width:721px; height:40px;  float:left;}
+.searchConM .left .text{width:618px; height:34px; background:#ff5500; float:left; padding:3px 0 3px 3px; position:relative;}
+.searchConM .left .text input{width:610px; height:34px; background:#fff;border:none;padding-left:8px; line-height:34px;}
+.searchConM .left .text label{ position:absolute; left:35px; top:10px; color:#9c9c9c;}
+.searchConM .left .text span{width:12px; height:12px; background:url(../images/search.png); position:absolute; left:15px; top:13px; overflow:hidden;}
+.searchConB{width:721px; height:20px; margin-top:4px; line-height:20px;}
+.searchConB a{ margin-right:9px; float:left;}
+.searchConB .more{ float:right; width:34px; height:18px; border:1px solid #eee; background:url(../images/more.png) no-repeat 32px 5px; line-height:18px;padding-left:5px;margin-right:1px;}
+.searchConM .left .btn{width:100px; height:40px; background:#ff4200; float:left;}
+.searchConM .left .btn input{width:100px; height:40px; background:#ff4200; border:none; cursor:pointer; color:#fff; font-size:20px; font-weight:bold; font-family:"黑体";}
+.searchConM .right{width:26px; height:40px; float:right;}
+.header .logo{width:140px; height:58px; float:left;margin-left:-1190px;margin-top:28px;}
+.header .logo a{ display:block; height:0px; background:url(../images/sprite.png);padding-top:58px; overflow:hidden;}
+.header .erweima{width:94px; height:96px; border:1px solid #eee; float:left;margin-left:-96px; padding:8px 0; text-align:center; position:relative;}
+.header .erweima span{width:18px; height:18px; border:1px solid #eee; position:absolute; left:-20px; top:-1px; cursor:pointer;}
+.header .erweima span s{width:10px; height:9px; background:url(../images/close.png); display:inline-block;margin-top:4px; overflow:hidden;}
+.content{width:1190px; height:680px; margin:0 auto;  background:#f5f5f5;}
+
+#footer{ height:100px;  background:#f5f5f5; margin-top:10px; border-top:1px solid #d8d8d8;}
+.footer_in{ width:980px; height:100%; margin:auto;}
+.footer_in p{ float:left; line-height:22px; margin-top:20px;}
+.footer_in span{ float:right; margin-top:20px;}
+
+
+
+
+
+
+
+

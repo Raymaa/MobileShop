@@ -1,0 +1,75 @@
+       initkindEditor();
+       //初始化富文本
+       function initkindEditor() {
+           KindEditor.ready(function (K) {
+               var editor = K.create('#intro_add', {
+                   themeType: "simple",
+                   uploadJson: 'http://localhost:8080/MobileShop/file/upload/ke',
+                   allowFileManager : true,
+                   resizeType: 1,
+                   pasteType: 2,
+                   syncType: "",
+                   filterMode: true,
+                   allowPreviewEmoticons: false,
+                   items: [
+                          'source', 'undo', 'redo', 'plainpaste', 'wordpaste', 'clearhtml', 'quickformat',
+                          'selectall', 'fullscreen', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor',
+                          'bold', 'italic', 'underline', 'hr', 'removeformat', '|', 'justifyleft', 'justifycenter',
+                          'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'link', 'image',
+                          'unlink', 'baidumap', 'emoticons'
+                      ],
+                   afterCreate: function () {
+                       this.sync();// 同步数据后可以直接取得textarea的value
+                       $("#intro_add").val();
+                       console.log("文本框的值是："+$("intro_add").val());
+                   },
+                   afterBlur: function () {
+                       this.sync();
+                   },
+                   afterChange: function () {
+                      //富文本输入区域的改变事件，一般用来编写统计字数等判断
+                        K('.word_count1').html("最多20000个字符,已输入" + this.count() + "个字符");
+                   },
+                   afterUpload:function(url){
+                     //上传图片后的代码
+                	   alert(url);
+                   },
+                   allowFileManager: false,
+                   allowFlashUpload: false,
+                   allowMediaUpload: false,
+                   allowFileUpload: false
+               });
+               
+
+
+           });
+       }
+
+
+/*KindEditor.ready(function(K) {  
+        var introduction = K.create('#intro_add',{  
+            items:[  
+                    'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',  
+                    'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',  
+                    'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',  
+                    'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen', '/',  
+                    'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',  
+                    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage', 'table', 'hr', 'emoticons', 'pagebreak',  
+                    'anchor', 'link', 'unlink', '|', 'about'  
+            ],  
+            uploadJson : 'http://localhost:8080/MobileShop/file/upload/ke',  
+            afterCreate : function() {  
+                var self = this;  
+                K.ctrl(document, 13, function() {  
+                    self.sync();  
+                    document.forms['inputForm'].submit();  
+                });  
+                K.ctrl(self.edit.doc, 13, function() {  
+                    self.sync();  
+                    document.forms['inputForm'].submit();  
+                });  
+            }});  
+          
+    });  */
+
+

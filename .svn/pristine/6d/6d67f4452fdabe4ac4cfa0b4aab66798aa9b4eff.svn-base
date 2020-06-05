@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>后台管理平台</title>
+      <link type="text/css" rel="stylesheet" href="css/main.css" /> 
+      <link rel="stylesheet" href="../plug/font-awesome/css/font-awesome.min.css">
+     <link rel="shortcut icon" href="../favicon.ico" />
+    </head>
+    <body>
+     <div class="header">
+        <div class="logo">MobileShop后台管理系统</div>
+        <div class="navigation">
+          <ul>
+            <li class="">欢迎你</li>
+            <li class=""><i></i><a href="javascript:void">个人中心</a></li>
+            <li class="logout"><i></i><a href="javascript:void">退出</a></li>
+            <li class="front"><i></i><a href="../index.html">浏览首页</a></li>
+          </ul>
+        </div>
+     </div>
+     <div class="content">
+         <div class="leftSide">
+             <ul class="nav">
+                <li >
+                  <h4 class="navTitle">
+                     <span class="fa fa-shopping-cart"></span>
+                     商品管理
+                  </h4>
+                  <div class="item">
+                     <a href="javascript:void" >商品发布</a>
+                     <a href="javascript:void" >上架商品</a>
+                     <a href="javascript:void" >库存商品</a>
+                  </div>
+                </li>
+                 <li >
+                  <h4 class="navTitle">
+                     <span class="fa fa-shopping-cart"></span>
+                     商品设置
+                  </h4>
+                  <div class="item">
+                     <a href="javascript:void" >分类列表</a>
+                     <a href="javascript:void" >品牌列表</a>
+                     <a href="javascript:void" >类型列表</a>
+                  </div>
+                </li>
+                 <li >
+                  <h4 class="navTitle">
+                     <span class="fa fa-shopping-cart"></span>
+                     标签管理
+                  </h4>
+                  <div class="item">
+                     <a href="javascript:void" >标签列表</a>
+                     <a href="javascript:void" >标签商品设置</a>
+                     <a href="javascript:void" >标签品牌设置</a>
+                  </div>
+                </li>
+                 <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-edit (alias) " ></span>
+                     订单管理
+                  </h4>
+                  <div class="item">
+                     <a href="javascript:void">订单列表</a>
+                     <a href="javascript:void">待结算订单</a>
+                     <a href="javascript:void">待发货订单</a>
+                     <a href="javascript:void">收款单</a>
+                  </div>
+                </li>
+                <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-group (alias) " ></span>
+                     管理员管理
+                  </h4>
+                  <div class="item">
+                      <a href="/package/manager.html" id="managerLink">管理员管理</a>
+                      <a href="/package/role.html" id="roleLink">角色管理</a>
+                  </div>
+                </li>
+                <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-user"></span>
+                     个人中心
+                  </h4>
+                  <div class="item">
+                     <a href="javascript:void">账户管理</a>
+                  </div>
+                </li>
+             </ul>
+         </div>
+         <div class="mainPanle" > 
+            <div  class="breadcrumbs">
+              <ul>
+                <li><span class="fa fa-home"></span></li>
+                <li class="breadcrumb">后台首页</li>        
+              </ul>
+            </div>
+            <div id="main" class="main"  style="display:none;">
+              <div class="mainCon" >
+                 <h2>欢迎您登录移动电商后台管理平台</h2>
+                 <p>移动电商创新开发平台是建成集教学、科研、新技术验证、实验、创新、创业等功能为一体的综合性的系统，系统站在移动互联网行业和电子商务行业的前沿，建设一流的环境，利用最先进的技术，为教师教学、科研、社会服务、学生训练、新技术验证等功能提供最好的服务。它具有行业级、先进性、创新性、教学适用性、双创性等特点。</p>
+                 <img src="img/main.jpg" class="mainImg" >
+              </div>
+             </div>
+             
+              <div id="online" class="main">
+              <div class="mainCon" >
+               <div class="btnArea">
+                    <a href="#" id="" class="blueBtn">下架</a>
+                </div>
+                 <div class="search">
+                    <input type="text" value="搜索">
+                    <a href="#" id="" class="blueBtn">搜索</a>
+                </div>
+                 <div class="onLineGoodsList">
+                  <table class="bordered">
+                        <thead>
+                        <tr>       
+                            <th>商品编号</th>
+                            <th>商品名称</th>
+                            <th>销售价格</th>
+                            <th>市场价</th>
+                            <th>成本价</th>
+                            <th>库存</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody><!--这里的内容动态加载  -->
+                        
+                        </tbody>
+                         
+                    </table>
+                </div>        
+              </div>
+             </div>
+         </div>
+     </div>
+     <div class="bottom"></div>  
+     <div class="footer">
+       <p>Copyright©2016 MobileShop版权所有</p>
+     </div>
+      <!-- -->	
+       	<script type="text/template"   id="onLineGoodsListTemplate">					  
+			<td><%=  %></td>
+            <td><%=  %> </td>
+            <td><%=  %> </td>
+            <td><%=  %> </td>
+            <td><%=  %> </td>
+            <td><%=  %> </td>
+            <td>
+             <a href="#" class="edit" data-goodsId="<%=  %>" >编辑</a>
+             <a href="#" class="delete" data-goodsId="<%=  %>" >下架</a>
+            </td>
+		</script>
+       <script  src="../plug/jquery-3.1.1.js" type="text/javascript"></script>
+       <script  src="../plug/session.js" type="text/javascript"></script> 
+       <script  src="../plug/underscore.js" type="text/javascript"></script> 
+       <script  src="../plug/backbone.js" type="text/javascript"></script> 
+       <script  src="js/main.js" type="text/javascript"></script> 
+       <script  src="js/manager.js" type="text/javascript"></script> 
+       <script  src="js/role.js" type="text/javascript"></script> 
+       <script  src="js/basevalue.js" type="text/javascript"></script>
+       <script  src="js/goods.js" type="text/javascript"></script> 
+    </body>
+</html>

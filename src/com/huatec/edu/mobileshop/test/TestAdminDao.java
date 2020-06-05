@@ -1,0 +1,84 @@
+package com.huatec.edu.mobileshop.test;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.huatec.edu.mobileshop.dao.AdminDao;
+import com.huatec.edu.mobileshop.entity.Admin;
+
+public class TestAdminDao {
+	//获取AdminDao
+	String conf="applicationContext.xml";
+	ApplicationContext ac=new ClassPathXmlApplicationContext(conf);
+	AdminDao adminDao=ac.getBean("adminDao",AdminDao.class);
+	
+	@Test
+	public void test8(){
+		String s="H:\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\thum.jpg";
+		int c=s.lastIndexOf("j");
+		int c1=s.indexOf("\\.");
+		String s1=s.substring(0, c-1);
+		String s2=s.substring(c,s.length());
+		System.out.println(c);
+		System.out.println(c1);
+		System.out.println(s1);
+		System.out.println(s2);
+	}
+	@Test
+	public void test7(){
+		List<Admin> as=adminDao.findUnion();
+		for(Admin a:as){
+			System.out.println(a);
+		}
+	}
+	@Test
+	public void test6(){
+		adminDao.deleteById(1);
+	}
+	@Test
+	public void test5(){
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("username", "zs1");
+		Admin a=adminDao.dynamicFind(map);
+		System.out.println(a);
+	}
+	@Test
+	public void test4(){
+		Admin admin=new Admin();
+		admin.setAdmin_id(1);
+		admin.setUsername("zss");
+		adminDao.dynamicUpdate(admin);
+	}
+	@Test
+	public void test3(){
+		Admin a=adminDao.findById(1);
+		System.out.println(a);
+	}
+	@Test
+	public void test2(){
+		List<Admin> as=adminDao.findAll();
+		for(Admin a:as){
+			System.out.println(a);
+		}
+	}
+	@Test
+	public void test1(){
+		Admin admin=new Admin();
+		admin.setAdmin_id(null);
+		admin.setUsername("zs1");
+		admin.setPassword("123");
+		admin.setEmail("zs1@qq.com");
+		admin.setReal_name("张三");
+		admin.setSex(0);
+		admin.setMobile("19876545434");
+		admin.setRole_id(1);
+		admin.setCreatime(null);
+		admin.setModifytime(null);
+		adminDao.save(admin);
+	}
+}

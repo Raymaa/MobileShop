@@ -1,0 +1,145 @@
+package com.huatec.edu.mobileshop.controller;
+
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import com.google.common.io.ByteStreams;
+
+import net.sf.json.JSONObject;
+
+@Controller
+@RequestMapping("/file2")
+public class FileController2 {
+	
+	@RequestMapping(value="/img/upload",method=RequestMethod.POST)
+	@ResponseBody
+	public JSONObject save(HttpServletRequest request,HttpServletResponse response){
+		System.out.println("/file2/img/upload");
+		//文件保存目录路径
+		String savePath = request.getSession().getServletContext().
+				getRealPath("/") + "upload/kindeditor/";
+		//文件保存目录URL
+        String saveUrl  = request.getContextPath() + "/upload/kindeditor/";
+        
+		HashMap<String,String> extMap=new HashMap<String,String>();
+		//支持文件的类型
+		extMap.put("image", "jpg,jpeg,png,bmp");
+		//最大文件大小
+		long maxSize=32505856;
+		//是否选择文件
+		if(!ServletFileUpload.isMultipartContent(request)){
+			return getError("请选择文件");
+		}
+		//获取文件类型
+		String dirName=request.getParameter("dir");
+		if(dirName==null){
+			dirName="image";
+		}
+		
+		//创建文件夹  
+        savePath += dirName + "/";  
+        saveUrl += dirName + "/";  
+        File saveDirFile = new File(savePath);
+        if (!saveDirFile.exists()) {  
+            saveDirFile.mkdirs();  
+        }
+        
+		if(!ServletFileUpload.isMultipartContent(request)){
+			return getError("请选择文件");
+		}
+		
+		MultipartHttpServletRequest mrequest=(MultipartHttpServletRequest) request;
+		Map map=mrequest.getFileMap();
+		Collection<MultipartFile> c=map.values();
+		Iterator item=c.iterator();
+		
+		//遍历选择的图片
+		JSONObject obj=null;
+		while(item.hasNext()){
+			System.out.println("item.hasNext()");
+			CommonsMultipartFile file=(CommonsMultipartFile) item.next();
+			FileItem fileItem=file.getFileItem();
+			long fileSize=file.getSize();
+			//检查文件大小
+			if(file.getSize()>maxSize){
+				return getError("上传文件大小超过限制");
+			}
+			//检查扩展名
+			String fileExt=file.getOriginalFilename().substring
+					(file.getOriginalFilename().lastIndexOf(".")+1).toLowerCase();
+			System.out.println(fileExt);
+			if(!Arrays.asList(extMap.get(dirName).split(",")).contains(fileExt)){
+				return getError("上传文件扩展名是不允许的扩展名。\n只允许"+extMap.get(dirName)+"格式");
+			}
+			//上传到服务器
+			/*Map<String,String> params=new HashMap<String,String>();
+			params.put("fsd", "sdf");
+			Map<String,String> headers=new HashMap<String,String>();
+			String s;*/
+//			s=HttpUtil.
+			SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");  
+            String newFileName = df.format(new Date()) + "_" + 
+            new Random().nextInt(1000) + "." + fileExt;  
+            try{
+            	System.out.println("/upload/ke10..."+savePath);
+                File uploadedFile = new File(savePath, newFileName);
+                ByteStreams.copy(file.getInputStream(), new FileOutputStream(uploadedFile));
+                fileItem.write(uploadedFile);
+            }catch(Exception e){  
+                return getError("上传文件失败");  
+            }
+            JSONObject obj1=new JSONObject();
+            obj1.put("error", 0);
+    		obj1.put("url", saveUrl+newFileName);
+    		return obj1;
+		}
+		return null;
+	}
+	
+	private static JSONObject getError(String message){
+		JSONObject obj=new JSONObject();
+		obj.put("error", 1);
+		obj.put("message", message);
+		return obj;
+	}
+	
+	public static String uploadimage(InputStream ins,Map<String,String> params,
+			Map<String,String> headers){
+		OutputStream out=null;
+		DataInputStream in=null;
+		HttpURLConnection con=null;
+		HttpURLConnection conn=null;
+		
+		try {
+//			URL urlObj=new URL(REMOTE_UPLOAD_PIC);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+}

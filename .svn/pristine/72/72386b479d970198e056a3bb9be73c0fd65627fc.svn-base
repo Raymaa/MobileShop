@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>会员级别</title>
+      <link type="text/css" rel="stylesheet" href="css/base.css" /> 
+    </head>
+    <body   >
+    <div id="siteNav">
+      <div id="siteNavCon">
+        <ul class="left">
+          <li>
+            <a href="#">欢迎来到MobileShop</a>
+          </li>
+          <li>
+            <a href="#" class="red">登录</a>
+          </li>
+           <li>
+            <a href="#">免费注册</a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li><a href="#">我的MobileShop</a></li>
+          <li><a href="#">购物车</a></li>
+          <li><a href="#">收藏夹</a></li>
+          <li><a href="#">商品分类</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="header" style="background:#ccc;">
+     
+      <div class="search">
+      <div class="searchCon">
+          <ul class="searchConT">
+              <ul>
+                <li class="current">宝贝</li>
+
+              </ul>
+            </ul>
+          <div class="searchConM">
+              <div class="left">
+                  <div class="text"><input type="text" name="" id="text" />
+                    <label for="text">背带牛仔裙袭来</label>
+                    <span></span>
+                    </div>
+                  <div class="btn"><input type="button" value="搜索" /></div>
+                </div>
+              <p class="right"><a href="#">高级搜索</a></p>
+            </div>
+          <p class="searchConB"><a href="#">背带裙</a><a href="#">手机</a><a href="#" class="orange">巧克力</a><a href="#">休闲男鞋</a><a href="#">情侣装</a><a href="#">运动鞋</a><a href="#">凉席</a><a href="#">香水</a><a href="#">行车记录仪</a><a href="#">黄金吊坠</a><a href="#">凉鞋</a><a href="#">女包</a><a href="#">珍珠项链</a><a href="#" class="more">更多</a></p>
+        </div>
+    </div>
+  <div class="logo">
+      <h1><a href="#">MobileShop</a></h1>
+    </div>
+  <div class="QRCode">
+         <p><a href="#" class="orange">手机逛商城</a></p>
+         <a href="#"><img src="img/QRCode.png" width="80" height="80" /></a>
+         <span><s></s></span>
+      </div>
+
+    </div>
+     <!--以下是会员级别content部分的代码 -->
+     <div id="content" style="background:#fff;"> 
+                <h2>会员等级</h2>
+                <hr  size="5"  color="red" />
+                <ul>
+                  <li><a href="#vip">如何成为会员？</a></li>
+                  <li>会员等级</li>
+                  <li>会员特享</li>
+                  <li>极速退款</li>
+                </ul>
+                <h3 style="color:red;" id="vip">如何成为VIP会员？</h3>
+                <p> 在MobileShop注册之后就是会员，会员分为4个等级：分别是：普通会员、银卡会员、金卡会员、钻石卡会员。<br/>
+                会员级别根据成长值来决定，成长值越高，会员级别越高，什么叫成长值呢？<br/>
+                会员级别图示如下：</p> 
+                <img src="img/member1.jpg" />
+                <h3 style="color:red;">会员等级</h3>
+                <table width="700px" border="1px"  cellpadding="0" cellspacing="0" >
+                  <caption>会员等级</caption>
+                  <thead>
+                    <tr>
+                      <th>会员级别</th>
+                      <th>成长值</th>
+                      <th>会员有效期</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>普通会员</td>
+                      <td>0-199</td>
+                      <td>永久</td>
+                    </tr>
+                     <tr>
+                      <td>银卡会员</td>
+                      <td>200-999</td>
+                      <td>有效期1年，1年之后扣除500成长值，根据剩下的成长值重新计算级别</td>
+                    </tr>
+                     <tr>
+                      <td>金卡会员</td>
+                      <td>1000-1999</td>
+                      <td>有效期1年，1年之后扣除1000成长值，根据剩下的成长值重新计算级别</td>
+                    </tr>
+                     <tr>
+                      <td>钻石会员</td>
+                      <td>2000-无限大</td>
+                      <td>有效期1年，1年之后扣除1500成长值，根据剩下的成长值重新计算级别</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td>备注：系统会自动计算</td>
+                    </tr>
+                  </tfoot>
+                </table>
+
+
+  <h3 style="color:red;"><br/>会员特享</h3>
+  <table width="500px" border="1px"  cellpadding="0" cellspacing="0">
+    <caption>会员特享</caption>
+    <thead>
+      <tr>
+        <th>会员特享</th>
+        <th>普通会员</th>
+        <th>银卡会员</th>
+        <th>金卡会员</th>
+        <th>钻石会员</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr >
+        <td>免运费</td>
+        <td>满199元免运费</td>
+        <td>满99元免运费</td>
+        <td  colspan="2">满69元免运费</td>
+         <td>运费优惠</td>
+      </tr>
+        <tr>
+        <td>评论奖励</td>
+        <td>无</td>
+        <td>成长值+3</td>
+        <td>成长值+5</td>
+        <td>成长值+8</td>
+         <td rowspan="3"> 其他优惠</td>
+      </tr>
+        <tr>
+        <td>生日礼包</td>
+        <td>无</td>
+        <td>价值19</td>
+        <td>价值59</td>
+        <td>价值99</td>
+         
+      </tr>
+        <tr>
+        <td>兑换礼品</td>
+        <td>无</td>
+        <td>无</td>
+        <td>可享</td>
+        <td>可享</td>
+        
+      </tr>
+    </tbody>
+  </table>
+                <p>本会员积分规则解释权归MobileShop所有。</p>
+
+
+      <h3 style="color:red;"><br/>极速退款</h3>
+    <table width="300px" border="1"  cellpadding="0" cellspacing="0" >
+      <caption>极速退款</caption>
+        <tr>
+          <th>会员级别</th>
+          <th>信用额度</th>
+        </tr>                 
+         <tr>
+          <td>金卡会员</td>
+          <td>200</td>
+        </tr>
+         <tr>
+          <td>钻石会员</td>
+          <td>500</td>
+        </tr>
+    </table>
+
+ <h3 style="color:red;"><br/><br/>极速退款细线表格<br/><br/></h3>
+    <table width="300px"   cellpadding="5" cellspacing="1" bgcolor="#d7d7d7">
+      <caption>极速退款</caption>
+        <tr>
+          <th bgcolor="#FFFFFF">会员级别</th>
+          <th bgcolor="#FFFFFF">信用额度</th>
+        </tr>                 
+         <tr>
+          <td bgcolor="#FFFFFF">金卡会员</td>
+          <td bgcolor="#FFFFFF">200</td>
+        </tr>
+         <tr>
+          <td bgcolor="#FFFFFF">钻石会员</td>
+          <td bgcolor="#FFFFFF">500</td>
+        </tr>
+    </table>
+
+
+
+     </div>
+
+       <div id="footer" >
+        <div id="footerCon">
+          <div id="links">
+                <dl>
+                <dt>用户指南</dt>
+                <dd><a href="#">新手指南</a></dd>
+                <dd><a href="#">会员积分</a></dd>
+                <dd><a href="#">常见问题</a></dd>
+                <dd><a href="#">反馈调查</a></dd>
+                </dl>  
+                 
+                <dl>
+                <dt>品牌服务</dt>
+                <dd><a href="#">闪电配送</a></dd>
+                <dd><a href="#">快捷支付</a></dd>
+                <dd><a href="#">售后保障</a></dd>
+                </dl>
+
+                <dl>
+                <dt>商家合作</dt>
+                <dd><a href="#">商家对接</a></dd>
+                <dd><a href="#">品牌资质</a></dd>
+                <dd><a href="#">进场流程</a></dd>
+                </dl>
+
+                <dl>
+                <dt>关于我们</dt>
+                <dd><a href="#">平台简介</a></dd>
+                <dd><a href="#">企业文化</a></dd>
+                <dd><a href="#">经营模式</a></dd>
+                <dd><a href="#">招贤纳士</a></dd>
+                </dl>
+                
+             </div>
+             <div id="otherLinks">
+               <a href="#">关于我们</a>|
+               <a href="#">购物指南</a>|
+               <a href="#">商家合作</a>|
+               <a href="#">联系我们</a>|
+               <a href="#">招贤纳士</a>|
+               <a href="#">反馈调查</a>
+             </div>
+             <div id="copyRight">
+               Copyright &copy;2016 - 2026 MobileShop 版权所有 | 消费者维权热线：40088888888
+             </div>
+          </div>
+       </div>
+    </body>
+</html>

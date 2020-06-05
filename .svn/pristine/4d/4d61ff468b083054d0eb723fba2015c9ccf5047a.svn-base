@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Backbone 代码7-7</title>
+    </head>
+    <body>
+          
+       <script  src="../plug/jquery-1.8.2.min.js" type="text/javascript"></script> 
+       <script  src="../plug/underscore-min.js" type="text/javascript"></script> 
+       <script  src="../plug/backbone-min.js" type="text/javascript"></script> 
+       <script type="text/javascript">
+     //步骤1：构建url地址
+      var url =  "http://localhost:8080/MobileShop"+"/goods";
+      //步骤2：创建Model类GoodsItem，将url地址传递进去
+      var GoodsItem = Backbone.Model.extend({
+         url:url
+	    });
+      //步骤3：创建一个GoodsItem类的对象goods
+      var goods = new GoodsItem();
+      //步骤4：给goods一个商品数据
+      
+      goods.set({name:"Burberry巴宝莉红粉恋歌女士香水",sn:"sp123456",brief:"Burberry出品的Brit Sheer（红粉恋歌）便如同一位高唱恋歌的少女。",description:"30/50/100ml气质优雅包邮",price:"280",cost:"220",mktprice:"300",catId:"23",brandId:"5",weight:"200",intro:"商品品牌	Hermes / 爱马仕"});
+      goods.save(); 
+       
+       </script>
+    </body>
+</html>

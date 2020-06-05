@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>后台管理平台</title>
+      <link type="text/css" rel="stylesheet" href="css/main.css" /> 
+      <link rel="stylesheet" href="../plug/font-awesome/css/font-awesome.min.css">
+     <link rel="shortcut icon" href="../favicon.ico" />
+     <link rel="stylesheet" href="../plug/kindeditor/themes/simple/simple.css">
+     <link rel="stylesheet" href="css/pageGroup.css">
+    
+    </head>
+    <body>
+     <div class="header">
+        <div class="logo">MobileShop后台管理系统</div>
+        <div class="navigation">
+          <ul>
+            <li class="">欢迎你</li>
+            <li class=""><i></i><a href="javascript:void">个人中心</a></li>
+            <li class="logout"><i></i><a href="javascript:void">退出</a></li>
+            <li class="front"><i></i><a href="../index.html">浏览首页</a></li>
+          </ul>
+        </div>
+     </div>
+     <div class="content">
+         <div class="leftSide">
+             <ul class="nav">
+                <li >
+                  <h4 class="navTitle">
+                     <span class="fa fa-shopping-cart"></span>
+                                         商品管理
+                  </h4>
+                  <div class="item">
+                     <a href="#publishGoods" >商品发布</a>
+                     <a href="#online" id="allOnlineGoods">上架商品</a>
+                     <a href="#stockGoods" >库存商品</a>
+                  </div>
+                </li>
+                 <li >
+                  <h4 class="navTitle">
+                     <span class="fa fa-shopping-cart"></span>
+                                     商品设置
+                  </h4>
+                  <div class="item">
+                     <a href="javascript:void" >分类列表</a>
+                     <a href="javascript:void" >品牌列表</a>
+                     <a href="javascript:void" >类型列表</a>
+                  </div>
+                </li>
+                 <li >
+                  <h4 class="navTitle">
+                     <span class="fa fa-shopping-cart"></span>
+                                       标签管理
+                  </h4>
+                  <div class="item">
+                     <a href="javascript:void" >标签列表</a>
+                     <a href="javascript:void" >标签商品设置</a>
+                     <a href="javascript:void" >标签品牌设置</a>
+                  </div>
+                </li>
+                 <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-edit (alias) " ></span>
+                     订单管理
+                  </h4>
+                  <div class="item">
+                     <a href="javascript:void">订单列表</a>
+                     <a href="javascript:void">待结算订单</a>
+                     <a href="javascript:void">待发货订单</a>
+                     <a href="javascript:void">收款单</a>
+                  </div>
+                </li>
+                <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-group (alias) " ></span>
+                     管理员管理
+                  </h4>
+                  <div class="item">
+                      <a href="/package/manager.html" id="managerLink">管理员管理</a>
+                      <a href="/package/role.html" id="roleLink">角色管理</a>
+                  </div>
+                </li>
+                <li >
+                  <h4 class="navTitle">
+                     <span  class="fa fa-user"></span>
+                     个人中心
+                  </h4>
+                  <div class="item">
+                     <a href="javascript:void">账户管理</a>
+                  </div>
+                </li>
+             </ul>
+         </div>
+         <div class="mainPanle" > 
+            <div  class="breadcrumbs">
+              <ul>
+                <li><span class="fa fa-home"></span></li>
+                <li class="breadcrumb">后台首页</li>        
+              </ul>
+            </div>
+            <div id="main" class="main"  style="display:none;"><!-- 进入后台，默认div -->
+              <div class="mainCon" >
+                 <h2>欢迎您登录移动电商后台管理平台</h2>
+                 <p>移动电商创新开发平台是建成集教学、科研、新技术验证、实验、创新、创业等功能为一体的综合性的系统，系统站在移动互联网行业和电子商务行业的前沿，建设一流的环境，利用最先进的技术，为教师教学、科研、社会服务、学生训练、新技术验证等功能提供最好的服务。它具有行业级、先进性、创新性、教学适用性、双创性等特点。</p>
+                 <img src="img/main.jpg" class="mainImg" >
+              </div>
+             </div>
+              <div id="publishGoods" class="main"  style="display:none;"><!--单击“发布商品”菜单项出现该div -->
+	              <div class="mainCon  selectCate"   >
+	                 <h2>选择分类</h2>
+	                 <div id="cate-container" >
+	                   <div  class="cat_box">
+	                     <ul id="cate-parent">
+	                     <li>食品、饮料、酒水</li>
+                         <li>进口食品、进口牛奶</li>
+	                     </ul>
+	                   </div>
+	                   <div   class="cat_box">
+	                     <ul  id="cate-child">
+	                     <li>潮流女包</li>
+                         <li>奢侈品/饰品</li>
+	                     </ul>
+	                   </div>
+	                 </div>
+	                 <div class="cate-path">
+	                  <dl>
+	                  <dt>你的选择是：</dt>
+	                  <dd>
+	                    <ol class="category-path">
+	                       <li>食品、饮料、酒水</li>
+	                       <li>&nbsp;>&nbsp;</li>
+	                       <li>休闲零食</li>
+	                    </ol>
+	                  </dd>
+	                  </dl>
+	                 </div>
+	                 <div id="cateBottom">
+	                     <a href="#publishGoods" class="blueBtn" id="stepOne">下一步</a>
+	                 </div>
+	              </div>
+	              
+	              	  <div class="mainCon  baseInfo"   ><!-- 有富文本 -->
+	                 <h2>填写商品基本信息</h2>
+	                  <div class="cate-path">
+	                  <dl>
+	                  <dt>商品分类：</dt>
+	                  <dd>
+	                    <ol class="category-path">
+	                       <li>食品、饮料、酒水</li>
+	                       <li>&nbsp;>&nbsp;</li>
+	                       <li>休闲零食</li>
+	                    </ol>
+	                  </dd>
+	                  </dl>
+	                 </div>
+	                   <form id="addGoods_form">  
+                             <div class="editGoods-same">
+                                  <dl>
+                                     <dt>商品名称：</dt>
+                                     <dd><input type="text" class="text" value="" id="goodsName_add" placeholder="商品名称"></dd> 
+                                   </dl>
+                                    <dl>
+                                     <dt>货号：</dt>
+                                     <dd><input type="text" class="text" value="" id="sn_add" placeholder="货号"></dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>简介：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="brief_add" placeholder="简介">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>详细描述：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="description_add" placeholder="详细描述">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>销售价：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="price_add" placeholder="">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>成本价：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="cost_add" placeholder="">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>市场价：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="mktprice_add" placeholder="">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>品牌：</dt>
+                                     <dd>
+                                       <select class="brand">
+                                       <option value="" data-brandId="" class="brandItem">佰草集</option>
+                                       <option value="" data-brandId="" class="brandItem">兰蔻</option>
+                                       <option value="" data-brandId="" class="brandItem">迪奥</option>
+                                       </select>
+                                     </dd>
+                                   </dl>
+                                     <dl>                     
+                                       <dt>重量：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="weight_add" placeholder="">
+                                     </dd>
+                                   </dl>
+                                   <dl class="longText">                     
+                                       <dt>商品详情：</dt>
+                                     <dd>
+                                     <!--  <textarea rows="10" cols="30" id="intro_add">  </textarea> --> 
+                                     <textarea cols="0" rows="5" name="content" class="form-control" id="intro_add" style="margin: 0px -0.5px 0px 0px; height:500px; width:100%;">
+                                     </textarea>
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>&nbsp;</dt>
+                                     <dd class="btnArea">
+                                      <a href="#"  class="blueBtn"  id="addGoodsBtn">添加</a>
+                                       <a href="#"  class="blueBtn"  id="stepTwo"  style="display:none;">下一步</a>
+                                     </dd>
+                                   </dl>
+                            </div>
+                       </form>    
+	              </div><!-- baseInfo -->
+	              
+	              
+	             <!-- 没有实现富文本
+	              <div class="mainCon  baseInfo"   >
+	                 <h2>填写商品基本信息</h2>
+	                  <div class="cate-path">
+	                  <dl>
+	                  <dt>商品分类：</dt>
+	                  <dd>
+	                    <ol class="category-path">
+	                       <li>食品、饮料、酒水</li>
+	                       <li>&nbsp;>&nbsp;</li>
+	                       <li>休闲零食</li>
+	                    </ol>
+	                  </dd>
+	                  </dl>
+	                 </div>
+	                   <form id="addGoods_form">  
+                             <div class="editGoods-same">
+                                  <dl>
+                                     <dt>商品名称：</dt>
+                                     <dd><input type="text" class="text" value="" id="goodsName_add" placeholder="商品名称"></dd> 
+                                   </dl>
+                                    <dl>
+                                     <dt>货号：</dt>
+                                     <dd><input type="text" class="text" value="" id="sn_add" placeholder="货号"></dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>简介：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="brief_add" placeholder="简介">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>详细描述：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="description_add" placeholder="详细描述">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>销售价：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="price_add" placeholder="">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>成本价：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="cost_add" placeholder="">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>市场价：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="mktprice_add" placeholder="">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>品牌：</dt>
+                                     <dd>
+                                       <select class="brand">
+                                       <option value="" data-brandId="" class="brandItem">佰草集</option>
+                                       <option value="" data-brandId="" class="brandItem">兰蔻</option>
+                                       <option value="" data-brandId="" class="brandItem">迪奥</option>
+                                       </select>
+                                     </dd>
+                                   </dl>
+                                     <dl>                     
+                                       <dt>重量：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="" id="weight_add" placeholder="">
+                                     </dd>
+                                   </dl>
+                                   <dl class="longText">                     
+                                       <dt>商品详情：</dt>
+                                     <dd>
+                                    <textarea rows="10" cols="30" id="intro_add">  </textarea>
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>&nbsp;</dt>
+                                     <dd class="btnArea">
+                                      <a href="#"  class="blueBtn"  id="addGoodsBtn">添加</a>
+                                       <a href="#"  class="blueBtn"  id="stepTwo"  style="display:none;">下一步</a>
+                                     </dd>
+                                   </dl>
+                            </div>
+                       </form>    
+	              </div>
+	              
+	              -->
+	               
+	              <div class="mainCon  addImg" >
+	                  <h2>商品五张图的添加</h2>
+	                  <form class="uploadForm"  enctype="multipart/form-data" >  
+	                      <div class="uploadImgWrap"> 
+	                         <div class="upload-img">
+	                            <input type="file" name="file"  class="comment-pic-upd" />
+                                <img class="imgShow" src="img/default_goods_image_tiny.gif" />   
+							 </div>
+							 <input type="hidden"  class="fileUrl" >
+							 <input type="hidden"  class="isdefault" value="0" >
+							 <br>
+							 <input type="button" value="上传"  class="uploadify-button  btnUploadImg"/> 
+							 <br>
+							 <input type="button"  value="删除"   class="uploadify-button  btnDeleteImg"/> 
+						  </div> 
+						</form>
+						 <form class="uploadForm"  enctype="multipart/form-data" >  
+						   <div class="uploadImgWrap"> 
+	                         <div class="upload-img">
+	                            <input type="file" name="file"  class="comment-pic-upd" />
+                                <img class="imgShow" src="img/default_goods_image_tiny.gif" />   
+							 </div>
+							 <input type="hidden"  class="fileUrl" >
+							 <input type="hidden"  class="isdefault" value="1" >
+							 <br>
+							 <input type="button" value="上传"  class="uploadify-button  btnUploadImg"/> 
+							 <br>
+							 <input type="button"  value="删除"   class="uploadify-button  btnDeleteImg"/> 
+						  </div> 
+						  </form>
+						   <form class="uploadForm"  enctype="multipart/form-data" >  
+						   <div class="uploadImgWrap"> 
+	                         <div class="upload-img">
+	                            <input type="file" name="file"  class="comment-pic-upd" />
+                                <img class="imgShow" src="img/default_goods_image_tiny.gif" />   
+							 </div>
+							 <input type="hidden"  class="fileUrl" >
+							 <input type="hidden"  class="isdefault" value="1" >
+							 <br>
+							 <input type="button" value="上传"  class="uploadify-button  btnUploadImg"/> 
+							 <br>
+							 <input type="button"  value="删除"   class="uploadify-button  btnDeleteImg"/> 
+						  </div> 
+						  </form>
+						   <form class="uploadForm"  enctype="multipart/form-data" >  
+						   <div class="uploadImgWrap"> 
+	                         <div class="upload-img">
+	                            <input type="file" name="file"  class="comment-pic-upd" />
+                                <img class="imgShow" src="img/default_goods_image_tiny.gif" />   
+							 </div>
+							 <input type="hidden"  class="fileUrl" >
+							 <input type="hidden"  class="isdefault" value="1" >
+							 <br>
+							 <input type="button" value="上传"  class="uploadify-button  btnUploadImg"/> 
+							 <br>
+							 <input type="button"  value="删除"   class="uploadify-button  btnDeleteImg"/> 
+						  </div> 
+						  </form>
+						   <form class="uploadForm"  enctype="multipart/form-data" >  
+						   <div class="uploadImgWrap"> 
+	                         <div class="upload-img">
+	                            <input type="file" name="file"  class="comment-pic-upd" />
+                                <img class="imgShow" src="img/default_goods_image_tiny.gif" />   
+							 </div>
+							 <input type="hidden"  class="fileUrl" >
+							 <input type="hidden"  class="isdefault" value="1" >
+							 <br>
+							 <input type="button" value="上传"  class="uploadify-button  btnUploadImg"/> 
+							 <br>
+							 <input type="button"  value="删除"   class="uploadify-button  btnDeleteImg"/> 
+						  </div> 
+					      </form>
+					      </br>
+					  <div class="btnArea">
+					     <a href="#"  class="blueBtn"  id="addGoodsBtn">添加</a>
+	                     <a href="#" class="blueBtn" id="stepThree">下一步</a>
+	                  </div>
+	              </div><!-- addImg -->
+	                  
+	              <div class="mainCon  storeNumber"   >
+	                 <h2>库存数量</h2>
+	                 <form id="storeNumber_form">  
+                             <div class="storeNumber-same">
+                                     <dl>
+                                     <dt>库存数量：</dt>
+                                     <dd><input type="text" class="text" value="" id="Number_store" placeholder="库存数量"></dd> 
+                                   </dl>
+                                    <dl>
+                                    <dl>                     
+                                       <dt>&nbsp;</dt>
+                                     <dd class="btnArea">
+                                       <a href="#"  class="blueBtn"  id="saveStore"  >添加库存</a>
+                                       <a href="#"  class="blueBtn"  id="stepFour"  style="display:none;"  >下一步</a>
+                                     </dd>
+                                   </dl>
+                            </div>
+                       </form>           
+	              </div>
+	              
+	                <div class="mainCon  params"   >
+	                 <h2>添加参数</h2>
+                     	 <form id="params_form">  
+                             <div class="params-same">
+                               <!--  <dl>
+							        <dt class="paramsName">参数1</dt>
+							        <dd> <input type="text" class="text" value="" id="params1" placeholder="参数1"></dd> 
+						        </dl>
+						        <dl>
+							        <dt class="paramsName">参数2</dt>
+							        <dd> <input type="text" class="text" value="" id="params2" placeholder="参数2"></dd> 
+						        </dl>
+						        <dl>
+							        <dt class="paramsName">参数3</dt>
+							        <dd> <input type="text" class="text" value="" id="params3" placeholder="参数3"></dd> 
+						        </dl>
+						        <dl>
+							        <dt class="paramsName">参数4</dt>
+							        <dd> <input type="text" class="text" value="" id="params4" placeholder="参数4"></dd> 
+						        </dl>
+						        <dl>
+							        <dt class="paramsName">参数5</dt>
+							        <dd> <input type="text" class="text" value="" id="params5" placeholder="参数5"></dd> 
+						        </dl> -->
+                            </div>
+                         <div class="btnArea"">
+                         <dl>
+							<dt>保存参数</dt>
+							<dd><a href="#"  class="blueBtn"  id="saveParams"  >保存</a></dd> 
+						 </dl>
+	                   
+	                      </div>
+                       </form>  
+	                
+	              </div>
+	              
+             </div>
+             <div id="stockGoods" class="main"  style="display:none;"><!--单击“库存商品”菜单项出现该div -->
+	              <div class="mainCon" >
+	                 <h2>库存商品页面</h2>
+	                 
+	              </div>
+             </div>
+             
+              <div id="online" class="main"><!-- 单击“上架商品” 菜单项出现该div-->
+              <div class="mainCon" >
+<!--                <div class="btnArea">
+                    <a href="#" class="blueBtn" id="test">下架</a>
+                </div> -->
+                 <div class="search">
+                    <input type="text" value="搜索" class="searchInput">
+                    <a href="#" id="searchBtn" class="blueBtn">搜索</a>
+                </div>
+                 <div class="onLineGoodsList">
+                  <table class="bordered">
+                        <thead>
+                        <tr>   
+                            <th>选中</th>    
+                            <th>商品编号</th>
+                            <th>商品名称</th>
+                            <th>销售价格</th>
+                            <th>上架</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody  id="onlineGoodsList"><!--这里的内容动态加载  -->
+                           <tr class="item">
+                             <td><input type="checkbox"  ></td>
+                             <td>商品id</td>
+                             <td>商品名称</td>
+                             <td>200</td>
+                             <td>是</td>
+                             <td><a href="#">编辑</a><a href="#">删除</a></td>
+                           </tr>
+                        </tbody>
+                         
+                    </table>
+                </div>  
+               <div id="pageGro" class="cb">
+				 <div class="pageUp">上一页</div>
+			      <div class="pageList">
+			        <ul>
+			            <li>1</li>
+			            <li>2</li>
+			            <li>3</li>
+			            <li>4</li>
+			            <li>5</li>
+			        </ul>
+			      </div>
+			     <div class="pageDown">下一页</div>
+			 </div> <!-- page  -->
+               
+              </div>
+             </div><!-- online  -->
+             
+               <div id="editGoods" class="main"  style="display:none;"><!--编辑商品时出现该div -->
+
+             </div>
+             
+         </div><!-- mainPanle  -->
+     </div>
+     <div class="bottom"></div>  
+     <div class="footer">
+       <p>Copyright©2016 MobileShop版权所有</p>
+     </div>
+      <!-- -->	
+       	<script type="text/template"   id="onLineTemplate">					  
+		 <td><input type="checkbox"  ></td>
+         <td><%= goods_id%></td>
+         <td><%= name%></td>
+         <td><%= price%></td>
+         <td  ><%=( mkt_enable == 0 ? "是    <a href='#' class='offLine'  >下架</a>": "否") %></td>
+         <td><a href="#" class="edit" data-goodsId="<%= goods_id%>">编辑</a>  <a href="#" class="delete" data-goodsId="<%= goods_id%>">删除</a></td>     
+		</script>
+		<script type="text/template"   id="goodsTemplate">					  
+                  <div class="mainCon " >
+	                 <h2>编辑商品页面</h2>
+	                   <form id="editGoods_form">  
+                             <div class="editGoods-same">
+                                   <dl>
+                                     <dt>分类：</dt>
+                                     <dd><%= briefGoodsCat2.name %>><%= briefGoodsCat1.name %></dd> 
+                                   </dl>
+                                   <dl>
+                                     <dt>商品名称：</dt>
+                                     <dd><input type="text" class="text" value="<%= name %>" id="goodsName" placeholder="商品名称"></dd> 
+                                   </dl>
+                                    <dl>
+                                     <dt>货号：</dt>
+                                     <dd><input type="text" class="text" value="<%= sn %>" id="sn" placeholder="货号"></dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>简介：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="<%= brief %>" id="brief" placeholder="简介">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>详细描述：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="<%= description %>" id="description" placeholder="详细描述">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>销售价：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="<%= price %>" id="price" placeholder="">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>成本价：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="<%= cost %>" id="cost" placeholder="">
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>市场价：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="<%= mktprice %>" id="mktprice" placeholder="">
+                                     </dd>
+                                   </dl>
+                                     <dl>                     
+                                       <dt>重量：</dt>
+                                     <dd>
+                                     <input type="text" class="text" value="<%= weight %>" id="weight" placeholder="">
+                                     </dd>
+                                   </dl>
+                                   <dl class="longText">                     
+                                       <dt>商品详情：</dt>
+                                     <dd class="introArea">
+                                     <textarea rows="10" cols="30" id="intro" name="content"> <%= intro %> </textarea>
+                                     </dd>
+                                   </dl>
+                                    <dl>                     
+                                       <dt>&nbsp;</dt>
+                                     <dd class="btnArea">
+                                      <a href="#"  class="blueBtn"  id="editGoodsBtn">修改</a>
+                                     </dd>
+                                   </dl>
+                            </div>
+                       </form>    
+	              </div>
+         
+		</script>
+		
+		<script type="text/template"   id="categoryTemplate">					  
+		  <%= name %>
+        </script>
+        <script type="text/template"   id="brandTemplate">					  
+		  <%= name %>
+        </script> 
+        <script type="text/template"   id="paramsTemplate">
+        <dl>
+	        <dt></dt>
+	        <dd><input type="text" class="text" value="" id="params1" placeholder="参数1"></dd> 
+        </dl>
+        <dl>
+	        <dt></dt>
+	        <dd><input type="text" class="text" value="" id="params2" placeholder="参数2"></dd> 
+        </dl>
+        <dl>
+	        <dt></dt>
+	        <dd><input type="text" class="text" value="" id="params3" placeholder="参数3"></dd> 
+        </dl>
+        <dl>
+	        <dt></dt>
+	        <dd><input type="text" class="text" value="" id="params4" placeholder="参数4"></dd> 
+        </dl>
+        <dl>
+	        <dt></dt>
+	        <dd><input type="text" class="text" value="" id="params5" placeholder="参数5"></dd> 
+        </dl>
+        <dl>                     
+	       <dt>&nbsp;</dt>
+	       <dd class="btnArea">
+	        <a href="#"  class="blueBtn"  id="saveParams"  >保存</a>
+	        </dd>
+        </dl>
+        </script>
+        
+       <script  src="../plug/jquery-3.1.1.js" type="text/javascript"></script>
+       <script  src="../plug/session.js" type="text/javascript"></script> 
+       <script  src="../plug/underscore-min.js" type="text/javascript"></script> 
+       <script  src="../plug/backbone-min.js" type="text/javascript"></script> 
+       <!-- 富文本编辑器 -->
+       <script charset="utf-8" src="../plug/kindeditor/kindeditor.js" type="text/javascript"></script>
+       <script charset="utf-8" src="../plug/kindeditor/lang/zh_CN.js"  type="text/javascript"></script>
+       <script src="js/kindedit.js"></script>
+       
+      
+       
+       <script src="js/router.js"></script>
+       <script  src="js/main.js" type="text/javascript"></script> 
+       <script  src="js/manager.js" type="text/javascript"></script> 
+       <script  src="js/role.js" type="text/javascript"></script> 
+       <script  src="js/basevalue.js" type="text/javascript"></script>
+       
+       <script  src="js/goods.js" type="text/javascript"></script> 
+       <script src="js/pageGroup.js"></script><!-- 上架商品页码 -->
+       <script  src="js/onlineGoods.js" type="text/javascript"></script> <!--上架商品列表 -->
+       <script  src="js/addGoods.js" type="text/javascript"></script> <!-- 选择分类、新增商品 -->
+       <script  src="js/addImg.js" type="text/javascript"></script> <!--上传图片 -->
+       <script  src="js/storeNumber.js" type="text/javascript"></script> <!--修改库存、参数 -->
+        
+
+ 
+    </body>
+</html>

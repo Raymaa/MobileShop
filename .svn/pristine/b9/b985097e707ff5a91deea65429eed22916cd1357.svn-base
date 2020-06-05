@@ -1,0 +1,183 @@
+$(document).ready(function(){
+	
+   $("#managerLink").on('click',function(e){ 
+	     e.stopPropagation();
+	     e.preventDefault();
+	     //ajax加载manager.html页面
+	     var url = "http://localhost:8080/MobileShop/admin"+$(this).attr("href");
+	     $(".mainCon").empty();
+	     $(".mainCon").load(url);
+         
+	    //加载管理员列表
+	     var getManagerUrl = "http://localhost:8080/MobileShop/admin_manager"; 
+	     $.get(getManagerUrl) 
+	     .done(function(data){//请求成功后要执行的代码
+	    	  if(data.status==0){
+	               for(var i=0;i<data.data.length;i++){
+	                    var name = data.data[i].username;
+	                    var realName = data.data[i].real_name;
+	                    var adminId = data.data[i].admin_id;
+	                    var codeStr = "<tr class='item'> <td class='name'>"+name+"</td> <td>"+realName+"</td><td><a href='#' class='edit' data-adminId='"+adminId+"'>修改</a> <a href='#' class='delete' data-adminId='"+adminId+"'>删除</a></td></tr>"
+	                   $(".managerList tbody").append(codeStr);  
+	               }
+	       
+	      //删除管理员功能实现    
+          $(".managerList tbody .delete").on("click",deleteManager);
+          function deleteManager(){
+           //获取managerList
+                  var adminId = $(this).attr("data-adminId");
+                  var url =  "http://localhost:8080/MobileShop"+"/admin_manager/"+adminId;//构建url
+                  $.ajax({
+                          type: 'DELETE',
+			              url:url,
+			              success:function(data){
+			              alert(data.msg);
+			             //换个方法移除
+			             $(".managerList tbody .item").each(function(){
+			                     if( $(this).find(".delete").attr("data-adminId") == adminId)          
+			                         $(this).remove();
+			                      });
+			          
+			              }
+			          });
+			   }
+          
+          //添加管理员功能实现 
+          //鼠标单击“添加”按钮，出现“添加管理员”弹框
+          $("#addManagerBtn").on("click",function(e){
+                   e.stopPropagation();
+                   e.preventDefault();
+                   $(".blackCover").fadeIn();//显示黑色遮罩层
+                   $(".addManager").fadeIn();//显示“添加管理员”弹框
+                     
+            });
+          
+          //鼠标单击“关闭”按钮，“添加管理员”弹框消失
+          $(".closeManagerBtn").on("click",function(e){
+                $(".blackCover").fadeOut(1000); //隐藏黑色遮罩层
+                $(".addManager").fadeOut(1000 );//隐藏“添加管理员”弹框
+          });
+         
+          //鼠标单击“添加”按钮，实现添加管理员操作
+          $("#btn1").on("click",function(e){
+                   e.preventDefault();
+                   e.stopPropagation();
+                 //获取表单中填写的真实姓名、手机、角色Id号
+                   var realName = $("#realName").val().trim();
+                   var mobile =  $("#mobile").val().trim();
+                   var roleId =$("#roleId").val().trim();
+                   var data ={"mobile": mobile,"realName":realName,"roleId":roleId};
+                   //构建url
+                   var url = "http://localhost:8080/MobileShop/admin_manager";
+                   $.ajax({
+                      type:"post",
+                      data:data,
+                      url:url,
+                      timeout:2000,
+                      success:function(data){
+                          if(data.status==0){
+                             alert(data.msg);
+                             //构建codeStr，将该管理员添加到列表中去
+                             var codeStr = "<tr class='item'> <td class='name'>"+name+"</td> <td>"+realName+"</td><td><a href='#' class='edit' data-adminId='"+adminId+"' >修改</a> <a href='#' class='delete' data-adminId='"+adminId+"'>删除</a></td></tr>"
+                             $(".managerList tbody").append(codeStr);
+                             
+                            //编辑管理员
+                               $(".managerList tbody .edit").on("click",editManager);
+                            //删除管理员
+                            $(".managerList tbody .delete").on("click",deleteManager);
+                        }else{
+                            alert(data.msg);
+                       }
+                   },
+                   fail:function(){
+                      alert("服务器忙，请稍后再试");
+                   }
+                 });               
+       });
+          
+          
+          //编辑管理员
+          $(".managerList tbody .edit").on("click",function(){
+        	  $(".blackCover").fadeIn(1000);
+              $(".editManager").fadeIn(1000);
+              var adminId =  $(this).attr("data-adminId");
+              var url =  "http://localhost:8080/MobileShop"+"/admin_manager/"+adminId;
+              //通过adminId将信息调出来，填入编辑管理员的文本框里面
+              $.get(url)
+              .done(function(data){ 
+                     if(data.status==0){
+        			  //给文本框赋值
+                      $("#username").val(data.data.username);
+                      $("#password").val("");
+                      $("#email").val(data.data.email);
+                      var sex = data.data.sex;
+     
+                      $('.editManagerCon input[name="sex"]').each(function(i){  
+                          if($(this).val() == sex)  
+                          {  
+                        	  $(this).attr("checked","checked");
+                          }  
+                      });  
+        		}else{alert(data.msg);}
+                });
+              
+              
+              //编辑管理员调用的函数
+              $("#editManagerbtn").on("click",function(){  
+              var username =  $("#username").val().trim();
+              var password =  $("#password").val().trim();
+              var email = $("#email").val().trim();
+              var sex =  $('.editManagerCon input[name="sex"]:checked ').val();//获取选择的性别的值
+              var data = {"adminId":adminId,"username":username,"password":password,"email":email,"sex":sex};
+             
+              $.ajax({
+                    type:'PUT',
+                    data:data,
+                    url:url,
+                  timeout:2000,
+                  success:function(data){
+                     if(data.stuts == 0){
+                           alert(data.msg);
+                           //刷新一次即可
+                           
+                     }else{
+                           alert(data.msg);
+                      }
+                  },
+                  fail:function(){
+                            alert("服务器忙，请稍后再试");
+                         }
+              });
+              
+
+            	  
+              });
+          });
+          
+          //关闭编辑管理员面板
+          $(".closeEditManagerBtn").on("click",function(e){
+             $(".blackCover").fadeOut(1000);
+             $(".editManager").fadeOut(1000 );
+             $("#managerLink").trigger("click");//重新加载一次。
+          });
+
+  
+
+
+   
+          
+	           }else{ 
+	        	   alert(data.msg);   
+	           }
+	     })
+	     .fail(function(){//请求失败后要执行的代码
+	          alert("服务器忙，请稍后再试");
+	     });
+
+
+ 
+     
+   });
+
+
+   })

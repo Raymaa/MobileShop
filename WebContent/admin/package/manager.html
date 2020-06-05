@@ -1,0 +1,106 @@
+
+<div class="addManager">
+	<div class="addManagerCon">
+		<h1>添加管理员</h1>
+		<a href="#" class="closeManagerBtn"><span
+			class="fa fa-close (alias)"> </span></a>
+		<form id="addManager_form">
+			<div class="addManager-same">
+				<dl>
+					<dt>手机：</dt>
+					<dd>
+						<input type="text" class="text" value="" id="mobile"
+							placeholder="手机">
+					</dd>
+				</dl>
+				<dl>
+					<dt>真实姓名：</dt>
+					<dd>
+						<input type="text" class="text" value="" id="realName"
+							placeholder="真实姓名">
+					</dd>
+				</dl>
+				<dl>
+					<dt>角色</dt>
+					<dd>
+						<input type="text" class="text" value="" id="roleId"
+							placeholder="角色ID">
+					</dd>
+				</dl>
+				<dl>
+					<dt>&nbsp;</dt>
+					<dd>
+						<a href="#" class="addManager_ent" id="btn1">添加</a>
+					</dd>
+				</dl>
+
+			</div>
+		</form>
+	</div>
+</div>
+<div class="editManager">
+	<div class="editManagerCon">
+		<h1>修改管理员</h1>
+		<a href="#" class="closeEditManagerBtn"><span
+			class="fa fa-close (alias)"> </span></a>
+		<form id="editManager_form">
+			<div class="editManager-same">
+				<dl>
+					<dt>用户名：</dt>
+					<dd>
+						<input type="text" class="text" value="" id="username"
+							placeholder="用户名">
+					</dd>
+				</dl>
+				<dl>
+					<dt>密码：</dt>
+					<dd>
+						<input type="password" class="text" value="" id="password"
+							placeholder="密码">
+					</dd>
+				</dl>
+				<dl>
+					<dt>邮箱：</dt>
+					<dd>
+						<input type="text" class="text" value="" id="email"
+							placeholder="邮箱地址">
+					</dd>
+				</dl>
+				<dl>
+					<dt>性别：</dt>
+					<dd>
+						男<input type="radio" value="0" name="sex" id="man"> 女<input
+							type="radio" value="1" name="sex" id="woman">
+					</dd>
+				</dl>
+				<dl>
+					<dt>&nbsp;</dt>
+					<dd>
+						<a href="#" class="editManager_ent" id="editManagerbtn">保存</a>
+					</dd>
+				</dl>
+
+			</div>
+		</form>
+	</div>
+</div>
+<div class="blackCover"></div>
+<div class="btnArea">
+	<a href="#" id="addManagerBtn" class="blueBtn">添加</a>
+</div>
+<div class="managerList">
+	<table class="bordered">
+		<thead>
+			<tr>
+				<th>用户名</th>
+				<th>真实姓名</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!--这里的内容动态加载  -->
+
+		</tbody>
+
+	</table>
+</div>

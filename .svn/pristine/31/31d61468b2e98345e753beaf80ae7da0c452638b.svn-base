@@ -1,0 +1,19 @@
+
+                <div class="btnArea">
+                    <a href="#" id="addManagerBtn" class="blueBtn">添加</a>
+                </div>
+                <div class="managerList">
+                  <table class="bordered">
+                        <thead>
+                        <tr>       
+                            <th>用户名</th>
+                            <th>真实姓名</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody><!--这里的管理员列表内容动态加载  -->
+                        
+                        </tbody>
+                         
+                    </table>
+                 </div>

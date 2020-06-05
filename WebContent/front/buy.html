@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>购买页面</title>
+    <link type="text/css" rel="stylesheet" href="../css/base.css" />
+    <link type="text/css" rel="stylesheet" href="css/buy.css" />
+</head>
+
+<body>
+    <!-- 顶栏 -->
+    <div id="siteNav">
+        <div id="siteNavCon">
+            <ul class="left">
+                <li>
+                    <a href="../index.html">欢迎来到MobileShop</a>
+                </li>
+                <li>
+                    <a href="login.html" class="red">登录</a>
+                </li>
+                <li>
+                    <a href="register.html">免费注册</a>
+                </li>
+            </ul>
+            <ul class="right">
+                <li class="navTitle" id="menu" onmouseover="fun1()" onmouseout="fun2()">
+                    <a href="#">我的MobileShop<i class="downUp"></i></a>
+                    <ul class="siteNavPanel" id="menuContent">
+                        <li><a href="./myOrder.html">待付款订单</a></li>
+                        <li><a href="./myOrder.html">商品已发货</a></li>
+                        <li><a href="./myOrder.html">待评价订单</a></li>
+                    </ul>
+                </li>
+                <li><a href="./goodsCarts.html">购物车</a></li>
+                <li><a href="#">收藏夹</a></li>
+                <li><a href="./goodsList.html">商品分类</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 搜索栏 -->
+    <div id="header">
+        <div class="search">
+            <div class="searchCon">
+                <ul class="searchConT">
+                    <ul>
+                        <li class="current">宝贝</li>
+                    </ul>
+                </ul>
+                <div class="searchConM">
+                    <div class="left">
+                        <div class="text">
+                            <input type="text" name="" id="text" />
+                            <label for="text">背带牛仔裙袭来</label>
+                            <span></span>
+                        </div>
+                        <div class="btn">
+                            <input type="button" value="搜索" />
+                        </div>
+                    </div>
+                    <p class="right"><a href="./goodsList.html">高级搜索</a></p>
+                </div>
+                <p class="searchConB">
+                    <a href="./goodsList.html">背带裙</a>
+                    <a href="./goodsList.html">手机</a>
+                    <a href="./goodsList.html" class="orange">巧克力</a>
+                    <a href="./goodsList.html">休闲男鞋</a>
+                    <a href="./goodsList.html">情侣装</a>
+                    <a href="./goodsList.html">运动鞋</a>
+                    <a href="./goodsList.html">凉席</a>
+                    <a href="./goodsList.html">香水</a>
+                    <a href="./goodsList.html">行车记录仪</a>
+                    <a href="./goodsList.html">黄金吊坠</a>
+                    <a href="./goodsList.html">凉鞋</a>
+                    <a href="./goodsList.html">女包</a>
+                    <a href="./goodsList.html">珍珠项链</a>
+                    <a href="./goodsList.html" class="more">更多</a>
+                </p>
+            </div>
+        </div>
+        <div class="logo">
+            <h1><a href="../index.html">MobileShop</a></h1>
+        </div>
+        <div class="QRCode" id="QRCode">
+            <p><a href="#" class="orange">手机逛商城</a></p>
+            <a href="#">
+                <img src="img/QRCode.png" width="80" height="80" />
+            </a>
+            <span onclick="closeQRCode()"><s></s></span>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <!-- 订单情况图标 -->
+    <div id="tip">
+        <div class="tip-logo">
+            <img src="img/img2.jpg" alt="" />
+        </div>
+    </div>
+    <!-- 主内容 -->
+    <div id="main" class="main">
+        <div id="main-content" class="main-content">
+            <!-- 收货人信息 -->
+            <div id="consignee-content" class="consignee-content">
+                <span class="receiving-describe">收货人信息</span>
+                <div id="receiving" class="receiving">
+                    <div class="receiving-information">
+                        <span>
+                            <input type="radio" name="radio-address" checked="checked" />
+                        </span>
+                        <span class="receiving-address">江苏省徐州市云龙区铜山路88号太原大厦 1-2-203</span>
+                        <span class="receiving-people">徐丽丽（收）15865523652</span>
+                    </div>
+                    <div class="receiving-information">
+                        <span><input type="radio" name="radio-address" /></span>
+                        <span class="receiving-address">江苏省徐州市云龙区和平路55号铁路宿舍1-2-303</span>
+                        <span class="receiving-people">王丽丽（收）15865523652</span>
+                    </div>
+                    <div class="receiving-information">
+                        <span><input type="radio" name="radio-address" /></span>
+                        <span class="receiving-address">江苏省徐州市铜山区新区大学路88号国基城邦1-2-203</span>
+                        <span class="receiving-people">蒋丽丽（收）15865523652</span>
+                    </div>
+                    <div class="receiving-information">
+                        <span><input type="radio" name="radio-address" /></span>
+                        <span class="receiving-address">江苏省徐州市云龙区绿地商务城7期速递易</span>
+                        <span class="receiving-people">李丽丽（收）15865523652</span>
+                    </div>
+                </div>
+            </div>
+            <!-- 商品列表 -->
+            <div class="goods-content" id="goods-content">
+                <span class="receiving-describe">商品列表</span>
+                <div id="goods" class="goods">
+                    <div class="goods-Nav">
+                        <div class="left-describe">
+                            <p>商品名称</p>
+                        </div>
+                        <div class="middle1-describe">
+                            <p>单价</p>
+                        </div>
+                        <div class="middle2-describe">
+                            <p>购买数量</p>
+                        </div>
+                        <div class="right-describe">
+                            <p>小计</p>
+                        </div>
+                    </div>
+                    <div class="goods-Information">
+                        <div class="goods-Item1">
+                            <img src="img/goods/p_1.jpg" alt="" />
+                            <div class="left-goods-describe">
+                                <p>正宗云南本地甜橙 15kg</p>
+                            </div>
+                            <div class="middle1-good-Price">
+                                <p>620.00</p>
+                            </div>
+                            <div class="middle2-goods-Amount">
+                                <p>1</p>
+                            </div>
+                            <div class="right-goods-TotalPrice red">
+                                <p>￥620.00</p>
+                            </div>
+                        </div>
+                        <div class="goods-Item2">
+                            <img src="img/goods/p_2.jpg" alt="" />
+                            <div class="left-goods-describe">
+                                <p>红富士大个子苹果 23kg</p>
+                            </div>
+                            <div class="middle1-good-Price">
+                                <p>770.00</p>
+                            </div>
+                            <div class="middle2-goods-Amount">
+                                <p>1</p>
+                            </div>
+                            <div class="right-goods-TotalPrice red">
+                                <p>￥770.00</p>
+                            </div>
+                        </div>
+                        <div class="goods-Item3">
+                            <img src="img/goods/p_4.jpg" alt="" />
+                            <div class="left-goods-describe">
+                                <p>农家无污染猕猴桃 52kg</p>
+                            </div>
+                            <div class="middle1-good-Price">
+                                <p>620.00</p>
+                            </div>
+                            <div class="middle2-goods-Amount">
+                                <p>1</p>
+                            </div>
+                            <div class="right-goods-TotalPrice red">
+                                <p>￥620.00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="goods-Amout">
+                        <p>商品总价：￥2010.00</p>
+                    </div>
+                </div>
+            </div>
+            <!-- <p class="clear"></p> -->
+            <!-- 支付方式 -->
+            <div class="pay" id="pay">
+                <span class="receiving-describe">支付方式</span>
+                <div class="pay-Style" id="pay-Style">
+                    <div class="pay-Item1 appear">
+                        <p>余额支付</p>
+                    </div>
+                    <div class="pay-Item2">
+                        <p>银行亏款/转账</p>
+                    </div>
+                    <div class="pay-Item3">
+                        <p>货到付款</p>
+                    </div>
+                    <div class="pay-Item4">
+                        <p>支付宝</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 其他信息 -->
+            <div class="others" id="others">
+                <span class="receiving-describe">其他信息</span>
+                <div class="others-content">
+                    <p class="text">订单附言：</p>
+                    <div class="others-input">
+                        <textarea name="" id="text" cols="120" rows="4"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- 价格提示：总价+运费 -->
+            <div class="price-Item">
+                商品总价：<span class="red">￥2010.00</span>+配送费用：<span class="red">￥9.00
+            </div>
+            <div class="Submission-content" id="Submission-content">
+                <div class="Submission-price">
+                    实付金额：<span class="red">￥2019.00</span>
+                </div>
+                <div class="Submission-address">
+                    寄送至：<span id="Submission-address">江苏省徐州市云龙区铜山路88号太原大厦 1-2-203</span>
+                </div>
+                <div class="Submission-people">
+                    收货人：<span id="Submission-people">徐丽丽（收）15865523652</span>
+                </div>
+            </div>
+            <input type="button" class="Submission-btn onclick" value="确认订单"
+                onclick="window.location.href='buySuccess.html' ">
+            <!-- <button class="Submission-btn">确认订单</button> -->
+            <!-- <div class="Submission-btn">
+                <p>确认订单</p>
+            </div> -->
+        </div>
+    </div>
+
+
+    <!-- 底部导航 -->
+    <div id="footer">
+        <div id="footerCon">
+            <div id="links">
+                <dl>
+                    <dt>用户指南</dt>
+                    <dd><a href="guide.html">新手指南</a></dd>
+                    <dd><a href="memberLevel.html">会员积分</a></dd>
+                    <dd><a href="#">常见问题</a></dd>
+                    <dd><a href="feedback.html">反馈调查</a></dd>
+                </dl>
+                <dl>
+                    <dt>品牌服务</dt>
+                    <dd><a href="#">闪电配送</a></dd>
+                    <dd><a href="#">快捷支付</a></dd>
+                    <dd><a href="#">售后保障</a></dd>
+                </dl>
+                <dl>
+                    <dt>商家合作</dt>
+                    <dd><a href="#">商家对接</a></dd>
+                    <dd><a href="#">品牌资质</a></dd>
+                    <dd><a href="#">进场流程</a></dd>
+                </dl>
+                <dl>
+                    <dt>关于我们</dt>
+                    <dd><a href="#">平台简介</a></dd>
+                    <dd><a href="#">企业文化</a></dd>
+                    <dd><a href="#">经营模式</a></dd>
+                    <dd><a href="#">招贤纳士</a></dd>
+                </dl>
+            </div>
+            <div id="otherLinks">
+                <a href="#">关于我们</a>|
+                <a href="#">购物指南</a>|
+                <a href="#">商家合作</a>|
+                <a href="#">联系我们</a>|
+                <a href="#">招贤纳士</a>|
+                <a href="#">反馈调查</a>
+                <a href="#">反馈调查</a>
+            </div>
+            <div id="copyRight">
+                Copyright &copy;2016 - 2026 MobileShop 版权所有 | 消费者维权热线：<span class="red">40088888888</span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="../js/base.js" type="text/javascript"></script>
+    <script src="js/buy.js" type="text/javascript"></script>
+    <!-- <script src="js/jquery-3.2.1.min.js"></script> -->
+</body>
+
+</html>

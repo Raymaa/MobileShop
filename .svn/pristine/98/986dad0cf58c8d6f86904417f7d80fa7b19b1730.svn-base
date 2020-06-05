@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>欢迎来到MobileShop</title>
+     <link type="text/css" rel="stylesheet" href="css/base.css" />
+     <link type="text/css" rel="stylesheet" href="css/item.css" />
+     <link rel="stylesheet" href="../plug/font-awesome/css/font-awesome.min.css">
+     <link rel="shortcut icon" href="../favicon.ico" />
+   <!--   <script  src="js/base.js" type="text/javascript"></script> -->
+     
+    </head>
+    <body >
+    <div id="siteNav">
+      <div id="siteNavCon">
+        <ul class="left">
+          <li>
+            <a href="#">欢迎来到MobileShop</a>
+          </li>
+          <li>
+            <a href="#" class="red">登录</a>
+          </li>
+           <li>
+            <a href="#">免费注册</a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li class="navTitle" id="menu" onmouseover="fun1()"  onmouseout="fun2()">
+           <a href="#" >我的MobileShop <i class="downUp"></i></a>
+            <ul  class="siteNavPanel"  id="menuContent">
+              <li><a href="#">待付款订单</a></li>
+              <li><a href="#">商品已发货</a></li>
+              <li><a href="#">待评价订单</a></li>
+            </ul>
+          </li>
+          <li><a href="#">购物车</a></li>
+          <li><a href="#">收藏夹</a></li>
+          <li><a href="#">商品分类</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="header" >
+     
+      <div class="search">
+      <div class="searchCon">
+          <ul class="searchConT">
+              <ul>
+                <li class="current">宝贝</li>
+
+              </ul>
+            </ul>
+          <div class="searchConM">
+              <div class="left">
+                  <div class="text"><input type="text" name="" id="text" />
+                    <label for="text">背带牛仔裙袭来</label>
+                    <span></span>
+                    </div>
+                  <div class="btn"><input type="button" value="搜索" /></div>
+                </div>
+              <p class="right"><a href="#">高级搜索</a></p>
+            </div>
+          <p class="searchConB"><a href="#">背带裙</a><a href="#">手机</a><a href="#" class="orange">巧克力</a><a href="#">休闲男鞋</a><a href="#">情侣装</a><a href="#">运动鞋</a><a href="#">凉席</a><a href="#">香水</a><a href="#">行车记录仪</a><a href="#">黄金吊坠</a><a href="#">凉鞋</a><a href="#">女包</a><a href="#">珍珠项链</a><a href="#" class="more">更多</a></p>
+        </div>
+    </div>
+  <div class="logo">
+      <h1><a href="#">MobileShop</a></h1>
+  </div>
+   <div class="QRCode" id="QRCode">
+         <p><a href="#" class="orange">手机逛商城</a></p>
+         <a href="#"><img src="img/QRCode.png" width="80" height="80" /></a>
+         <span onclick="closeQRCode()" ><s></s></span>
+      </div>
+
+    </div>
+    <div id="content" > 
+      <div >
+             <div class="detail-wrapper">
+                 <div class="gallery">
+                     <div class="preview">
+                         <img src="img/items/1_orig.jpg"  class="orig-pic">
+                         <div class="zoom-pup"></div>
+                         <div class="detail-pic">
+                             <img src="img/items/1_big.jpg">
+                         </div>
+                     </div>
+                     <div class="control-bar">
+                         <ul>
+                           <li> <img src="img/items/1_thum.jpg"></li>
+                           <li> <img src="img/items/2_thum.jpg"></li>
+                           <li> <img src="img/items/3_thum.jpg"></li>
+                           <li> <img src="img/items/4_thum.jpg"></li>
+                           <li> <img src="img/items/5_thum.jpg"></li>
+                         </ul>
+                     </div>
+                 </div><!--gallery--> 
+                 <div class="outline">
+                    <div class="name">
+                      <h1>正品Hermes爱马仕尼罗河花园女士香水100ML超凡脱俗</h1>
+                    </div>
+                    <div class="goods-price">
+                       <div class="mark-price">
+                          <span>市场价：</span>
+                          <strong>￥390</strong>
+                       </div>
+                       <div class="real-price">
+                         <span>价格：</span>
+                         <strong >￥318</strong>
+                       </div>
+                    </div>
+                    <form id="goodsform">
+                        <div class="goods-key">
+                            <dl>
+                               <dt>购买数量：</dt>
+                               <dd class="goods-figure-input">
+                                   <a href="javascript:void(0)" class="minus">
+                                      <i>-</i>
+                                   </a>
+                                  <input type="text" name="num" id="number" value="1">
+                                  <a href="javascript:void(0)"  class="plus">
+                                      <i>+</i>
+                                   </a>
+                                   <em>
+                                     （当前库存
+                                      <strong  class="max">16</strong>
+                                     ）
+                                   </em>
+                               </dd>
+                               <dd class="btn">
+                                  <a href="javascript:void" class="buynow" >立即购买</a>
+                                  <a href="javascript:void" class="addcart">加入购物车</a>
+                               </dd>
+                            </dl>    
+                        </div>
+                    </form>
+                 </div>
+                 <div class="recommend">
+                    <div class="title">
+                        <s></s>
+                        <span>相关推荐</span>
+                    </div>
+                    <div class="ald-carousel">
+                      <div class="wrap-others">
+                        <ul class="ald-switchable-content">
+                          <li>
+                              <a href="javascript:void">
+                                <img src="img/items/others/1.jpg">
+                              </a>
+                              <p class="look-price">￥399.00</p>
+                          </li>
+                           <li>
+                              <a href="javascript:void">
+                                <img src="img/items/others/2.jpg">
+                              </a>
+                              <p class="look-price">￥299.00</p>
+                          </li>
+                          <li>
+                              <a href="javascript:void">
+                                <img src="img/items/others/3.jpg">
+                              </a>
+                              <p class="look-price">￥199.00</p>
+                          </li>
+                           <li>
+                              <a href="javascript:void">
+                                <img src="img/items/others/4.jpg">
+                              </a>
+                              <p class="look-price">￥399.00</p>
+                          </li>
+                           <li>
+                              <a href="javascript:void">
+                                <img src="img/items/others/5.jpg">
+                              </a>
+                              <p class="look-price">￥399.00</p>
+                          </li>
+                           <li>
+                              <a href="javascript:void">
+                                <img src="img/items/others/6.jpg">
+                              </a>
+                              <p class="look-price">￥399.00</p>
+                          </li>
+                           <li>
+                              <a href="javascript:void">
+                                <img src="img/items/others/1.jpg">
+                              </a>
+                              <p class="look-price">￥399.00</p>
+                          </li>
+                           <li>
+                              <a href="javascript:void">
+                                <img src="img/items/others/2.jpg">
+                              </a>
+                              <p class="look-price">￥399.00</p>
+                          </li>
+                           <li>
+                              <a href="javascript:void">
+                                <img src="img/items/others/3.jpg">
+                              </a>
+                              <p class="look-price">￥399.00</p>
+                          </li>
+                           <li>
+                              <a href="javascript:void">
+                                <img src="img/items/others/4.jpg">
+                              </a>
+                              <p class="look-price">￥399.00</p>
+                          </li>
+                        </ul>
+                      </div>
+                      <ul class="ald-switchable-trigger">
+                        <li  class="prev"><i class="fa  fa-chevron-up"></i></li>
+                        <li class="next"><i class="fa  fa-chevron-down"></i></li>
+                      </ul>
+
+                    </div>
+                 </div><!--推荐-->
+             </div><!--detail_wrapper--> 
+       </div><!--goods-detail--> 
+       <div class="wrap-detail-content">
+         <div class="aside">
+            <ul class="nav">
+              <li class="current">
+                    <h4 class="title"><i class="fa fa-minus-square"></i><a href="javascript:;">香水品牌</a></h4>
+                    <ul>
+                      <li><a href="javascript:;">香奈尔</a></li>
+                      <li><a href="javascript:;">兰蔻</a></li>
+                      <li><a href="javascript:;">雅诗兰黛</a></li>
+                    </ul>
+              </li>
+              <li >
+                    <h4 class="title"><i class="fa fa-plus-square"></i><a href="javascript:;">香水分类</a></h4>
+                    <ul>
+                      <li><a href="javascript:;">淡香水</a></li>
+                      <li><a href="javascript:;">古龙水</a></li>
+                      <li><a href="javascript:;">固体香水</a></li>
+                    </ul>
+              </li>
+              <li >
+                    <h4 class="title"><i class="fa fa-plus-square"></i><a href="javascript:;">香水产地</a></h4>
+                    <ul>
+                      <li><a href="javascript:;">法国</a></li>
+                      <li><a href="javascript:;">中国大陆</a></li>
+                      <li><a href="javascript:;">意大利</a></li>
+                    </ul>
+              </li>
+        </ul>
+         </div>
+   <div class="detail-content">
+       <ul  class="tab-bar">
+            <li >
+               <a href="javascript:void">商品详情</a>
+            </li>
+            <li class="current">
+               <a href="javascript:void">商品评论</a>
+            </li>
+        </ul>
+        <div class="detail" style="display:none;">
+           <div class="parameter">参数</div>
+           <div class="description">详情页图片</div>
+        </div>
+        <div class="comment">
+              <ul class="comments-list">
+                 <li class="comment-item">
+                    <div> 
+                        <img src="img/star_red.png"/>
+                        <img src="img/star_red.png"/>
+                        <img src="img/star_red.png"/>
+                        <img src="img/star_red.png"/>
+                        <img src="img/star.png"/>
+                     </div>
+                    <div>这个香水应该是正品，包装精美，香气很好闻！</div>
+                    <div>h***t（匿名）</div>
+                 </li>
+                  
+              </ul>
+              <div class="your-comment">
+                <div class="star">
+                 <h3>总体评价：</h3>
+                 <div>
+                        <img src="img/star.png"/>
+                        <img src="img/star.png"/>
+                        <img src="img/star.png"/>
+                        <img src="img/star.png"/>
+                        <img src="img/star.png"/>
+                 </div>
+                 </div>
+                 <form action="#" method="post" id="discuss-form">
+                    <div >
+                       <textarea name="content" id="discuss-content" >请在此输入评价</textarea>
+                       <button class="discuss-btn" type="button">发表评价</button>
+                    </div>
+                 </form>
+              </div>
+        </div>
+   </div>
+
+       </div><!-- --> 
+    </div><!--content-->
+
+
+
+       <div id="footer" >
+        <div id="footerCon">
+          <div id="links">
+          <dl>
+          <dt>用户指南</dt>
+          <dd><a href="guide.html">新手指南</a></dd>
+          <dd><a href="memberLevel.html">会员积分</a></dd>
+          <dd><a href="#">常见问题</a></dd>
+          <dd><a href="feedback.html">反馈调查</a></dd>
+          </dl>  
+                 
+                <dl>
+                <dt>品牌服务</dt>
+                <dd><a href="#">闪电配送</a></dd>
+                <dd><a href="#">快捷支付</a></dd>
+                <dd><a href="#">售后保障</a></dd>
+                </dl>
+
+                <dl>
+                <dt>商家合作</dt>
+                <dd><a href="#">商家对接</a></dd>
+                <dd><a href="#">品牌资质</a></dd>
+                <dd><a href="#">进场流程</a></dd>
+                </dl>
+
+                <dl>
+                <dt>关于我们</dt>
+                <dd><a href="#">平台简介</a></dd>
+                <dd><a href="#">企业文化</a></dd>
+                <dd><a href="#">经营模式</a></dd>
+                <dd><a href="#">招贤纳士</a></dd>
+                </dl>
+                
+             </div>
+             <div id="otherLinks">
+               <a href="#">关于我们</a>|
+               <a href="#">购物指南</a>|
+               <a href="#">商家合作</a>|
+               <a href="#">联系我们</a>|
+               <a href="#">招贤纳士</a>|
+               <a href="#">反馈调查</a>
+               <a href="#">反馈调查</a>
+             </div>
+             <div id="copyRight">
+               Copyright &copy;2016 - 2026 MobileShop 版权所有 | 消费者维权热线：<span class="red">40088888888</span>
+             </div>
+          </div>
+       </div>
+        <script  src="../plug/jquery-3.1.1.js" type="text/javascript"></script>
+        <script  src="js/base.js" type="text/javascript"></script> 
+         <script  src="js/item.js" type="text/javascript"></script>
+
+    </body>
+</html>

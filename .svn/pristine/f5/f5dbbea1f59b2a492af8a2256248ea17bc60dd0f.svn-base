@@ -1,0 +1,155 @@
+package com.huatec.edu.mobileshop.controller;
+
+import java.io.File;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.huatec.edu.mobileshop.service.GoodsService;
+import com.huatec.edu.mobileshop.util.Result;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
+
+@Controller
+@RequestMapping("/goods")
+public class GoodsController {
+	@Resource
+	private GoodsService goodsService;
+	//新增商品
+	@RequestMapping(method=RequestMethod.POST)
+	@ResponseBody
+	@ApiOperation(value="新增商品")
+	public Result add(@ApiParam(value="名称")@RequestParam("name") String name,
+			@ApiParam(value="货号")@RequestParam("sn") String sn,
+			@ApiParam(value="简介")@RequestParam("brief") String brief,
+			@ApiParam(value="详细描述")@RequestParam("description") String description,
+			@ApiParam(value="销售价")@RequestParam("price") double price,
+			@ApiParam(value="成本价")@RequestParam("cost") double cost,
+			@ApiParam(value="市场价")@RequestParam("mktprice") double mktprice,
+			@ApiParam(value="分类编号")@RequestParam("catId") int catId,
+			@ApiParam(value="品牌编号")@RequestParam("brandId") int brandId,
+			@ApiParam(value="重量")@RequestParam("weight") double weight,
+			@ApiParam(value="详情描述")@RequestParam("intro") String intro){
+		Result result=goodsService.addGoods(name, sn, brief, description, 
+				price, cost, mktprice, catId, brandId, weight, intro);
+		return result;
+	}
+	//加载所有商品（关联查询+分页）
+	@RequestMapping(value="/page/{pageId}",method=RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="加载所有商品")
+	public Result loadAllByPage(@PathVariable("pageId") int pageId){
+		Result result=goodsService.loadAllGoodsByPage(pageId);
+		return result;
+	}
+	//加载所有可用商品（分页）
+	@RequestMapping(value="/enable/page/{pageId}",method=RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="加载所有上架商品")
+	public Result loadAllEnableByPage(@PathVariable("pageId") int pageId){
+		Result result=goodsService.loadAllEnableGoodsByPage(pageId);
+		return result;
+	}
+	//根据id加载商品
+	@RequestMapping(value="/{goodsId}",method=RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="加载商品信息")
+	public Result loadById(@PathVariable("goodsId") int goodsId){
+		Result result=goodsService.loadGoodsById(goodsId);
+		return result;
+	}
+	//根据id加载商品(关联查询)
+	@RequestMapping(value="/union/{goodsId}",method=RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="商品详情")
+	public Result loadByIdUnion(@PathVariable("goodsId") int goodsId){
+		Result result=goodsService.loadGoodsByIdUnion(goodsId);
+		return result;
+	}
+	//根据分类id加载商品（已上架的）
+	@RequestMapping(value="/cat/{catId}",method=RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="根据分类编号加载商品")
+	public Result loadByCatId(@PathVariable("catId") int catId){
+		Result result=goodsService.loadGoodsByCatId(catId);
+		return result;
+	}
+	//根据品牌id加载商品（已上架的）
+	@RequestMapping(value="/brand/{brandId}",method=RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="根据品牌编号加载商品")
+	public Result loadByBrandId(@PathVariable("brandId") int brandId){
+		Result result=goodsService.loadGoodsByBrandId(brandId);
+		return result;
+	}
+	//根据分类名称或品牌名称或商品关键字查询
+	@RequestMapping(value="/find",method=RequestMethod.POST)
+	@ResponseBody
+	@ApiOperation(value="搜索商品")
+	public Result search(@ApiParam(value="分类名称/品牌名称/商品关键字")@RequestParam("input") String input){
+		Result result=goodsService.searchGoods(input);
+		return result;
+	}
+	//根据id更新
+	@RequestMapping(value="/{goodsId}",method=RequestMethod.PUT)
+	@ResponseBody
+	@ApiOperation(value="更新商品信息")
+	public Result update(@ApiParam(value="商品编号")@PathVariable("goodsId") int goodsId,
+			@ApiParam(value="名称")@RequestParam("name") String name,
+			@ApiParam(value="货号")@RequestParam("sn") String sn,
+			@ApiParam(value="简介")@RequestParam("brief") String brief,
+			@ApiParam(value="详细描述")@RequestParam("description") String description,
+			@ApiParam(value="销售价")@RequestParam("price") double price,
+			@ApiParam(value="成本价")@RequestParam("cost") double cost,
+			@ApiParam(value="市场价")@RequestParam("mktprice") double mktprice,
+			@ApiParam(value="是否上架，0：上架，1：不上架")@RequestParam("mktEnable") int mktEnable,
+			@ApiParam(value="分类编号")@RequestParam("catId") int catId,
+			@ApiParam(value="品牌编号")@RequestParam("brandId") int brandId,
+			@ApiParam(value="重量")@RequestParam("weight") double weight,
+			@ApiParam(value="详情描述")@RequestParam("intro") String intro,
+			@ApiParam(value="参数")@RequestParam("params") String params,
+			@ApiParam(value="原图")@RequestParam("original") String original){
+		Result result=goodsService.updateGoods(goodsId, name, sn, brief, description, 
+				price, cost, mktprice, mktEnable, catId, brandId, weight, intro, 
+				params, original);
+		return result;
+	}
+	//根据id更新mkt_enable
+	@RequestMapping(value="/enable/{goodsId}",method=RequestMethod.PUT)
+	@ResponseBody
+	@ApiOperation(value="更新商品状态")
+	public Result updateEnable(@ApiParam(value="商品编号")@PathVariable("goodsId") int goodsId,
+			@ApiParam(value="是否上架，0：上架，1：不上架")@RequestParam("mktEnable") int mktEnable){
+		Result result=goodsService.updateEnable(goodsId, mktEnable);
+		return result;
+	}
+	//根据id更新params
+	@RequestMapping(value="/params/{goodsId}",method=RequestMethod.PUT)
+	@ResponseBody
+	@ApiOperation(value="更新商品参数")
+	public Result updateParams(@ApiParam(value="商品编号")@PathVariable("goodsId") int goodsId,
+			@ApiParam(value="参数1")@RequestParam("params1") String param1,
+			@ApiParam(value="参数2")@RequestParam("params2") String param2,
+			@ApiParam(value="参数3")@RequestParam("params3") String param3,
+			@ApiParam(value="参数4")@RequestParam("params4") String param4,
+			@ApiParam(value="参数5")@RequestParam("params5") String param5){
+		String[] paramsValue=new String[]{param1,param2,param3,param4,param5};
+		Result result=goodsService.updateParams(goodsId, paramsValue);
+		return result;
+	}
+	//根据id删除
+	@RequestMapping(value="/{goodsId}",method=RequestMethod.DELETE)
+	@ResponseBody
+	@ApiOperation(value="删除商品")
+	public Result deleteById(@PathVariable("goodsId") int goodsId){
+		Result result=goodsService.deleteGoodsById(goodsId);
+		return result;
+	}
+}

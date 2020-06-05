@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.GoodsCatDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	<!-- 动态查询 -->
+	<select id="dynamicFind" 
+	 parameterType="com.huatec.edu.mobileshop.entity.GoodsCat" 
+	 resultType="com.huatec.edu.mobileshop.entity.GoodsCat">
+		select * from ms_goods_cat
+		<where>
+			<if test="parent_id!=null">
+				parent_id=#{parent_id}
+			</if>
+			<if test="type_id!=null">
+				and type_id=#{type_id}
+			</if>
+			<if test="list_show!=null">
+				and list_show=#{list_show}
+			</if>
+		</where>
+		order by sort desc
+	</select>
+	<!-- <select id="findByParentId" parameterType="int" 
+	 resultType="com.huatec.edu.mobileshop.entity.GoodsCat">
+		select * from ms_goods_cat where parent_id=#{parent_id} order by sort
+	</select> -->
+	<!-- <select id="findByCatPath" parameterType="int" 
+	 resultType="com.huatec.edu.mobileshop.entity.GoodsCat">
+		select * from ms_goods_cat where length(cat_path)=#{length} order by sort
+	</select> -->
+	<select id="findByParentIdDESC" parameterType="int" 
+	 resultType="com.huatec.edu.mobileshop.entity.GoodsCat">
+		select * from 
+		ms_goods_cat 
+		where parent_id=#{parent_id} 
+		order by cat_id desc
+	</select>
+	<select id="findByCatPathDESC" parameterType="int" 
+	 resultType="com.huatec.edu.mobileshop.entity.GoodsCat">
+		select * from 
+		ms_goods_cat 
+		where length(cat_path)=#{length} 
+		order by cat_id desc
+	</select>
+	<select id="findByName" parameterType="string" 
+	 resultType="com.huatec.edu.mobileshop.entity.GoodsCat">
+		select * from ms_goods_cat where name=#{name}
+	</select>
+	<select id="findByTypeId" parameterType="int" 
+	 resultType="com.huatec.edu.mobileshop.entity.GoodsCat">
+		select * from ms_goods_cat where type_id=#{type_id}
+	</select>
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.GoodsCat" 
+	useGeneratedKeys="true" keyProperty="cat_id" >
+		insert into ms_goods_cat
+		 (cat_id,name,parent_id,cat_path,goods_count,sort,type_id,list_show,image,creatime,modifytime)
+		 values(#{cat_id},#{name},#{parent_id},#{cat_path},#{goods_count},#{sort},
+		 #{type_id},#{list_show},#{image},#{creatime},#{modifytime})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.GoodsCat">
+		select * from ms_goods_cat
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_goods_cat where cat_id=#{cat_id}
+	</delete>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.GoodsCat">
+		select * from ms_goods_cat where cat_id=#{cat_id}
+	</select>
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" 
+	parameterType="com.huatec.edu.mobileshop.entity.GoodsCat">
+		update ms_goods_cat
+		<set>
+			<if test="name!=null">
+				name=#{name},
+			</if>
+			<if test="parent_id!=null">
+				parent_id=#{parent_id},
+			</if>
+			<if test="cat_path!=null">
+				cat_path=#{cat_path},
+			</if>
+			<if test="goods_count!=null">
+				goods_count=#{goods_count},
+			</if>
+			<if test="sort!=null">
+				sort=#{sort},
+			</if>
+			<if test="type_id!=null">
+				type_id=#{type_id},
+			</if>
+			<if test="list_show!=null">
+				list_show=#{list_show},
+			</if>
+			<if test="image!=null">
+				image=#{image},
+			</if>
+			<if test="modifytime!=null">
+				modifytime=#{modifytime}
+			</if>
+		</set>
+		where cat_id=#{cat_id}
+	</update>
+	
+	<!-- 分类表和类型表关联查询，根据父id查询 -->
+	<select id="findUnionByParentId" parameterType="int" resultMap="goodsCatMap1">
+		select mgc.*,mgt.type_id,mgt.name type_name,mgt.params 
+		from ms_goods_cat mgc 
+		join ms_goods_type mgt 
+		on mgc.type_id=mgt.type_id
+		where parent_id=#{parent_id} order by sort desc
+	</select>
+	<resultMap type="com.huatec.edu.mobileshop.entity.GoodsCat" id="goodsCatMap1">
+		<id property="cat_id" column="cat_id"/>
+		<result property="name" column="name"/>
+		<result property="parent_id" column="parent_id"/>
+		<result property="cat_path" column="cat_path"/>
+		<result property="goods_count" column="goods_count"/>
+		<result property="sort" column="sort"/>
+		<result property="type_id" column="type_id"/>
+		<result property="list_show" column="list_show"/>
+		<result property="image" column="image"/>
+		<result property="creatime" column="creatime"/>
+		<result property="modifytime" column="modifytime"/>
+		<association property="briefGoodsType" 
+		 javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsType">
+		 	<id property="type_id" column="type_id"/>
+			<!-- 字段名和起的别名一致 -->
+			<result property="name" column="type_name"/>
+			<result property="params" column="params"/>
+		 </association>
+	</resultMap>
+	
+	<!-- 分类表和类型表关联查询，根据父id查询 -->
+	<select id="findUnionById" parameterType="int" resultMap="goodsCatMap2">
+		select mgc.*,mgt.type_id,mgt.name type_name,mgt.params 
+		from ms_goods_cat mgc 
+		join ms_goods_type mgt 
+		on mgc.type_id=mgt.type_id
+		where mgc.cat_id=#{cat_id}
+	</select>
+	<resultMap type="com.huatec.edu.mobileshop.entity.GoodsCat" id="goodsCatMap2">
+		<id property="cat_id" column="cat_id"/>
+		<result property="name" column="name"/>
+		<result property="parent_id" column="parent_id"/>
+		<result property="cat_path" column="cat_path"/>
+		<result property="goods_count" column="goods_count"/>
+		<result property="sort" column="sort"/>
+		<result property="type_id" column="type_id"/>
+		<result property="list_show" column="list_show"/>
+		<result property="image" column="image"/>
+		<result property="creatime" column="creatime"/>
+		<result property="modifytime" column="modifytime"/>
+		<association property="briefGoodsType" 
+		 javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsType">
+		 	<id property="type_id" column="type_id"/>
+			<!-- 字段名和起的别名一致 -->
+			<result property="name" column="type_name"/>
+			<result property="params" column="params"/>
+		 </association>
+	</resultMap>
+	
+</mapper>

@@ -1,0 +1,33 @@
+/* 
+* @Author: Marte
+* @Date:   2016-08-11 09:03:11
+* @Last Modified by:   Marte
+* @Last Modified time: 2016-09-06 16:22:44
+*/
+
+/*样式准备第1步： 重新定义部分Html标签的样式*/
+body,div,a,img,h1,h2,h3,h4,h4,h5,p,ol,ul,li,dl,dt,dd{ margin:0; padding:0; list-style:none; border:none;}
+/* input{ margin:0; padding:0; list-style:none; border:none;} */
+
+/*样式准备第2步： 定义body默认样式*/
+body{ font-size:12px; font-family:"宋体"; color:#616161; }
+
+/*样式准备第3步： 定义a的默认样式*/
+a{ color:#999; text-decoration:none;}
+a:hover{ text-decoration:underline;}
+
+
+/*样式准备第4步：为旧版本浏览器格式化Html5元素*/
+article, aside, dialog, footer, header, section, footer, nav, figure, menu { display:block; }
+
+
+
+/*footer部分*/
+#footer{  background:#f5f5f5;  border-top:1px solid #eee; margin:10px 0px;}
+#footerCon{ width:1190px;  margin:10px auto 0px;}
+#footerCon #links{ border-bottom: 1px solid #eee; overflow:hidden; padding-bottom: 20px; }
+#footerCon #links dl{float:left;width: 200px; margin-right:52px;}
+#footerCon #links dl dt{color:#646464; padding-bottom: 10px; font-weight: 700; font-size: 14px; }
+#footerCon #links dl dd{ line-height: 25px;}
+#footerCon #otherLinks{ height:30px; line-height: 30px;  text-align: center;  }
+#footerCon #copyRight{  line-height: 30px;  text-align: center;  }

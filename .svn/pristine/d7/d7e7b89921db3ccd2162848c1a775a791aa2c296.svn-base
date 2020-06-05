@@ -1,0 +1,46 @@
+$(document).ready(function(){
+	 var path = "http://localhost:8080/MobileShop";
+	 var pageId = 1;
+	 var url = path+"/goods/enable/page/"+pageId;
+	 
+	//创建模型类
+	var  GoodsItem = Backbone.Model.extend();
+	
+	//创建集合类
+	var  OnLineGoodsList = Backbone.Collection.extend({
+		model: GoodsItem,
+		url:url,
+	    parse : function(response){
+	        return response.data;
+	      }
+	});
+	
+    
+    //实例化集合，并将数据传递给它
+    var  onLineGoodsList = new OnLineGoodsList();
+    onLineGoodsList.fetch();
+    
+    
+    
+    
+    
+    
+   //创建视图类
+   var GoodsListView = Backbone.View.extend({
+	   el: $("online"),
+       initialize: function () {
+    	   this.listenTo(onLineGoodsList, 'all', this.render);
+       },
+       render: function(){
+    	   $("#onlineGoodsList").empty();//清空一次
+    	   for(var i=0;i < onLineGoodsList.models.length;i++){
+    		console.log(onLineGoodsList.models[i]);
+         	 $("#onlineGoodsList").append("<tr class='item'> <td >"+onLineGoodsList.models[i].get("sn")+"</td> <td>"+onLineGoodsList.models[i].get("name")+"</td><td>"+onLineGoodsList.models[i].get("price")+"</td></tr>");
+            }
+       }
+   });
+   //实例化视图
+   var goodListView = new GoodsListView;
+   goodListView.render();//渲染一次
+
+});

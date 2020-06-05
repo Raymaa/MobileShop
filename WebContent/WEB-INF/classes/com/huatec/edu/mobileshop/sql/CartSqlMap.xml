@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.CartDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	<!-- 动态查询 -->
+	<select id="dynamicFind" 
+	parameterType="com.huatec.edu.mobileshop.entity.Cart"
+	resultType="com.huatec.edu.mobileshop.entity.Cart">
+		select * from ms_cart
+		<where>
+			<if test="member_id!=null">
+				member_id=#{member_id}
+			</if>
+			<if test="goods_id!=null">
+				and goods_id=#{goods_id}
+			</if>
+			<if test="choose!=null">
+				and choose=#{choose}
+			</if>
+		</where>
+	</select>
+	<!-- 购物车表和商品表关联查询,根据会员id -->
+	<select id="findUnionByMemberId" parameterType="map" resultMap="cartMap1">
+		select mc.*,mg.goods_id,mg.name,mg.price,
+		mg.mktprice,mg.small,mg.mkt_enable
+		from ms_cart mc join ms_goods mg
+		on mc.goods_id=mg.goods_id
+		<where>
+			<if test="member_id!=null">
+				mc.member_id=#{member_id}
+			</if>
+			<if test="choose!=null">
+				and mc.choose=#{choose}
+			</if>
+		</where>
+	</select>
+	<resultMap 
+	type="com.huatec.edu.mobileshop.entity.Cart" 
+	id="cartMap1">
+		<id property="cart_id" column="cart_id"/>
+		<result property="member_id" column="member_id"/>
+		<result property="goods_id" column="goods_id"/>
+		<result property="goods_num" column="goods_num"/>
+		<result property="choose" column="choose"/>
+		<result property="amount" column="amount"/>
+		<result property="creatime" column="creatime"/>
+		<result property="modifytime" column="modifytime"/>
+		<association 
+		property="briefGoods" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoods">
+			<id property="goods_id" column="goods_id"/>
+			<result property="name" column="name"/>
+			<result property="price" column="price"/>
+			<result property="mktprice" column="mktprice"/>
+			<result property="small" column="small"/>
+			<result property="mkt_enable" column="mkt_enable"/>
+		</association>
+	</resultMap>
+	
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.Cart" 
+	useGeneratedKeys="true" keyProperty="cart_id" >
+		insert into ms_cart
+		 (cart_id,member_id,goods_id,goods_num,choose,amount,creatime,modifytime)
+		 values(#{cart_id},#{member_id},#{goods_id},#{goods_num},#{choose},#{amount},
+		 #{creatime},#{modifytime})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.Cart">
+		select * from ms_cart
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_cart where cart_id=#{cart_id}
+	</delete>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.Cart">
+		select * from ms_cart where cart_id=#{cart_id}
+	</select>
+	<!-- 动态更新 -->
+	<update id="dynamicUpdate" 
+	parameterType="com.huatec.edu.mobileshop.entity.Cart">
+		update ms_cart
+		<set>
+			<if test="goods_num!=null">
+				goods_num=#{goods_num},
+			</if>
+			<if test="choose!=null">
+				choose=#{choose},
+			</if>
+			<if test="amount!=null">
+				amount=#{amount},
+			</if>
+			<if test="modifytime!=null">
+				modifytime=#{modifytime}
+			</if>
+		</set>
+		where cart_id=#{cart_id}
+	</update>
+	
+</mapper>

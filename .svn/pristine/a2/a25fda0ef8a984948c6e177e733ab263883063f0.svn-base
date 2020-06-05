@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Backbone 事件管理</title>
+      <link type="text/css" rel="stylesheet" href="demo1.css" /> 
+    </head>
+    <body>
+       <div style="width:400px;" >
+           <table class="bordered">
+                  <thead>
+                    <tr>       
+                        <th>商品编号</th>
+                        <th>商品名称</th>
+                        <th>销售价格</th>
+                    </tr>
+                   </thead>
+                   <tbody id="goodsInfo"><!--这里由Backbone加载进来  -->
+                        
+                   </tbody>                 
+             </table>
+       </div>  
+       
+       
+       
+       <div class="add">
+			<form >  
+			  <div >
+			    <dl>
+			      <dt>商品编号：</dt>
+			      <dd><input type="text" class="text" value="" id="name" placeholder="商品编号"></dd> 
+			    </dl>
+			     <dl>
+			      <dt>商品名称：</dt>
+			      <dd><input type="text" class="text" value="" id="description" placeholder="商品名称"></dd>
+			    </dl>
+			      <dl>
+			      <dt>销售价格：</dt>
+			      <dd><input type="text" class="text" value="" id="description" placeholder="商品名称"></dd>
+			    </dl>
+			     <dl>                     
+			        <dt>&nbsp;</dt>
+			      <dd>
+			       <a href="#"  class="addRole_ent"  id="btn2">添加 一个商品</a>
+			      </dd>
+			    </dl>
+			
+			  </div>
+			</form>      
+       </div>
+       <script  src="../plug/jquery-3.1.1.js" type="text/javascript"></script> 
+       <script  src="../plug/underscore-min.js" type="text/javascript"></script> 
+       <script  src="../plug/backbone-min.js" type="text/javascript"></script> 
+       <script src="demo2.js"></script>
+       
+    </body>
+</html>

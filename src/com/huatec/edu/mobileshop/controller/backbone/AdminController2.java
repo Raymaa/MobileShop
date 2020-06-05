@@ -1,0 +1,113 @@
+package com.huatec.edu.mobileshop.controller.backbone;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.huatec.edu.mobileshop.service.AdminService;
+import com.huatec.edu.mobileshop.util.MSUtil;
+import com.huatec.edu.mobileshop.util.Result;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
+
+import net.sf.json.JSONObject;
+
+@Controller
+//前后端交互时，前端有名为admin的文件夹，为避免冲突，所以这里命名为admin_manager
+@RequestMapping("/backbone/admin_manager")
+public class AdminController2 {
+	@Resource
+	private AdminService adminService;
+	
+	//前台使用backbone框架
+	@RequestMapping(method=RequestMethod.POST)
+	@ResponseBody
+	//@ApiOperation：swagger用于方法的注释
+	@ApiOperation(value="新增管理员（backbone框架）",notes="超级管理员根据电话、真实姓名和角色id新增管理员")
+	public Result add(HttpServletRequest request){
+		Map jmap=MSUtil.getParam(request);
+		String mobile=(String) jmap.get("mobile");
+		String realName=(String) jmap.get("realName");
+		int roleId=Integer.parseInt((String) jmap.get("roleId"));
+		Result result=adminService.addAdmin(mobile, realName, roleId);
+		return result;
+	}
+	
+	
+	
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	@ResponseBody
+	//@RequestBody ,consumes="application/x-www-form-urlencoded"
+	@ApiOperation(value="登录验证",httpMethod="POST")
+	public Result checkLogin(HttpServletRequest request){
+		Map jmap=MSUtil.getParam(request);
+		String input=(String) jmap.get("input");
+		String password=(String) jmap.get("password");
+		Result result=adminService.checkLogin(input, password);
+		return result;
+	}
+	
+	@RequestMapping(value="/{adminId}",method=RequestMethod.PUT)
+	@ResponseBody
+	@ApiOperation(value="完善基本信息",notes="管理员根据编号完善基本信息")
+	public Result updateById(@ApiParam(value="管理员编号")@PathVariable("adminId") int adminId,
+			HttpServletRequest request){
+		Map jmap=MSUtil.getParam(request);
+		String username=(String) jmap.get("username");
+		String password=(String) jmap.get("password");
+		String email=(String) jmap.get("email");
+		int sex=Integer.parseInt((String) jmap.get("sex"));
+		Result result=adminService.updateAdmin(adminId, username, password, email, sex);
+		return result;
+	}
+	
+	@RequestMapping(value="/info/{adminId}",method=RequestMethod.PUT)
+	@ResponseBody
+	@ApiOperation(value="更新管理员基本信息",notes="超级管理员根据编号更新基本信息")
+	public Result updateMobileAndRealName(@PathVariable("adminId") int adminId,
+			HttpServletRequest request){
+		Map jmap=MSUtil.getParam(request);
+		String mobile=(String) jmap.get("mobile");
+		String realName=(String) jmap.get("realName");
+		int roleId=Integer.parseInt((String) jmap.get("roleId"));
+		Result result=adminService.updateInfo(adminId, mobile, realName,roleId);
+		return result;
+	}
+	
+	@RequestMapping(method=RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="加载所有管理员")
+	public Result loadAll(){
+		Result result=adminService.loadAllAdmin();
+		return result;
+	}
+	
+	@RequestMapping(value="/{adminId}",method=RequestMethod.GET)
+	@ResponseBody
+	@ApiOperation(value="加载管理员信息")
+	public Result loadById(@PathVariable("adminId") int adminId){
+		Result result=adminService.loadAdminById(adminId);
+		return result;
+	}
+	
+	@RequestMapping(value="/{adminId}",method=RequestMethod.DELETE)
+	@ResponseBody
+	@ApiOperation(value="删除管理员")
+	public Result deleteById(@PathVariable("adminId") int adminId){
+		Result result=adminService.deleteAdminById(adminId);
+		return result;
+	}
+	
+}

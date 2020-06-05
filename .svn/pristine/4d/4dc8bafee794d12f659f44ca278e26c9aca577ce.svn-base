@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+ 
+<mapper namespace="com.huatec.edu.mobileshop.dao.TypeBrandDao">
+	<!-- 缓存配置-->
+	<cache eviction="LRU" flushInterval="30000" size="512" readOnly="true"/>
+	<select id="findByBrandId" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.TypeBrand">
+		select * from ms_type_brand where brand_id=#{brand_id}
+	</select>
+	<select id="findByTypeId" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.TypeBrand">
+		select * from ms_type_brand where type_id=#{type_id} 
+	</select>
+	<!-- insert元素,在此元素内写增加的sql语句， parameterType：参数类型-->
+	<!-- sql语句中传入的参数类型用#{XX} -->
+	<!-- useGeneratedKeys="true" keyProperty="tag_id"  获取自增的主键并存入tag_id中 -->
+	<insert id="save" parameterType="com.huatec.edu.mobileshop.entity.TypeBrand" 
+	useGeneratedKeys="true" keyProperty="id" >
+		insert into ms_type_brand
+		 (id,type_id,brand_id,creatime,modifytime)
+		 values(#{id},#{type_id},#{brand_id},#{creatime},#{modifytime})
+	</insert>
+	
+	<!-- select元素，在此元素内写查询语句 -->
+	<select id="findAll" resultType="com.huatec.edu.mobileshop.entity.TypeBrand">
+		select * from ms_type_brand
+	</select>
+	
+	<!-- delete元素，在此元素内写删除语句 -->
+	<delete id="deleteById" parameterType="int">
+		delete from ms_type_brand where id=#{id}
+	</delete>
+	
+	<select id="findById" parameterType="int" 
+	resultType="com.huatec.edu.mobileshop.entity.TypeBrand">
+		select * from ms_type_brand where id=#{id}
+	</select>
+	
+	<update id="dynamicUpdate"
+	parameterType="com.huatec.edu.mobileshop.entity.TypeBrand">
+		update ms_type_brand
+		<set>
+			<if test="type_id!=null">
+				type_id=#{type_id},
+			</if>
+			<if test="brand_id!=null">
+				brand_id=#{brand_id},
+			</if>
+			<if test="modifytime!=null">
+				modifytime=#{modifytime}
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<!-- 类型品牌表、品牌表、类型表关联查询，根据类型id查询 -->
+	<select id="findUnionByTypeId" parameterType="int" resultMap="typeBrandMap">
+		select mtb.*,
+		mb.brand_id,mb.name brand_name,mb.logo,
+		mgt.type_id,mgt.name type_name,mgt.params
+		from 
+		ms_type_brand mtb join ms_brand mb 
+		on mtb.brand_id=mb.brand_id
+		join ms_goods_type mgt
+		on mtb.type_id=mgt.type_id
+		where mtb.type_id=#{type_id}
+	</select>
+	<!-- 配置id为typeBrandMap的resultMap -->
+	<resultMap 
+	type="com.huatec.edu.mobileshop.entity.TypeBrand" 
+	id="typeBrandMap">
+		<id property="id" column="id"/>
+		<result property="type_id" column="type_id"/>
+		<result property="brand_id" column="brand_id"/>
+		<result property="creatime" column="creatime"/>
+		<result property="modifytime" column="modifytime"/>
+		<!-- 一对一关系 -->
+		<association property="briefBrand" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefBrand">
+			<id property="brand_id" column="brand_id"/>
+			<result property="name" column="brand_name"/>
+			<result property="logo" column="logo"/>
+		</association>
+		<association property="briefGoodsType" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsType">
+			<id property="type_id" column="type_id"/>
+			<result property="name" column="type_name"/>
+			<result property="params" column="params"/>
+		</association>
+	</resultMap>
+	
+	<!-- 类型品牌表、类型表关联查询,根据品牌id查询 -->
+	<select id="findUnionByBrandId" parameterType="int" resultMap="typeBrandMap2">
+		select mtb.*,mgt.type_id,mgt.name,mgt.params
+		from 
+		ms_type_brand mtb join ms_goods_type mgt 
+		on mtb.type_id=mgt.type_id
+		where mtb.brand_id=#{brand_id}
+	</select>
+	<!-- 配置id为typeBrandMap的resultMap -->
+	<resultMap 
+	type="com.huatec.edu.mobileshop.entity.TypeBrand" 
+	id="typeBrandMap2">
+		<id property="id" column="id"/>
+		<result property="type_id" column="type_id"/>
+		<result property="brand_id" column="brand_id"/>
+		<result property="creatime" column="creatime"/>
+		<result property="modifytime" column="modifytime"/>
+		<!-- 一对一关系 -->
+		<association property="briefGoodsType" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsType">
+			<id property="type_id" column="type_id"/>
+			<result property="name" column="name"/>
+			<result property="params" column="params"/>
+		</association>
+	</resultMap>
+	
+	<!-- 类型品牌表、品牌表、类型表关联查询 -->
+	<!-- 为商品类型的name和品牌的name起别名 -->
+	<select id="findUnion" resultMap="typeBrandMap3">
+		select mtb.*,mgt.type_id,mgt.name type_name,mgt.params,
+		mb.brand_id,mb.name brand_name,mb.logo
+		from 
+		ms_type_brand mtb join ms_goods_type mgt 
+		on mtb.type_id=mgt.type_id 
+		join ms_brand mb 
+		on mtb.brand_id=mb.brand_id
+	</select>
+	<!-- 配置id为typeBrandMap的resultMap -->
+	<resultMap 
+	type="com.huatec.edu.mobileshop.entity.TypeBrand" 
+	id="typeBrandMap3">
+		<id property="id" column="id"/>
+		<result property="type_id" column="type_id"/>
+		<result property="brand_id" column="brand_id"/>
+		<result property="creatime" column="creatime"/>
+		<result property="modifytime" column="modifytime"/>
+		<!-- 一对一关系 -->
+		<association property="briefGoodsType" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsType">
+			<id property="type_id" column="type_id"/>
+			<!-- 字段名和起的别名一致 -->
+			<result property="name" column="type_name"/>
+			<result property="params" column="params"/>
+		</association>
+		<association property="briefBrand" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefBrand">
+			<id property="brand_id" column="brand_id"/>
+			<result property="name" column="brand_name"/>
+			<result property="logo" column="logo"/>
+		</association>
+	</resultMap>
+	
+	<!-- 类型品牌表、品牌表、类型表关联查询，根据id查询 -->
+	<!-- 为商品类型的name和品牌的name起别名 -->
+	<select id="findUnionById" parameterType="int" resultMap="typeBrandMap4">
+		select mtb.*,mgt.type_id,mgt.name type_name,mgt.params,
+		mb.brand_id,mb.name brand_name,mb.logo
+		from 
+		ms_type_brand mtb join ms_goods_type mgt 
+		on mtb.type_id=mgt.type_id 
+		join ms_brand mb 
+		on mtb.brand_id=mb.brand_id
+		where id=#{id}
+	</select>
+	<!-- 配置id为typeBrandMap的resultMap -->
+	<resultMap 
+	type="com.huatec.edu.mobileshop.entity.TypeBrand" 
+	id="typeBrandMap4">
+		<id property="id" column="id"/>
+		<result property="type_id" column="type_id"/>
+		<result property="brand_id" column="brand_id"/>
+		<result property="creatime" column="creatime"/>
+		<result property="modifytime" column="modifytime"/>
+		<!-- 一对一关系 -->
+		<association property="briefGoodsType" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefGoodsType">
+			<id property="type_id" column="type_id"/>
+			<!-- 字段名和起的别名一致 -->
+			<result property="name" column="type_name"/>
+			<result property="params" column="params"/>
+		</association>
+		<association property="briefBrand" 
+		javaType="com.huatec.edu.mobileshop.entity.brief.BriefBrand">
+			<id property="brand_id" column="brand_id"/>
+			<result property="name" column="brand_name"/>
+			<result property="logo" column="logo"/>
+		</association>
+	</resultMap>
+	
+</mapper>

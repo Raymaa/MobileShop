@@ -1,0 +1,104 @@
+
+$(document).ready(function(){
+
+    //用于给Model的relRoot构建
+     var path = "http://localhost:8080/MobileShop";
+	 var urlRoot = path+"/backbone/goods/enable/";   
+  
+     var  GoodsItem = Backbone.Model.extend({
+    	 urlRoot:urlRoot,
+		 idAttribute:"goodsId"  //将goodsId设置为键值属性
+	  });
+     
+
+	
+    
+     
+     //用于给Collection的URL构建
+	 var pageId = 1;
+     var path = "http://localhost:8080/MobileShop";
+	 var url = path+"/goods/enable/page/"+pageId;
+     
+	var  OnLineGoodsList = Backbone.Collection.extend({
+		model: GoodsItem,
+		url:url,  //可以在定义集合类时传入url
+	    parse : function(response){
+	        return response.data;
+	      }
+	});
+	
+   //实例化Collection
+    var  onLineGoodsList = new OnLineGoodsList();
+    
+  //调用GET方式从服务器提取数据
+  onLineGoodsList.fetch({
+	    reset:true, 
+	    url:url,//也可以在fetch时重构url
+	    success: function(collection, response) {
+
+         }
+    });
+
+  //View定义
+     var GoodsItemView = Backbone.View.extend({
+    	 tagName : 'tr',       //设置生成的DOM元素，这里为表格中的一行
+	     className : 'item',   //设置class属性
+	     itemTemplate : _.template($("#onLineTemplate").html()),//设置模板
+	     initialize:function(){
+             this.render();
+	     },
+    	 render : function(){
+    		   console.log("进入单个视图");
+    		   console.log(this.model.toJSON());
+	       		this.$el.html(this.itemTemplate(this.model.toJSON()));
+	       		return this;  
+	       	}
+     });
+     
+     //创建一个显示Collection对象的视图类
+     var GoodsListView = Backbone.View.extend({
+    	    el : '#onlineGoodsList',
+    	    //事件绑定
+    	    events: {
+    	      "click a.offLine": "offGoods",
+    	      "click a.edit": "editGoods",
+    	      "click a.delete": "deleteGoods"
+    	    },
+	       	initialize: function() {
+	       		this.listenTo(onLineGoodsList,'all',this.render);//GoodsListView视图监听collection对象onLineGoodsList的all事件，render进行渲染
+	       	},
+	       	render :function(){
+	       		this.$el.empty();//清空
+	       		
+	       		for(var i=0;i < onLineGoodsList.models.length;i++){
+	       			var view = new GoodsItemView ({model :onLineGoodsList.models[i] });  
+	       			this.$el.append(view.$el);
+	       		}
+	       	},
+	       	offGoods :function(e){//下架商品 2017.1.4
+	       		//获取goodsId
+	       	   console.log($(this));
+	       	   var goods = new GoodsItem();
+	           goods.set({goodsId:"5",mktEnable:"1"}); 
+	           goods.save(); 
+	       	},
+	    	editGoods :function(){//编辑商品
+	       		alert("edit");
+	       	},
+	       	deleteGoods :function(){//删除商品
+	       		alert("delete");
+	       	}
+	       	
+	       });
+   
+     //实例化View，页面显示出数据
+   var goodsListView = new GoodsListView;
+   goodsListView.render();
+  
+
+      
+   
+   
+   
+   
+});

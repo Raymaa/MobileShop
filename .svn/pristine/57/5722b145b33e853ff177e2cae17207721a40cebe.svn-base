@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>商品列表</title>
+     <link type="text/css" rel="stylesheet" href="css/base.css" />
+     <link type="text/css" rel="stylesheet" href="css/goodsList.css" />
+     <link rel="stylesheet" href="../plug/font-awesome/css/font-awesome.min.css">
+     <link rel="shortcut icon" href="../favicon.ico" />
+
+    </head>
+    <body >
+    <div id="siteNav">
+      <div id="siteNavCon">
+        <ul class="left">
+          <li>
+            <a href="#">欢迎来到MobileShop</a>
+          </li>
+          <li>
+            <a href="#" class="red">登录</a>
+          </li>
+           <li>
+            <a href="#">免费注册</a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li><a href="#">我的MobileShop</a></li>
+          <li><a href="#">购物车</a></li>
+          <li><a href="#">收藏夹</a></li>
+          <li><a href="#">商品分类</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="header" >
+     
+      <div class="search">
+      <div class="searchCon">
+          <ul class="searchConT">
+              <ul>
+                <li class="current">宝贝</li>
+
+              </ul>
+            </ul>
+          <div class="searchConM">
+              <div class="left">
+                  <div class="text"><input type="text" name="" id="text" />
+                    <label for="text">背带牛仔裙袭来</label>
+                    <span></span>
+                    </div>
+                  <div class="btn"><input type="button" value="搜索" /></div>
+                </div>
+              <p class="right"><a href="#">高级搜索</a></p>
+            </div>
+          <p class="searchConB"><a href="#">背带裙</a><a href="#">手机</a><a href="#" class="orange">巧克力</a><a href="#">休闲男鞋</a><a href="#">情侣装</a><a href="#">运动鞋</a><a href="#">凉席</a><a href="#">香水</a><a href="#">行车记录仪</a><a href="#">黄金吊坠</a><a href="#">凉鞋</a><a href="#">女包</a><a href="#">珍珠项链</a><a href="#" class="more">更多</a></p>
+        </div>
+    </div>
+  <div class="logo">
+      <h1><a href="#">MobileShop</a></h1>
+  </div>
+   <div class="QRCode">
+         <p><a href="#" class="orange">手机逛商城</a></p>
+         <a href="#"><img src="img/QRCode.png" width="80" height="80" /></a>
+         <span><s></s></span>
+      </div>
+
+    </div>
+     <div id="content" > 
+         <div id="selector">
+            <div class="selectorItem">
+               <div class="key">品牌</div>
+               <div class="value">
+                  <ul class="valueUl">
+                     <li>
+                        <a href="#">花果山</a>
+                     </li>
+                     <li>
+                        <a href="#">天天果园</a>
+                     </li>
+                    <li>
+                        <a href="#">26度</a>
+                     </li>
+                     <li>
+                        <a href="#">熙果</a>
+                     </li>
+                     <li>
+                        <a href="#">鲜实多</a>
+                     </li>
+                     <li>
+                        <a href="#">太阳果</a>
+                     </li>
+                     <li>
+                        <a href="#">佳沛</a>
+                     </li>
+                     <li>
+                        <a href="#">易果</a>
+                     </li>
+                  </ul>
+                  <div><a href="#">更多</a></div>
+               </div>
+
+               
+            </div>
+         </div>
+         <div id="sort">
+             <a href="#" class="fSort">综合 <i class="fa  fa-arrow-down"></i></a>
+             <a href="#" class="fSort">人气<i class="fa  fa-arrow-down"></i> </a>
+             <a href="#" class="fSort">新品<i class="fa  fa-arrow-down"></i> </a>
+             <a href="#" class="fSort fSortCur">价格<i class="fa fa-chevron-up up"></i><i class="fa fa-chevron-down down"></i>  </a>
+
+             <p class="smallPage">
+               <b class="smallPageNum">1/100</b>
+               <b class="smallPagePrev">&lt;</b>
+               <a class="smallPageNext">&gt;</a>
+             </p>
+         </div>
+         <div id="goodsList">
+           <div class="goodsItem">
+             <div class="goodsItemWrap">
+                 <div class="goodsImg">
+                   <a href="#">
+                     <img src="img/goods/1.jpg"/>
+                   </a>
+                 </div>
+                 <p class="goodsPrice">
+                   <em><b>￥</b>6</em>
+                   <span class="average">6元/个</span>
+                 </p>
+                 <p class="goodsTitle">
+                   <a href="#">Zespri佳沛新西兰阳光金</a>
+                </p>
+                 <p class="goodsStatus">
+                   <span>月成交<em>6000</em>笔</span>
+                   <span class="norightborder">月评价<em>6000</em>个</span>
+                 </p>
+              </div>   
+           </div>
+
+           <div class="goodsItem">
+              <div class="goodsItemWrap">
+                 <div class="goodsImg">
+                   <a href="#">
+                     <img src="img/goods/2.jpg"/>
+                   </a>
+                 </div>
+                 <p class="goodsPrice">
+                    <em><b>￥</b>45</em>
+                    <span class="average">45元/5斤</span>
+                 </p>
+                 <p class="goodsTitle">
+                   <a href="#">熙果四川红心猕猴桃 蒲江红心猕</a>
+                 </p>
+                 <p class="goodsStatus">
+                   <span>月成交<em>6000</em>笔</span>
+                   <span class="norightborder">月评价<em>6000</em>个</span>
+                 </p>
+              </div>
+           </div>
+
+          <div class="goodsItem">
+             <div class="goodsItemWrap">
+                 <div class="goodsImg">
+                   <a href="#">
+                     <img src="img/goods/3.jpg"/>
+                   </a>
+                 </div>
+                 <p class="goodsPrice">
+                   <em><b>￥</b>60</em>
+                   <span class="average">60元/5斤</span>
+                 </p>
+                 <p class="goodsTitle">
+                   <a href="#">送6枚【誉福园】四川蒲江红心猕猴桃1
+                   </a>
+                 </p>
+                 <p class="goodsStatus">
+                   <span>月成交<em>6000</em>笔</span>
+                   <span class="norightborder">月评价<em>6000</em>个</span>
+                 </p>
+              </div>
+           </div>
+
+         <div class="goodsItem">
+           <div class="goodsItemWrap">
+                 <div class="goodsImg">
+                   <a href="#">
+                     <img src="img/goods/4.jpg"/>
+                   </a>
+                 </div>
+                 <p class="goodsPrice">
+                   <em><b>￥</b>29.90</em>
+                   <span class="average">29.9元/3斤</span>
+                 </p>
+                 <p class="goodsTitle">
+                   <a href="#">攀枝花芒果凯特芒果大青芒果
+                   </a>
+                 </p>
+                 <p class="goodsStatus">
+                   <span>月成交<em>6000</em>笔</span>
+                   <span class="norightborder">月评价<em>6000</em>个</span>
+                 </p>
+             </div>
+           </div>
+
+          <div class="goodsItem">
+            <div class="goodsItemWrap">
+                 <div class="goodsImg">
+                   <a href="#">
+                     <img src="img/goods/5.jpg"/>
+                   </a>
+                 </div>
+                 <p class="goodsPrice">
+                    <em><b>￥</b>30</em>
+                    <span class="average">30元/5斤</span>
+                 </p>
+                 <p class="goodsTitle">
+                   <a href="#">山东烟台红富士苹果5斤
+                   </a>
+                 </p>
+                 <p class="goodsStatus">
+                     <span>月成交<em>6000</em>笔</span>
+                     <span class="norightborder">月评价<em>6000</em>个</span>
+                 </p>
+            </div>
+           </div>
+
+                     <div class="goodsItem">
+            <div class="goodsItemWrap">
+                 <div class="goodsImg">
+                   <a href="#">
+                     <img src="img/goods/6.jpg"/>
+                   </a>
+                 </div>
+                 <p class="goodsPrice">
+                    <em><b>￥</b>30</em>
+                    <span class="average">30元/5斤</span>
+                 </p>
+                 <p class="goodsTitle">
+                   <a href="#">山东烟台红富士苹果5斤
+                   </a>
+                 </p>
+                 <p class="goodsStatus">
+                     <span>月成交<em>6000</em>笔</span>
+                     <span class="norightborder">月评价<em>6000</em>个</span>
+                 </p>
+            </div>
+           </div>
+
+                     <div class="goodsItem">
+            <div class="goodsItemWrap">
+                 <div class="goodsImg">
+                   <a href="#">
+                     <img src="img/goods/7.jpg"/>
+                   </a>
+                 </div>
+                 <p class="goodsPrice">
+                    <em><b>￥</b>30</em>
+                    <span class="average">30元/5斤</span>
+                 </p>
+                 <p class="goodsTitle">
+                   <a href="#">山东烟台红富士苹果5斤
+                   </a>
+                 </p>
+                 <p class="goodsStatus">
+                     <span>月成交<em>6000</em>笔</span>
+                     <span class="norightborder">月评价<em>6000</em>个</span>
+                 </p>
+            </div>
+           </div>
+
+                     <div class="goodsItem">
+            <div class="goodsItemWrap">
+                 <div class="goodsImg">
+                   <a href="#">
+                     <img src="img/goods/8.jpg"/>
+                   </a>
+                 </div>
+                 <p class="goodsPrice">
+                    <em><b>￥</b>30</em>
+                    <span class="average">30元/5斤</span>
+                 </p>
+                 <p class="goodsTitle">
+                   <a href="#">山东烟台红富士苹果5斤
+                   </a>
+                 </p>
+                 <p class="goodsStatus">
+                     <span>月成交<em>6000</em>笔</span>
+                     <span class="norightborder">月评价<em>6000</em>个</span>
+                 </p>
+            </div>
+           </div>
+
+                     <div class="goodsItem">
+            <div class="goodsItemWrap">
+                 <div class="goodsImg">
+                   <a href="#">
+                     <img src="img/goods/9.jpg"/>
+                   </a>
+                 </div>
+                 <p class="goodsPrice">
+                    <em><b>￥</b>30</em>
+                    <span class="average">30元/5斤</span>
+                 </p>
+                 <p class="goodsTitle">
+                   <a href="#">山东烟台红富士苹果5斤
+                   </a>
+                 </p>
+                 <p class="goodsStatus">
+                     <span>月成交<em>6000</em>笔</span>
+                     <span class="norightborder">月评价<em>6000</em>个</span>
+                 </p>
+            </div>
+           </div>
+
+                     <div class="goodsItem">
+            <div class="goodsItemWrap">
+                 <div class="goodsImg">
+                   <a href="#">
+                     <img src="img/goods/10.jpg"/>
+                   </a>
+                 </div>
+                 <p class="goodsPrice">
+                    <em><b>￥</b>30</em>
+                    <span class="average">30元/5斤</span>
+                 </p>
+                 <p class="goodsTitle">
+                   <a href="#">山东烟台红富士苹果5斤
+                   </a>
+                 </p>
+                 <p class="goodsStatus">
+                     <span>月成交<em>6000</em>笔</span>
+                     <span class="norightborder">月评价<em>6000</em>个</span>
+                 </p>
+            </div>
+           </div>
+
+         </div>
+         <div class="page">
+            <div class="pageWrap">
+              <b class="pageNum">
+                <b class="pagePrev">上一页</b>
+                <b class="pageCur">1</b>
+                <a>2</a>
+                <a>3</a>
+                <b class="pageBreak">...</b>
+                <a class="pageNex">下一页</a>
+              </b>
+              <b class="pageSkip">
+                <form  >
+                  共100页，到第
+                  <input type="text" class="jumpTo"  value="1"/>
+                  页
+                  <button type="submit" class="pageBtn">确定</button>
+                </form>
+              </b>
+            </div>
+         </div>
+     </div>
+
+       <div id="footer" >
+        <div id="footerCon">
+          <div id="links">
+          <dl>
+          <dt>用户指南</dt>
+          <dd><a href="guide.html">新手指南</a></dd>
+          <dd><a href="memberLevel.html">会员积分</a></dd>
+          <dd><a href="#">常见问题</a></dd>
+          <dd><a href="feedback.html">反馈调查</a></dd>
+          </dl>  
+                 
+                <dl>
+                <dt>品牌服务</dt>
+                <dd><a href="#">闪电配送</a></dd>
+                <dd><a href="#">快捷支付</a></dd>
+                <dd><a href="#">售后保障</a></dd>
+                </dl>
+
+                <dl>
+                <dt>商家合作</dt>
+                <dd><a href="#">商家对接</a></dd>
+                <dd><a href="#">品牌资质</a></dd>
+                <dd><a href="#">进场流程</a></dd>
+                </dl>
+
+                <dl>
+                <dt>关于我们</dt>
+                <dd><a href="#">平台简介</a></dd>
+                <dd><a href="#">企业文化</a></dd>
+                <dd><a href="#">经营模式</a></dd>
+                <dd><a href="#">招贤纳士</a></dd>
+                </dl>
+                
+             </div>
+             <div id="otherLinks">
+               <a href="#">关于我们</a>|
+               <a href="#">购物指南</a>|
+               <a href="#">商家合作</a>|
+               <a href="#">联系我们</a>|
+               <a href="#">招贤纳士</a>|
+               <a href="#">反馈调查</a>
+               <a href="#">反馈调查</a>
+             </div>
+             <div id="copyRight">
+               Copyright &copy;2016 - 2026 MobileShop 版权所有 | 消费者维权热线：<span class="red">40088888888</span>
+             </div>
+          </div>
+       </div>
+    </body>
+</html>

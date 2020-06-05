@@ -1,0 +1,449 @@
+/* 
+* @Author: Marte
+* @Date:   2016-08-11 09:03:11
+* @Last Modified by:   Marte
+* @Last Modified time: 2016-11-21 09:03:32
+*/
+
+/*goodsList 页面content*/
+
+#content{  
+    width:100%;  /*覆盖之前的样式*/
+    overflow: hidden;
+    }/*上边距塌陷*/
+
+/*主导航模块*/
+.mainNav{
+    height:36px;
+    width:100%;
+    background-color: #dd2727;
+    line-height: 36px;
+}
+.innerCon{
+    width:1190px;
+    position:relative;
+    margin:0 auto;
+}
+.innerConRight{
+    width:80%;
+    position:absolute;
+    left:210px;
+}
+.mainNav a{
+    display: block;
+    float: left;
+    height:36px;
+    cursor: pointer;
+    padding: 0 15px;
+    font-family: "Microsoft YaHei",SimSun,'\5b8b\4f53',sans-serif;
+    color:#fff;
+    font-size: 16px;
+    font-weight: 500;
+    position:relative;
+}
+.mainNav a:hover{
+   color:#ccc; 
+   text-decoration: none;
+}
+
+/*当鼠标滑到导航时，上方出现图腾，采用js实现，鼠标悬停事件时，透明度为1，正常情况下为0*/
+
+.mainNav .hoverImg{
+background: url(../img/logo1.png) no-repeat;
+position:absolute;
+width:60px;
+height:40px;
+background-size: 60px 40px;
+top:-30px;
+left:50%;
+transform: translate(-20px,-5px);
+opacity: 0;
+z-index: 100;
+}
+
+.categoryAndBanner{
+    position:relative;
+    width:100%;
+    height:500px;
+}
+
+
+
+/*类别导航的样式*/
+.category{
+    width:1190px;
+    position:relative;
+    height:0px;
+    z-index: 100;
+    margin: 0 auto;
+}
+
+.categoryType{
+ width:200px;
+ float:left;
+ height:36px;
+ color:#fff;
+ background-color: #c60a0a;
+ position:absolute;
+ z-index:100;
+ margin-top:-36px;
+ line-height: 36px;
+}
+.categoryType i{
+    display:inline-block;
+    font-size: 16px;
+    margin-left:14px;
+    font-weight: 600;
+}
+.categoryType .title{
+    display:inline-block;
+    font-size: 16px;
+    margin-left:8px;
+    font-weight: 700; 
+}
+ 
+.category-tab-Con{
+    overflow:hidden;
+     background-color: rgba(238,238,238,.95);
+    width: 200px;
+/*     height: 480px; */
+    position: relative;
+    z-index: 11;
+    
+}
+
+
+.nav-item{
+    width:195px;  
+    padding-left: 5px;
+    position:relative;
+    height:35px;
+    line-height: 35px;
+    z-index:9999; 
+    color: #000;
+}
+.nav-item a{
+  font-family: "Microsoft Yahei";
+  font-weight: 500;
+    float: left;
+    display: inline-block;
+    margin-left: 10px;
+    color: #333;
+    font-size: 14px;
+    white-space: nowrap;
+}
+.nav-item a:hover{
+  text-decoration: none;
+  color:#C60A0A;
+}
+
+.categoryContent{
+  position:relative;
+}
+
+.content-con{
+  position:absolute;
+  width:832px;
+  height:300px;
+  top: 0;
+  left: 200px;
+  z-index: 7880;
+  opacity:9;
+}
+
+.pannel-con{
+    height: 456px;
+    width: 832px;
+    left:0px;
+    position: absolute;
+    background-color: #fff;
+    opacity:9;
+    padding-left:20px;
+     z-index: 7000;
+    border-bottom:1px solid  #f5f5f5;
+    display:none;/*先全部都隐藏*/
+}
+.line{
+  border-bottom: 1px dashed #f5f5f5;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.pannel-con a{
+
+    font-family: "Microsoft Yahei";
+    height:35px;
+    line-height: 35px;
+    font-weight: 500;
+    float: left;
+    display: inline-block;
+    margin-left: 10px;
+    color: #333;
+    font-size: 14px;
+    white-space: nowrap;
+}
+.pannel-con a:hover{
+    text-decoration: none;
+    color:#C60A0A;
+}
+
+/*jQuery的addClass、removeClass current去完成左边导航选中时的样式*/
+.current{
+  background:#fff
+}
+
+.on{
+  display:block;/*相应的二级分类标签显示*/
+}
+
+
+
+/* 首页焦点区域 */
+
+/* 大焦点图居中问题 */
+.banner ,.full_screen{ width: 100%; height: 481px; position: relative; z-index: 1;}
+.full_screen li { width: 1920px; height: 100%; position: absolute; z-index: 1; top: 0; left: 50%; margin-left: -960px;display:none; }
+
+
+/* 焦点图切换指示图 */
+.banner .slider-nav{ font-size: 0; 
+      background: rgba(255,255,255,0.2); 
+       text-align: center; 
+       display:block; 
+       list-style:none; 
+       width: 1190px; 
+       height: 24px; 
+       padding:7px 8px ; 
+       margin-left: -595px; 
+       position:absolute; 
+       left:50%; 
+       bottom: 0px; 
+       z-index: 2;}
+.banner .slider-nav li { 
+    vertical-align: top; 
+    letter-spacing: normal; 
+    word-spacing: normal;
+    display: inline-block; *display:inline/*IE6、7*/; 
+    list-style:none; 
+    width:24px; 
+    height:24px; 
+    border-radius: 12px;
+    margin-left:4px; 
+   /*  filter:progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr='#3F000000', endColorstr='#3F000000'); */
+    background:rgba(0,0,0,0.25);  
+    overflow: hidden; 
+    cursor: pointer; 
+    *zoom:1;
+    
+    }
+.banner .slider-nav a { 
+    color:#fff;
+    display: block; 
+    width:100%; 
+    height:100%; 
+    padding:0; 
+    margin:0; 
+    text-indent:-9999px; 
+}
+.banner .slider-nav li.on { 
+    background: #F30;
+}
+
+/*分频道*/
+
+.floor{
+    margin:30px auto 0;
+    width:1230px;
+    padding-right: 30px;
+
+}
+
+.floor-line-con{
+    height:600px;
+    overflow:hidden;
+    width:100%;
+    border-bottom: 1px solid #ddd;
+    background: #f5f5f5;
+    padding-top: 10px;
+}
+.floor-left{
+    height:600px;
+    width:220px;
+    float:left;
+}
+
+.color-mark{
+    background-color: #F15453;
+    display:inline-block;
+    width:5px;
+    height:20px;
+    vertical-align: top;
+}
+.left-title{
+    height:38px;
+}
+.left-title h2{
+    font-family: "Microsoft YaHei",SimSun,'\5b8b\4f53',sans-serif;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 18px;
+    color: #000;
+    line-height: 18px;
+    height: 18px;
+    margin-left: 10px;
+}
+
+.left-img{
+   margin-top:5px;
+}
+
+.left-tag a{
+    display: block;
+    width: 96px;
+    float: left;
+    height: 35px;
+    line-height: 35px;
+    color: #555;
+    font-size: 14px;
+    padding-left: 10px;
+}
+.left-tag a:hover{
+   color:#f40;
+   text-decoration: none;
+}
+
+.floor-right{
+    float:left;
+    width:1010px;
+}
+.floor-nav{
+ width:1000px;
+ height:38px;
+}
+
+/*标签鼠标移出和悬停时的效果*/
+.floor-nav li{
+    float:left;
+    width:25%;
+    height:36px;
+    cursor:pointer;
+    border-bottom: 2px solid #ddd;
+    position:relative;
+}
+.floor-nav li i{
+      display: none; 
+      border-color: transparent transparent #D93600;
+      font-size: 0px; 
+      line-height: 0; 
+      width: 0px;
+      height: 0px;
+      float: right;
+      margin-left: -4px;
+      border-width: 5px; 
+      border-style: dashed dashed solid dashed;
+      position: absolute; 
+      z-index: 1; 
+      bottom: 0; 
+      left: 50%;
+}
+
+.floor-nav li.selected{
+    border-bottom: 2px solid #D93600;
+}
+.floor-nav li.selected i{
+    display: block; 
+}
+
+.floor-nav li h3{
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 38px;
+    text-align: center;
+}
+.floor-goodslist{
+    margin-top:5px;
+    display:none;
+
+}
+.floor-goodslist ul li{
+    width:220px;
+    height:251px;
+    padding:15px;
+    float:left; 
+    opacity: 0.9;
+}
+
+
+/*brand品牌标签部分的样式设置*/
+.brand{ 
+    margin:30px auto 0;
+    width:1230px;
+    height:300px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+}
+
+.brand-left{
+  float:left;
+  border:1px solid #f5f5f5;
+}
+.brand-left img{
+    width:380px;
+    padding:5px;
+}
+    
+.brands-list{
+  float:left;
+  margin-left:30px;
+  height:314px;
+  width:800px;
+  border:1px solid #f5f5f5;
+}
+
+.brand-item{
+  width:200px;
+  height:110px;
+  float:left;
+  position:relative;
+}
+
+.black-cover{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background:#000;
+  opacity:0.5;
+  display:none;
+}
+.content-cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+     display:none;
+}
+.content-cover p{
+    width: 100%;
+    height: 20px;
+    margin-top: 25px;
+    font: 12px/20px "Microsoft yahei";
+    color: #FFF;
+    text-align: center;
+    color: #FFF;
+    overflow: hidden;
+}
+.content-cover a{
+    display: block;
+    margin: 10px auto;
+    width: 65px;
+    height: 22px;
+    font: 12px/20px "Microsoft yahei";
+    color: #FFF;
+    text-decoration: none;
+    background-color: #FA0;
+    border-radius: 11px;
+    text-align: center;
+}
+

@@ -1,0 +1,92 @@
+/* 
+* @Author: Marte
+* @Date:   2016-08-11 09:03:11
+* @Last Modified by:   Marte
+* @Last Modified time: 2016-11-04 09:36:21
+*/
+
+.reg{
+    margin: 0 auto;
+    width:1190px;
+    overflow: hidden;
+}
+.reg-left{
+    float: left;
+     margin-left:50px;
+}
+.reg-right{
+    float: left;
+    width:600px;
+    height: 400px;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    background: #f9f9f9;
+    margin-left:50px;
+}
+
+.reg-right h1{
+    color: #555;
+    font-family: "microsoft yahei";
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20px;
+    padding: 15px 0 25px 25px;
+    text-align: center;
+}
+.reg-same{
+    overflow: hidden;
+    padding: 0 100px;
+}
+.reg-same dl{
+    clear: both;
+    float: left;
+    padding: 0;
+    width: 100%;
+    margin:10px;
+}
+.reg-same dl dt{
+    color: #777;
+    float: left;
+    font-size: 14px;
+    line-height: 28px;
+    text-align: right;
+    width: 22%;
+}
+
+.reg-same dl dd {
+    float: right;
+    text-align: left;
+    width: 75%;
+    position: relative;
+}
+.reg-same dl dd .text {
+    background-color: #fff;
+    border: 1px solid #bbb;
+    font-family: Tahoma;
+    height: 20px;
+    line-height: 20px;
+    padding: 3px !important;
+    width: 200px;
+}
+.regis_ent {
+    background:#f08300;
+    border: 0 none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    height: 34px;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    width: 98px;
+    float: left;
+    text-align: center;
+}
+
+.msg{color:red; font-size: 14px;display:none;}
+/* #license {
+    float: left;
+    display: inline;
+    margin: 11px 10px 0px 10px;
+} */
